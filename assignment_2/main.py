@@ -1,7 +1,6 @@
 from tasks.task_1 import run_task_1
 from tasks.task_2 import run_task_2
-# from tasks.task3 import run_task_3
-# from tasks.task4 import run_task_4
+from tasks.task_3 import run_task_3
 from argparse import ArgumentParser
 
 
@@ -30,8 +29,10 @@ if __name__ == "__main__":
     # args = parser.parse_args()
     
     # main(args.task) 
-    run_task_1()  
-    run_task_2()
+    # run_task_1()  
+    # run_task_2(input_path="ip_files/page.png")
+    run_task_3(image_path="ip_files/flowers.png")
+
     
 
 
