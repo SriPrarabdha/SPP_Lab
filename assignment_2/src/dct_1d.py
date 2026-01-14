@@ -52,7 +52,7 @@ class DCT1D:
         if show is not None: plt.show()
         
         if save_dir is not None:
-            plt.savefig(save_dir+"/task1.png", dip=300)
+            plt.savefig(f"{save_dir}/1d_dct_matrix_viz.png", dpi=300, bbox_inches='tight')
 
         plt.close()
 

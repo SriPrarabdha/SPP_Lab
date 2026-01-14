@@ -7,10 +7,9 @@ from argparse import ArgumentParser
 def main(tasks:list[int]):
 
     tasks_list = {
-        # 1: ["ip_images/coins.png" , plot_hist],
-        # 2: ["ip_images/coins.png" , run_task_2],
-        # 3: ["ip_images/sudoku.png" , run_task_3],
-        # 4: ["ip_images/quote.png" , run_task_4],
+        1: ["ip_images/coins.png" , run_task_1],
+        2: ["ip_files/page.png" , run_task_2],
+        3: ["ip_files/flowers.png" , run_task_3],
     }
 
     for key in tasks:
@@ -18,20 +17,17 @@ def main(tasks:list[int]):
 
 
 if __name__ == "__main__":
-    # parser = ArgumentParser("Parser")
-    # parser.add_argument(
-    #     "--task",
-    #     type=int,
-    #     nargs="+",            
-    #     default=[1,2,3,4],         
-    #     help="Which task(s) do you want to run? Default is all."
-    # )
-    # args = parser.parse_args()
+    parser = ArgumentParser("Parser")
+    parser.add_argument(
+        "--task",
+        type=int,
+        nargs="+",            
+        default=[1,2,3],         
+        help="Which task(s) do you want to run? Default is all."
+    )
+    args = parser.parse_args()
     
-    # main(args.task) 
-    # run_task_1()  
-    # run_task_2(input_path="ip_files/page.png")
-    run_task_3(image_path="ip_files/flowers.png")
+    main(args.task) 
 
     
 

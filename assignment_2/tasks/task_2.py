@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from PIL import Image
 import os
 
-def run_task_2(input_path:str , save_dir: Optional[str] = None):
+def run_task_2(input_path:str , save_dir: Optional[str] ="op_files/task_2"):
     if save_dir and not os.path.exists(save_dir):
         os.makedirs(save_dir)
 
@@ -14,7 +14,7 @@ def run_task_2(input_path:str , save_dir: Optional[str] = None):
     # print(signal.shape)
     dct = DCT2D(signal=signal)
 
-    dct.visualize_basis(show=True)
+    dct.visualize_basis(save_path=save_dir)
     
     assert input_path is not None, "Please enter image path"
 

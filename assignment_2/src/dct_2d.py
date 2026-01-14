@@ -43,7 +43,7 @@ class DCT2D:
         low_freq_energy = np.sum(C[:k, :k] ** 2)
         return low_freq_energy / total_energy
 
-    def visualize_basis(self, show: bool = True, save_path: Optional[str] = None):
+    def visualize_basis(self, show: bool = False, save_path: Optional[str] = None):
 
         fig, axes = plt.subplots(8, 8, figsize=(10, 10))
 
