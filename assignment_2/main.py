@@ -7,7 +7,7 @@ from argparse import ArgumentParser
 def main(tasks:list[int]):
 
     tasks_list = {
-        1: ["ip_images/coins.png" , run_task_1],
+        1: ["op_files/task_1" , run_task_1],
         2: ["ip_files/page.png" , run_task_2],
         3: ["ip_files/flowers.png" , run_task_3],
     }
