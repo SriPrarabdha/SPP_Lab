@@ -11,11 +11,9 @@ class JPEGCompressionPipeline:
         self.block_size = block_size
         self.shape = image.shape
         
-        # Pad image to be divisible by block_size
         self.padded_image, self.pad_h, self.pad_w = self._pad_image()
         self.padded_shape = self.padded_image.shape
         
-        # Verify padding worked correctly
         if len(self.padded_shape) >= 2:
             if self.padded_shape[0] % block_size != 0 or self.padded_shape[1] % block_size != 0:
                 raise ValueError(
@@ -23,11 +21,9 @@ class JPEGCompressionPipeline:
                     f"Original shape: {self.shape}, Padding: ({self.pad_h}, {self.pad_w})"
                 )
         
-        # Calculate block grid dimensions
         self.n_blocks_h = self.padded_shape[0] // block_size
         self.n_blocks_w = self.padded_shape[1] // block_size
         
-        # Storage for DCT coefficients
         self.dct_coeffs = None
         self.quantized_coeffs = None
         self.reconstructed_image = None
@@ -77,7 +73,7 @@ class JPEGCompressionPipeline:
                     dct_block = dctn(block, type=2, norm='ortho')
                     dct_coeffs[i*bs:(i+1)*bs, j*bs:(j+1)*bs] = dct_block
         
-        else:  # RGB - process each channel
+        else: 
             dct_coeffs = np.zeros_like(self.padded_image)
             
             for c in range(self.padded_shape[2]):
@@ -233,10 +229,10 @@ class JPEGCompressionPipeline:
                     continue
                 
                 if region == 'topleft':
-                    # Top-left K×K square (low frequencies)
+                    # Top-left K×K square 
                     E_K = np.sum(block[:K, :K] ** 2)
                 elif region == 'bottomright':
-                    # Bottom-right K×K square (high frequencies)
+                    # Bottom-right K×K square 
                     E_K = np.sum(block[-K:, -K:] ** 2)
                 else:
                     raise ValueError("region must be 'topleft' or 'bottomright'")
