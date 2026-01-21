@@ -49,8 +49,8 @@ class DCT1D:
             ax.grid(True)
 
         plt.tight_layout()
-        plt.show()
         plt.savefig(f"{save_dir}/1d_dct_matrix_viz.png", dpi=300, bbox_inches='tight')
+        plt.show()
         
         # if save_dir is not None:
 

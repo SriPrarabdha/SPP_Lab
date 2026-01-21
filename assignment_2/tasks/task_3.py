@@ -47,8 +47,8 @@ def run_task_3(image_path: str, output_dir: str = 'op_files/task_3'):
     plt.colorbar(im, ax=axes[2])
     
     plt.tight_layout()
-    plt.show()
     plt.savefig(f'{output_dir}/part_a_reconstruction.png', dpi=300, bbox_inches='tight')
+    plt.show()
     plt.close()
     
     
@@ -90,8 +90,8 @@ def run_task_3(image_path: str, output_dir: str = 'op_files/task_3'):
         axes[idx].axis('off')
     
     plt.tight_layout()
-    plt.show()
     plt.savefig(f'{output_dir}/part_d_reconstructions.png', dpi=300, bbox_inches='tight')
+    plt.show()
     plt.close()
     
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
@@ -118,8 +118,8 @@ def run_task_3(image_path: str, output_dir: str = 'op_files/task_3'):
     ax2.set_ylim([0, 1])
     
     plt.tight_layout()
-    plt.show()
     plt.savefig(f'{output_dir}/part_d_quality_vs_compression.png', dpi=300, bbox_inches='tight')
+    plt.show()
     plt.close()
     
     pipeline.compute_block_dct()
