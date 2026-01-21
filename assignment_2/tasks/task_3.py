@@ -9,7 +9,6 @@ def run_task_3(image_path: str, output_dir: str = 'op_files/task_3'):
     
     os.makedirs(output_dir, exist_ok=True)
     
-    print("Loading image...")
     img = Image.open(image_path)
     img_array = np.array(img)
     
@@ -19,7 +18,7 @@ def run_task_3(image_path: str, output_dir: str = 'op_files/task_3'):
         img_gray = img_array
     
     print(f"Image shape: {img_gray.shape}")
-    print(f"Image dtype: {img_gray.dtype}, range: [{img_gray.min()}, {img_gray.max()}]")
+    print(f"range: [{img_gray.min()}, {img_gray.max()}]")
     
     pipeline = JPEGCompressionPipeline(img_gray, block_size=8)
 
@@ -132,21 +131,21 @@ def run_task_3(image_path: str, output_dir: str = 'op_files/task_3'):
     plt.close()
     
     print("\n1. Low-frequency region (top-left K×K):")
-    print(f"   - K=1: {low_freq_energy[1]*100:.1f}% of energy (DC component only)")
-    print(f"   - K=2: {low_freq_energy[2]*100:.1f}% of energy (2×2 low-freq)")
-    print(f"   - K=4: {low_freq_energy[4]*100:.1f}% of energy (4×4 low-freq)")
-    print(f"   - K=8: {low_freq_energy[8]*100:.1f}% of energy (all coefficients)")
+    print(f"K=1: {low_freq_energy[1]*100:.1f}% of energy (DC component only)")
+    print(f"K=2: {low_freq_energy[2]*100:.1f}% of energy (2×2 low-freq)")
+    print(f"K=4: {low_freq_energy[4]*100:.1f}% of energy (4×4 low-freq)")
+    print(f"K=8: {low_freq_energy[8]*100:.1f}% of energy (all coefficients)")
     
     
     print("\n2. High-frequency region (bottom-right K×K):")
-    print(f"   - K=1: {high_freq_energy[1]*100:.1f}% of energy")
-    print(f"   - K=2: {high_freq_energy[2]*100:.1f}% of energy")
-    print(f"   - K=4: {high_freq_energy[4]*100:.1f}% of energy")
-    print(f"   - K=8: {high_freq_energy[8]*100:.1f}% of energy")
+    print(f"K=1: {high_freq_energy[1]*100:.1f}% of energy")
+    print(f"K=2: {high_freq_energy[2]*100:.1f}% of energy")
+    print(f"K=4: {high_freq_energy[4]*100:.1f}% of energy")
+    print(f"K=8: {high_freq_energy[8]*100:.1f}% of energy")
     
     
     print("\n3. Comparison:")
     ratio_k2 = low_freq_energy[2] / max(high_freq_energy[2], 1e-10)
     ratio_k4 = low_freq_energy[4] / max(high_freq_energy[4], 1e-10)
-    print(f"   - At K=2: Low-freq has {ratio_k2:.1f}× more energy than high-freq")
-    print(f"   - At K=4: Low-freq has {ratio_k4:.1f}× more energy than high-freq")
+    print(f"At K=2: Low-freq has {ratio_k2:.1f}× more energy than high-freq")
+    print(f"At K=4: Low-freq has {ratio_k4:.1f}× more energy than high-freq")
