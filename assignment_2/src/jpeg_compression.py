@@ -270,6 +270,6 @@ class JPEGCompressionPipeline:
         
         if save_path:
             plt.savefig(save_path, dpi=300, bbox_inches='tight')
-        
         plt.tight_layout()
+        plt.show()
         return plt.gcf()
