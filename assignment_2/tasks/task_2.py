@@ -50,4 +50,5 @@ def run_task_2(input_path:str , save_dir: Optional[str] ="op_files/task_2"):
     axes[2].axis("off")
 
     plt.tight_layout()
+    plt.savefig(f"{save_dir}/reconstruct.png")
     plt.show()
