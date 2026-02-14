@@ -1,7 +1,7 @@
 import torchaudio
 from torch.utils.data import Dataset
 import torchaudio.transforms as T
-
+from .noisy_utils import add_noise
 
 SAMPLE_RATE = 16000
 
@@ -77,4 +77,30 @@ class TorgoDataset(Dataset):
         feats = self._extract_features(wav)
 
         return feats, LABEL_MAP[label]
+    
+class NoisyTorgoDataset(TorgoDataset):
+    def __init__(self, file_list, feature_type, noise=None, snr=None, denoise_fn=None):
+        super().__init__(file_list, feature_type)
+
+        self.noise = noise
+        self.snr = snr
+        self.denoise_fn = denoise_fn
+
+    def __getitem__(self, idx):
+        path, label = self.file_list[idx]
+
+        wav = self._load_audio(path).squeeze(0)
+
+        # ---- add noise ----
+        if self.noise is not None and self.snr is not None:
+            wav = add_noise(wav, self.noise, self.snr)
+
+        # ---- denoise ----
+        if self.denoise_fn is not None:
+            wav = self.denoise_fn(wav)
+
+        feats = self._extract_features(wav.unsqueeze(0))
+
+        return feats, LABEL_MAP[label]
+
 

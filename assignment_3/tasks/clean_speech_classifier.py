@@ -6,9 +6,10 @@ from datetime import datetime
 
 from ..src.models import NonLinearModel, ConvModel, LSTMModel
 from ..src.dataset import create_clean_dataloaders
-from ..src.utils import train_model, plot_history, plot_confusion, plot_roc_auc, evaluate
-from ..src.data import get_train_test_files
+from ..src.clean_utils import train_model, plot_history, plot_confusion, plot_roc_auc, evaluate
+from ..src.load_data import get_train_test_files
 
+output_dir = "output/clean_exp"
 
 def setup_logger(log_name="training_log", log_dir = "logs"):
     logger = logging.getLogger(log_name)
@@ -29,7 +30,7 @@ def setup_logger(log_name="training_log", log_dir = "logs"):
     
     return logger
 
-logger = setup_logger("Clean Speech Experiment")
+logger = setup_logger("Clean_Speech_Experiment")
 
 class LoggerWriter:
     def __init__(self, level):
@@ -73,11 +74,11 @@ for exp in experiments:
 
         # Evaluation & Plotting
         logger.info(f"Evaluating {exp['name']}...")
-        plot_history(history, exp['name'])
+        plot_history(history, exp['name'], save_fig=output_dir)
         _, _, preds, labels = evaluate(model, test_loader, nn.CrossEntropyLoss(), device)
         
-        plot_confusion(labels, preds)
-        plot_roc_auc(model, test_loader, device, f"{exp['name']} ROC")
+        plot_confusion(labels, preds, title=exp["name"] , save_fig=output_dir)
+        plot_roc_auc(model, test_loader, device, f"{exp['name']} ROC" , save_fig=output_dir)
         
         logger.info(f"Finished {exp['name']} successfully.\n")
 
