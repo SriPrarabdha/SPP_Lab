@@ -48,41 +48,41 @@ sys.stdout = LoggerWriter(logger.info)
 sys.stderr = LoggerWriter(logger.error)
 
 # --- Start Experiment ---
+def run_1():
+    device = "cuda"
+    train_files, test_files = get_train_test_files()
+    logger.info(f"Loaded {len(train_files)} training files and {len(test_files)} test files.")
 
-device = "cuda"
-train_files, test_files = get_train_test_files()
-logger.info(f"Loaded {len(train_files)} training files and {len(test_files)} test files.")
+    experiments = [
+        {"name": "NonLinearModel", "model": NonLinearModel(), "feature": "stft"},
+        {"name": "ConvModel", "model": ConvModel(), "feature": "mel"},
+        {"name": "LSTMModel", "model": LSTMModel(), "feature": "mel"}
+    ]
 
-experiments = [
-    {"name": "NonLinearModel", "model": NonLinearModel(), "feature": "stft"},
-    {"name": "ConvModel", "model": ConvModel(), "feature": "mel"},
-    {"name": "LSTMModel", "model": LSTMModel(), "feature": "mel"}
-]
-
-for exp in experiments:
-    logger.info(f"{'='*20} Starting Experiment: {exp['name']} ({exp['feature']}) {'='*20}")
-    
-    try:
-        # Data Loading
-        train_loader, test_loader = create_clean_dataloaders(train_files, test_files, exp['feature'])
-        logger.info(f"Dataloaders created for {exp['feature']}")
-
-        # Training
-        logger.info(f"Beginning training for {exp['name']} on {device}...")
-        model, history = train_model(exp['model'], train_loader, test_loader, device=device)
-        logger.info(f"Training finished. Final Loss: {history['train_loss'][-1]:.4f}")
-
-        # Evaluation & Plotting
-        logger.info(f"Evaluating {exp['name']}...")
-        plot_history(history, exp['name'], save_fig=output_dir)
-        _, _, preds, labels = evaluate(model, test_loader, nn.CrossEntropyLoss(), device)
+    for exp in experiments:
+        logger.info(f"{'='*20} Starting Experiment: {exp['name']} ({exp['feature']}) {'='*20}")
         
-        plot_confusion(labels, preds, title=exp["name"] , save_fig=output_dir)
-        plot_roc_auc(model, test_loader, device, f"{exp['name']} ROC" , save_fig=output_dir)
-        
-        logger.info(f"Finished {exp['name']} successfully.\n")
+        try:
+            # Data Loading
+            train_loader, test_loader = create_clean_dataloaders(train_files, test_files, exp['feature'])
+            logger.info(f"Dataloaders created for {exp['feature']}")
 
-    except Exception as e:
-        logger.error(f"Error during {exp['name']}: {str(e)}")
+            # Training
+            logger.info(f"Beginning training for {exp['name']} on {device}...")
+            model, history = train_model(exp['model'], train_loader, test_loader, device=device)
+            logger.info(f"Training finished. Final Loss: {history['train_loss'][-1]:.4f}")
 
-logger.info("All experiments completed.")
+            # Evaluation & Plotting
+            logger.info(f"Evaluating {exp['name']}...")
+            plot_history(history, exp['name'], save_fig=output_dir)
+            _, _, preds, labels = evaluate(model, test_loader, nn.CrossEntropyLoss(), device)
+            
+            plot_confusion(labels, preds, title=exp["name"] , save_fig=output_dir)
+            plot_roc_auc(model, test_loader, device, f"{exp['name']} ROC" , save_fig=output_dir)
+            
+            logger.info(f"Finished {exp['name']} successfully.\n")
+
+        except Exception as e:
+            logger.error(f"Error during {exp['name']}: {str(e)}")
+
+    logger.info("All experiments completed.")

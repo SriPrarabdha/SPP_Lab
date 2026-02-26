@@ -51,7 +51,7 @@ logger, log_filename = setup_experiment_logger("Noisy_Speech_Experiment")
 
 # --- 2. The Experiment Function ---
 
-def run_full_experiment(train_files, test_files, device="cuda"):
+def run_2(train_files, test_files, device="cuda"):
     noises = load_noises()
     
     snrs = [-10, -5, 0]
