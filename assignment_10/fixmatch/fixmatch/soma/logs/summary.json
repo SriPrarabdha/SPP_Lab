@@ -1,0 +1,23 @@
+{
+  "config": {
+    "data_dir": "./cifar10_3class_fixmatch",
+    "classes": [
+      "cat",
+      "deer",
+      "dog"
+    ],
+    "epochs": 100,
+    "batch_size": 64,
+    "mu": 7,
+    "lr": 0.03,
+    "default_tau": 0.95,
+    "default_lambda": 1.0
+  },
+  "results": {
+    "supervised_best_acc": 57.166666666666664,
+    "fixmatch_default_best_acc": 63.3,
+    "fixmatch_best_acc": 65.3,
+    "gain_over_supervised": 8.133333333333333
+  },
+  "timestamp": "2026-02-27T16:37:11.463981"
+}

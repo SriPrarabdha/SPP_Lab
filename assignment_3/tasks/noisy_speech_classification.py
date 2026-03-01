@@ -4,7 +4,7 @@ import os
 from datetime import datetime
 from torch.utils.data import DataLoader
 import torch.nn as nn
-
+import os
 
 from ..src.noisy_utils import spectral_subtraction, wiener_filter, mmse_denoise, facebook_denoise, voicefixer_denoise
 from ..src.models import LSTMModel, ConvModel, NonLinearModel
@@ -12,8 +12,16 @@ from ..src.load_data import load_noises, load_rirs
 from ..src.dataset_util import NoisyTorgoDataset
 from ..src.clean_utils import train_model, plot_confusion, evaluate
 from ..src.dataset import pad_collate
+from ..src.load_data import get_train_test_files
+import csv
+from pathlib import Path
+
+import torch.multiprocessing as mp
+mp.set_start_method("spawn", force=True)
 
 output_dir = "output/noise_exp"
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
 
 class LoggerWriter:
     def __init__(self, level):
@@ -51,7 +59,8 @@ logger, log_filename = setup_experiment_logger("Noisy_Speech_Experiment")
 
 # --- 2. The Experiment Function ---
 
-def run_2(train_files, test_files, device="cuda"):
+def run_2(device="cuda"):
+    train_files, test_files = get_train_test_files()
     noises = load_noises()
     
     snrs = [-10, -5, 0]
@@ -59,15 +68,28 @@ def run_2(train_files, test_files, device="cuda"):
         "specsub": spectral_subtraction,
         "wiener": wiener_filter,
         "mmse": mmse_denoise,
-        "facebook": facebook_denoise,
-        "voicefixer": voicefixer_denoise,
+        # "facebook": facebook_denoise,
+        # "voicefixer": voicefixer_denoise,
     }
     models = {
         "linear": (NonLinearModel, "stft", 257),
         "conv": (ConvModel, "mel", 64),
         "lstm": (LSTMModel, "mel", 64),
     }
+    csv_path = Path("/teamspace/studios/this_studio/SPP_Lab/specsub_wiener_mmse.csv")
+    csv_path.parent.mkdir(parents=True, exist_ok=True)
 
+    write_header = not csv_path.exists()
+
+    csv_file = open(csv_path, "a", newline="")
+    csv_writer = csv.DictWriter(
+        csv_file,
+        fieldnames=["noise", "snr", "denoise", "model", "accuracy"],
+    )
+
+    if write_header:
+        csv_writer.writeheader()
+        csv_file.flush()
     results = []
     total_runs = len(noises) * len(snrs) * len(denoisers) * len(models)
     current_run = 0
@@ -88,8 +110,18 @@ def run_2(train_files, test_files, device="cuda"):
                         train_ds = NoisyTorgoDataset(train_files, feat, noise_wav, snr, den_fn)
                         test_ds = NoisyTorgoDataset(test_files, feat, noise_wav, snr, den_fn)
 
-                        train_loader = DataLoader(train_ds, batch_size=256, shuffle=True, collate_fn=pad_collate)
-                        test_loader = DataLoader(test_ds, batch_size=256, collate_fn=pad_collate)
+                        train_loader = DataLoader(
+                            train_ds,
+                            batch_size=256,
+                            shuffle=True,
+                            collate_fn=pad_collate,
+                            pin_memory=True,
+                            # num_workers=4,
+                            # persistent_workers=True,
+                        )
+                        test_loader = DataLoader(test_ds, batch_size=256, collate_fn=pad_collate , shuffle=True ,pin_memory=True,)
+                        # num_workers=4,
+                        #     persistent_workers=True,)
 
                         # Training
                         model, _ = train_model(Model(nf), train_loader, test_loader, device=device, epochs=8)
@@ -98,18 +130,25 @@ def run_2(train_files, test_files, device="cuda"):
                         _, acc, preds, labels = evaluate(model, test_loader, nn.CrossEntropyLoss(), device)
                         plot_confusion(labels, preds, title=conf_title, save_fig=output_dir)
                         
-                        results.append({
+                        row = {
                             "noise": noise_name,
                             "snr": snr,
                             "denoise": den_name,
                             "model": model_name,
                             "accuracy": acc,
-                        })
+                        }
+
+                        # ✅ append immediately
+                        csv_writer.writerow(row)
+                        csv_file.flush()          # push to OS
+                        os.fsync(csv_file.fileno())  # force disk write
+
+                        results.append(row)
                         logger.info(f"Success! Accuracy: {acc:.4f}")
 
                     except Exception as e:
                         logger.error(f"FAILED Run {current_run}: {conf_title}. Error: {str(e)}")
                         continue # Skip to next configuration
-
+    csv_file.close()
     logger.info(f"Full Experiment Complete. Log saved to {log_filename}")
     return results

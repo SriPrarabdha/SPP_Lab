@@ -1,5 +1,7 @@
 kagglehub
-sklearn
+scikit-learn
 matplotlib
 numpy
-
+soundfile
+torchaudio
+voicefixer

@@ -63,7 +63,7 @@ from pathlib import Path
 import torchaudio
 import torch
 
-NOISE_ROOT = Path("Noises&RIR")
+NOISE_ROOT = Path("/teamspace/studios/this_studio/SPP_Lab/assignment_3/Noises&RIR")
 NOISE_DIR = NOISE_ROOT / "Noises"
 RIR_DIR = NOISE_ROOT / "RIR"
 

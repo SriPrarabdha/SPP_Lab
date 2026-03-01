@@ -5,7 +5,7 @@ import tempfile
 import soundfile as sf
 import os
 from voicefixer import VoiceFixer
-
+import random
 from .dataset_util import TorgoDataset
 
 def add_reverb(wav, rir):
@@ -40,7 +40,7 @@ def voicefixer_dereverb(wav, sr=16000):
         wav = wav.float().cpu()
 
         use_cuda = torch.cuda.is_available()
-
+        print("voicefixer_deverb func", use_cuda)
         with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as inp:
             inp_path = inp.name
             out_path = inp_path.replace(".wav", "_out.wav")
@@ -63,6 +63,13 @@ def voicefixer_dereverb(wav, sr=16000):
     except Exception as e:
         print("VoiceFixer dereverb error:", e)
         return wav
+
+LABEL_MAP = {
+    "F_Con": 0,
+    "M_Con": 0,
+    "F_Dys": 1,
+    "M_Dys": 1,
+}
     
 class TorgoAugmentedDataset(TorgoDataset):
     def __init__(
@@ -75,6 +82,8 @@ class TorgoAugmentedDataset(TorgoDataset):
         apply_reverb=False,
         apply_dereverb=False,
         dereverb_fn=None,
+        use_cache=True,          # ⭐ NEW
+        cache_size=None,         # ⭐ NEW (optional limit)
     ):
         super().__init__(file_list, feature_type)
 
@@ -85,19 +94,43 @@ class TorgoAugmentedDataset(TorgoDataset):
         self.apply_dereverb = apply_dereverb
         self.dereverb_fn = dereverb_fn
 
+        # ✅ Preload RIR list (FAST)
+        if self.rirs:
+            self.rir_list = list(self.rirs.values())
+        else:
+            self.rir_list = None
+
+        # ✅ Cache setup
+        self.use_cache = use_cache
+        self.cache_size = cache_size
+        self._cache = {}  # idx -> (features, label)
+
     def __getitem__(self, idx):
+        # ✅ Return from cache if available
+        if self.use_cache and idx in self._cache:
+            return self._cache[idx]
+
         path, label = self.file_list[idx]
+
+        # ---- load audio ----
         wav = self._load_audio(path).squeeze(0)
 
         # ---- Reverberation ----
-        if self.apply_reverb and self.rirs:
-            rir = random.choice(list(self.rirs.values()))
+        if self.apply_reverb and self.rir_list:
+            rir = random.choice(self.rir_list)  # ⭐ now O(1)
             wav = add_reverb(wav, rir)
-
 
         # ---- Dereverberation ----
         if self.apply_dereverb and self.dereverb_fn is not None:
             wav = self.dereverb_fn(wav)
 
+        # ---- Feature extraction ----
         feats = self._extract_features(wav.unsqueeze(0))
-        return feats, LABEL_MAP[label]
+        result = (feats, LABEL_MAP[label])
+
+        # ✅ Store in cache (with optional limit)
+        if self.use_cache:
+            if self.cache_size is None or len(self._cache) < self.cache_size:
+                self._cache[idx] = result
+
+        return result

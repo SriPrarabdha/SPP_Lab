@@ -1,0 +1,1355 @@
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  FixMatch — Signal Processing in Practice  Assignment 3
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Data dir    : ./cifar10_3class_fixmatch
+  Classes     : ['cat', 'deer', 'dog']
+  Epochs      : 100
+  Batch size  : 64  (×7 unlabeled)
+  τ (default) : 0.95    λ (default): 1.0
+  τ sweep     : [0.7, 0.85, 0.95]
+  λ sweep     : [0.5, 1.0, 2.0]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+============================================================
+Q1: SUPERVISED TRAINING
+============================================================
+Device: cuda
+  Labeled   : 300 samples
+  Val       : 300 samples
+  Test      : 3,000 samples
+  Unlabeled : 5,400 samples
+  Saved: ./outputs/visualizations/augmentations/augmentation_examples.png
+12:08:47 | INFO | Epoch   1/100 | Loss: 5.6728 | Train: 32.00% | Val: 32.33% | Test: 32.47%
+12:08:59 | INFO | Epoch   2/100 | Loss: 2.1874 | Train: 45.33% | Val: 35.00% | Test: 34.93%
+12:09:12 | INFO | Epoch   3/100 | Loss: 1.2831 | Train: 42.67% | Val: 39.00% | Test: 41.60%
+12:09:25 | INFO | Epoch   4/100 | Loss: 1.5857 | Train: 37.33% | Val: 39.00% | Test: 40.50%
+12:09:38 | INFO | Epoch   5/100 | Loss: 1.2494 | Train: 45.33% | Val: 38.33% | Test: 40.33%
+12:09:51 | INFO | Epoch   6/100 | Loss: 1.0140 | Train: 48.33% | Val: 37.33% | Test: 37.87%
+12:10:02 | INFO | Epoch   7/100 | Loss: 1.1084 | Train: 49.00% | Val: 43.67% | Test: 43.97%
+12:10:14 | INFO | Epoch   8/100 | Loss: 1.0559 | Train: 46.00% | Val: 42.67% | Test: 44.17%
+12:10:29 | INFO | Epoch   9/100 | Loss: 0.9914 | Train: 49.67% | Val: 48.67% | Test: 48.87%
+12:10:43 | INFO | Epoch  10/100 | Loss: 0.9652 | Train: 47.67% | Val: 44.00% | Test: 45.93%
+12:10:56 | INFO | Epoch  11/100 | Loss: 0.9845 | Train: 52.67% | Val: 44.33% | Test: 45.73%
+12:11:10 | INFO | Epoch  12/100 | Loss: 1.0610 | Train: 48.67% | Val: 45.33% | Test: 47.83%
+12:11:23 | INFO | Epoch  13/100 | Loss: 0.9447 | Train: 53.33% | Val: 45.00% | Test: 46.00%
+12:11:36 | INFO | Epoch  14/100 | Loss: 1.0037 | Train: 51.67% | Val: 46.00% | Test: 48.60%
+12:11:48 | INFO | Epoch  15/100 | Loss: 0.9499 | Train: 55.00% | Val: 45.00% | Test: 46.13%
+12:12:01 | INFO | Epoch  16/100 | Loss: 0.8621 | Train: 57.33% | Val: 39.67% | Test: 40.80%
+12:12:12 | INFO | Epoch  17/100 | Loss: 0.9254 | Train: 57.67% | Val: 45.00% | Test: 48.90%
+12:12:25 | INFO | Epoch  18/100 | Loss: 0.9502 | Train: 53.33% | Val: 42.33% | Test: 44.53%
+12:12:39 | INFO | Epoch  19/100 | Loss: 0.8980 | Train: 55.67% | Val: 50.33% | Test: 52.90%
+12:12:53 | INFO | Epoch  20/100 | Loss: 0.8610 | Train: 59.33% | Val: 46.33% | Test: 45.93%
+12:13:05 | INFO | Epoch  21/100 | Loss: 0.8926 | Train: 54.67% | Val: 47.67% | Test: 47.97%
+12:13:16 | INFO | Epoch  22/100 | Loss: 0.9491 | Train: 55.33% | Val: 48.67% | Test: 47.83%
+12:13:28 | INFO | Epoch  23/100 | Loss: 0.8669 | Train: 62.67% | Val: 48.67% | Test: 52.47%
+12:13:41 | INFO | Epoch  24/100 | Loss: 0.8530 | Train: 61.00% | Val: 49.33% | Test: 48.10%
+12:13:53 | INFO | Epoch  25/100 | Loss: 0.9280 | Train: 55.00% | Val: 48.33% | Test: 46.90%
+12:14:06 | INFO | Epoch  26/100 | Loss: 0.8233 | Train: 58.67% | Val: 49.00% | Test: 52.17%
+12:14:18 | INFO | Epoch  27/100 | Loss: 0.7659 | Train: 65.67% | Val: 52.00% | Test: 50.20%
+12:14:30 | INFO | Epoch  28/100 | Loss: 0.7935 | Train: 66.00% | Val: 54.00% | Test: 53.43%
+12:14:43 | INFO | Epoch  29/100 | Loss: 0.8138 | Train: 60.33% | Val: 44.00% | Test: 42.57%
+12:14:56 | INFO | Epoch  30/100 | Loss: 0.8559 | Train: 60.33% | Val: 54.67% | Test: 52.70%
+12:15:08 | INFO | Epoch  31/100 | Loss: 0.7088 | Train: 70.00% | Val: 52.00% | Test: 50.70%
+12:15:20 | INFO | Epoch  32/100 | Loss: 0.7579 | Train: 66.33% | Val: 53.67% | Test: 50.13%
+12:15:31 | INFO | Epoch  33/100 | Loss: 0.7164 | Train: 67.00% | Val: 55.00% | Test: 53.03%
+12:15:43 | INFO | Epoch  34/100 | Loss: 0.8248 | Train: 64.00% | Val: 53.33% | Test: 51.97%
+12:15:54 | INFO | Epoch  35/100 | Loss: 0.6799 | Train: 67.67% | Val: 56.00% | Test: 54.33%
+12:16:07 | INFO | Epoch  36/100 | Loss: 0.7328 | Train: 68.67% | Val: 53.00% | Test: 52.97%
+12:16:19 | INFO | Epoch  37/100 | Loss: 0.6562 | Train: 70.00% | Val: 51.00% | Test: 53.30%
+12:16:32 | INFO | Epoch  38/100 | Loss: 0.6312 | Train: 71.33% | Val: 52.00% | Test: 52.93%
+12:16:44 | INFO | Epoch  39/100 | Loss: 0.6277 | Train: 73.00% | Val: 47.33% | Test: 46.33%
+12:16:56 | INFO | Epoch  40/100 | Loss: 0.5917 | Train: 75.33% | Val: 49.67% | Test: 49.33%
+12:17:08 | INFO | Epoch  41/100 | Loss: 0.5927 | Train: 76.67% | Val: 51.33% | Test: 48.60%
+12:17:19 | INFO | Epoch  42/100 | Loss: 0.6031 | Train: 71.67% | Val: 52.67% | Test: 50.23%
+12:17:30 | INFO | Epoch  43/100 | Loss: 0.5522 | Train: 76.67% | Val: 52.67% | Test: 51.93%
+12:17:42 | INFO | Epoch  44/100 | Loss: 0.5694 | Train: 76.00% | Val: 52.67% | Test: 52.80%
+12:17:54 | INFO | Epoch  45/100 | Loss: 0.5395 | Train: 76.00% | Val: 54.67% | Test: 53.23%
+12:18:05 | INFO | Epoch  46/100 | Loss: 0.4970 | Train: 81.67% | Val: 50.33% | Test: 52.07%
+12:18:16 | INFO | Epoch  47/100 | Loss: 0.4984 | Train: 79.67% | Val: 54.67% | Test: 53.27%
+12:18:28 | INFO | Epoch  48/100 | Loss: 0.4830 | Train: 81.00% | Val: 53.00% | Test: 52.13%
+12:18:41 | INFO | Epoch  49/100 | Loss: 0.4383 | Train: 83.67% | Val: 53.00% | Test: 54.40%
+12:18:53 | INFO | Epoch  50/100 | Loss: 0.4723 | Train: 81.00% | Val: 55.00% | Test: 54.43%
+12:19:07 | INFO | Epoch  51/100 | Loss: 0.5234 | Train: 77.00% | Val: 55.67% | Test: 52.60%
+12:19:17 | INFO | Epoch  52/100 | Loss: 0.4071 | Train: 84.00% | Val: 54.00% | Test: 51.07%
+12:19:29 | INFO | Epoch  53/100 | Loss: 0.4229 | Train: 83.00% | Val: 53.00% | Test: 50.67%
+12:19:40 | INFO | Epoch  54/100 | Loss: 0.3712 | Train: 86.00% | Val: 54.00% | Test: 51.70%
+12:19:50 | INFO | Epoch  55/100 | Loss: 0.3903 | Train: 83.33% | Val: 52.67% | Test: 49.80%
+12:20:02 | INFO | Epoch  56/100 | Loss: 0.3793 | Train: 86.33% | Val: 55.33% | Test: 54.13%
+12:20:14 | INFO | Epoch  57/100 | Loss: 0.3563 | Train: 87.00% | Val: 55.33% | Test: 53.40%
+12:20:26 | INFO | Epoch  58/100 | Loss: 0.3938 | Train: 85.33% | Val: 56.00% | Test: 52.93%
+12:20:38 | INFO | Epoch  59/100 | Loss: 0.3356 | Train: 86.00% | Val: 55.67% | Test: 51.00%
+12:20:51 | INFO | Epoch  60/100 | Loss: 0.3535 | Train: 88.00% | Val: 53.67% | Test: 52.10%
+12:21:03 | INFO | Epoch  61/100 | Loss: 0.3029 | Train: 87.67% | Val: 55.67% | Test: 52.07%
+12:21:15 | INFO | Epoch  62/100 | Loss: 0.2894 | Train: 90.33% | Val: 58.00% | Test: 54.37%
+12:21:27 | INFO | Epoch  63/100 | Loss: 0.2277 | Train: 91.00% | Val: 57.00% | Test: 54.30%
+12:21:39 | INFO | Epoch  64/100 | Loss: 0.1914 | Train: 93.00% | Val: 58.00% | Test: 56.63%
+12:21:52 | INFO | Epoch  65/100 | Loss: 0.1810 | Train: 93.00% | Val: 58.67% | Test: 53.73%
+12:22:02 | INFO | Epoch  66/100 | Loss: 0.1548 | Train: 95.33% | Val: 56.33% | Test: 53.50%
+12:22:15 | INFO | Epoch  67/100 | Loss: 0.1607 | Train: 95.67% | Val: 57.00% | Test: 51.90%
+12:22:27 | INFO | Epoch  68/100 | Loss: 0.2352 | Train: 92.00% | Val: 56.67% | Test: 53.23%
+12:22:37 | INFO | Epoch  69/100 | Loss: 0.1554 | Train: 94.00% | Val: 53.33% | Test: 53.70%
+12:22:49 | INFO | Epoch  70/100 | Loss: 0.2223 | Train: 93.00% | Val: 58.67% | Test: 52.10%
+12:23:02 | INFO | Epoch  71/100 | Loss: 0.1164 | Train: 96.33% | Val: 61.33% | Test: 55.20%
+12:23:13 | INFO | Epoch  72/100 | Loss: 0.1196 | Train: 96.33% | Val: 58.00% | Test: 54.77%
+12:23:24 | INFO | Epoch  73/100 | Loss: 0.1281 | Train: 96.00% | Val: 56.33% | Test: 54.10%
+12:23:36 | INFO | Epoch  74/100 | Loss: 0.0902 | Train: 96.67% | Val: 57.67% | Test: 55.00%
+12:23:47 | INFO | Epoch  75/100 | Loss: 0.0890 | Train: 96.33% | Val: 58.33% | Test: 53.37%
+12:23:58 | INFO | Epoch  76/100 | Loss: 0.0678 | Train: 98.67% | Val: 56.33% | Test: 54.43%
+12:24:09 | INFO | Epoch  77/100 | Loss: 0.0535 | Train: 98.67% | Val: 57.67% | Test: 56.90%
+12:24:21 | INFO | Epoch  78/100 | Loss: 0.0631 | Train: 98.00% | Val: 58.33% | Test: 55.77%
+12:24:32 | INFO | Epoch  79/100 | Loss: 0.0630 | Train: 98.00% | Val: 58.67% | Test: 55.07%
+12:24:43 | INFO | Epoch  80/100 | Loss: 0.0383 | Train: 98.33% | Val: 60.00% | Test: 56.27%
+12:24:55 | INFO | Epoch  81/100 | Loss: 0.0274 | Train: 99.67% | Val: 60.00% | Test: 56.23%
+12:25:07 | INFO | Epoch  82/100 | Loss: 0.1164 | Train: 97.00% | Val: 58.33% | Test: 54.70%
+12:25:18 | INFO | Epoch  83/100 | Loss: 0.0312 | Train: 99.67% | Val: 60.67% | Test: 57.03%
+12:25:32 | INFO | Epoch  84/100 | Loss: 0.0494 | Train: 98.67% | Val: 58.00% | Test: 56.73%
+12:25:44 | INFO | Epoch  85/100 | Loss: 0.0371 | Train: 99.00% | Val: 60.67% | Test: 55.80%
+12:25:56 | INFO | Epoch  86/100 | Loss: 0.0229 | Train: 99.67% | Val: 62.00% | Test: 55.67%
+12:26:08 | INFO | Epoch  87/100 | Loss: 0.0269 | Train: 99.67% | Val: 61.33% | Test: 56.27%
+12:26:20 | INFO | Epoch  88/100 | Loss: 0.0290 | Train: 99.33% | Val: 62.33% | Test: 56.83%
+12:26:32 | INFO | Epoch  89/100 | Loss: 0.0261 | Train: 99.67% | Val: 60.67% | Test: 57.17%
+12:26:44 | INFO | Epoch  90/100 | Loss: 0.0171 | Train: 99.33% | Val: 61.67% | Test: 56.70%
+12:26:59 | INFO | Epoch  91/100 | Loss: 0.0191 | Train: 99.67% | Val: 62.00% | Test: 56.27%
+12:27:13 | INFO | Epoch  92/100 | Loss: 0.0220 | Train: 99.67% | Val: 61.67% | Test: 55.87%
+12:27:24 | INFO | Epoch  93/100 | Loss: 0.0226 | Train: 99.67% | Val: 61.00% | Test: 55.40%
+12:27:36 | INFO | Epoch  94/100 | Loss: 0.0296 | Train: 99.33% | Val: 60.33% | Test: 55.37%
+12:27:47 | INFO | Epoch  95/100 | Loss: 0.0326 | Train: 99.33% | Val: 61.00% | Test: 55.40%
+12:27:58 | INFO | Epoch  96/100 | Loss: 0.0200 | Train: 99.67% | Val: 61.33% | Test: 55.67%
+12:28:10 | INFO | Epoch  97/100 | Loss: 0.0170 | Train: 100.00% | Val: 61.67% | Test: 55.77%
+12:28:22 | INFO | Epoch  98/100 | Loss: 0.0218 | Train: 99.67% | Val: 62.33% | Test: 55.83%
+12:28:33 | INFO | Epoch  99/100 | Loss: 0.0201 | Train: 100.00% | Val: 62.33% | Test: 55.83%
+12:28:44 | INFO | Epoch 100/100 | Loss: 0.0307 | Train: 99.00% | Val: 62.00% | Test: 55.83%
+12:28:45 | INFO | Best Test Accuracy: 57.17%
+  Saved: ./outputs/plots/supervised/training_curves.png
+  Saved: ./outputs/plots/supervised/confusion_matrix.png
+  Saved: ./outputs/plots/supervised/per_class_accuracy.png
+  Saved: ./outputs/visualizations/predictions/supervised_confidence.png
+  Running t-SNE (this may take a moment)...
+  Saved: ./outputs/visualizations/embeddings/supervised_tsne.png
+              precision    recall  f1-score   support
+
+         cat       0.52      0.47      0.50      1000
+        deer       0.64      0.70      0.67      1000
+         dog       0.55      0.54      0.54      1000
+
+    accuracy                           0.57      3000
+   macro avg       0.57      0.57      0.57      3000
+weighted avg       0.57      0.57      0.57      3000
+
+
+--- FixMatch Default Run: τ=0.95, λ=1.0 ---
+  Labeled   : 300 samples
+  Val       : 300 samples
+  Test      : 3,000 samples
+  Unlabeled : 5,400 samples
+12:33:23 | INFO | [default] τ=0.95 λ=1.0 | Epoch   1/100 | Loss: 3.6330 (sup:3.5299 unsup:0.1031) | Val: 41.00% | Test: 41.90% | Mask: 0.240
+12:34:01 | INFO | [default] τ=0.95 λ=1.0 | Epoch   2/100 | Loss: 1.2069 (sup:1.2033 unsup:0.0037) | Val: 43.67% | Test: 45.83% | Mask: 0.013
+12:34:41 | INFO | [default] τ=0.95 λ=1.0 | Epoch   3/100 | Loss: 1.2130 (sup:1.2092 unsup:0.0037) | Val: 46.67% | Test: 45.57% | Mask: 0.019
+12:35:17 | INFO | [default] τ=0.95 λ=1.0 | Epoch   4/100 | Loss: 1.1096 (sup:1.1063 unsup:0.0034) | Val: 44.33% | Test: 47.90% | Mask: 0.018
+12:35:53 | INFO | [default] τ=0.95 λ=1.0 | Epoch   5/100 | Loss: 1.1163 (sup:1.1125 unsup:0.0038) | Val: 51.67% | Test: 51.10% | Mask: 0.022
+12:36:30 | INFO | [default] τ=0.95 λ=1.0 | Epoch   6/100 | Loss: 1.0045 (sup:1.0000 unsup:0.0045) | Val: 51.00% | Test: 53.47% | Mask: 0.020
+12:37:07 | INFO | [default] τ=0.95 λ=1.0 | Epoch   7/100 | Loss: 0.8649 (sup:0.8587 unsup:0.0062) | Val: 51.67% | Test: 49.47% | Mask: 0.018
+12:37:44 | INFO | [default] τ=0.95 λ=1.0 | Epoch   8/100 | Loss: 0.9113 (sup:0.9047 unsup:0.0065) | Val: 51.00% | Test: 55.63% | Mask: 0.021
+12:38:21 | INFO | [default] τ=0.95 λ=1.0 | Epoch   9/100 | Loss: 0.8641 (sup:0.8560 unsup:0.0081) | Val: 53.00% | Test: 52.60% | Mask: 0.019
+12:38:59 | INFO | [default] τ=0.95 λ=1.0 | Epoch  10/100 | Loss: 0.7950 (sup:0.7808 unsup:0.0142) | Val: 52.00% | Test: 52.93% | Mask: 0.030
+12:39:39 | INFO | [default] τ=0.95 λ=1.0 | Epoch  11/100 | Loss: 0.8535 (sup:0.8421 unsup:0.0113) | Val: 54.00% | Test: 54.73% | Mask: 0.027
+12:40:19 | INFO | [default] τ=0.95 λ=1.0 | Epoch  12/100 | Loss: 0.7771 (sup:0.7615 unsup:0.0156) | Val: 53.67% | Test: 53.23% | Mask: 0.042
+12:40:58 | INFO | [default] τ=0.95 λ=1.0 | Epoch  13/100 | Loss: 0.7517 (sup:0.7266 unsup:0.0251) | Val: 53.33% | Test: 53.33% | Mask: 0.062
+12:41:37 | INFO | [default] τ=0.95 λ=1.0 | Epoch  14/100 | Loss: 0.7269 (sup:0.7106 unsup:0.0163) | Val: 55.33% | Test: 49.00% | Mask: 0.054
+12:42:14 | INFO | [default] τ=0.95 λ=1.0 | Epoch  15/100 | Loss: 0.7232 (sup:0.6723 unsup:0.0508) | Val: 54.67% | Test: 53.20% | Mask: 0.108
+12:42:52 | INFO | [default] τ=0.95 λ=1.0 | Epoch  16/100 | Loss: 0.6523 (sup:0.6251 unsup:0.0273) | Val: 58.67% | Test: 56.07% | Mask: 0.083
+12:43:29 | INFO | [default] τ=0.95 λ=1.0 | Epoch  17/100 | Loss: 0.6636 (sup:0.6243 unsup:0.0392) | Val: 58.00% | Test: 52.90% | Mask: 0.109
+12:44:04 | INFO | [default] τ=0.95 λ=1.0 | Epoch  18/100 | Loss: 0.5893 (sup:0.5285 unsup:0.0608) | Val: 57.67% | Test: 55.27% | Mask: 0.160
+12:44:39 | INFO | [default] τ=0.95 λ=1.0 | Epoch  19/100 | Loss: 0.5585 (sup:0.4637 unsup:0.0948) | Val: 56.00% | Test: 54.03% | Mask: 0.192
+12:45:16 | INFO | [default] τ=0.95 λ=1.0 | Epoch  20/100 | Loss: 0.6458 (sup:0.5635 unsup:0.0823) | Val: 57.67% | Test: 55.57% | Mask: 0.201
+12:45:52 | INFO | [default] τ=0.95 λ=1.0 | Epoch  21/100 | Loss: 0.4666 (sup:0.3938 unsup:0.0728) | Val: 58.33% | Test: 54.90% | Mask: 0.190
+12:46:25 | INFO | [default] τ=0.95 λ=1.0 | Epoch  22/100 | Loss: 0.4889 (sup:0.3901 unsup:0.0988) | Val: 56.00% | Test: 52.97% | Mask: 0.254
+12:47:02 | INFO | [default] τ=0.95 λ=1.0 | Epoch  23/100 | Loss: 0.5338 (sup:0.4222 unsup:0.1116) | Val: 55.67% | Test: 53.43% | Mask: 0.259
+12:47:40 | INFO | [default] τ=0.95 λ=1.0 | Epoch  24/100 | Loss: 0.4619 (sup:0.3649 unsup:0.0970) | Val: 57.67% | Test: 55.83% | Mask: 0.231
+12:48:22 | INFO | [default] τ=0.95 λ=1.0 | Epoch  25/100 | Loss: 0.3843 (sup:0.2591 unsup:0.1252) | Val: 56.33% | Test: 54.70% | Mask: 0.297
+12:49:27 | INFO | [default] τ=0.95 λ=1.0 | Epoch  26/100 | Loss: 0.4659 (sup:0.3004 unsup:0.1654) | Val: 62.00% | Test: 56.17% | Mask: 0.321
+12:50:09 | INFO | [default] τ=0.95 λ=1.0 | Epoch  27/100 | Loss: 0.3417 (sup:0.2138 unsup:0.1279) | Val: 58.67% | Test: 57.40% | Mask: 0.310
+12:50:51 | INFO | [default] τ=0.95 λ=1.0 | Epoch  28/100 | Loss: 0.4313 (sup:0.2517 unsup:0.1795) | Val: 59.00% | Test: 56.40% | Mask: 0.369
+12:51:29 | INFO | [default] τ=0.95 λ=1.0 | Epoch  29/100 | Loss: 0.3208 (sup:0.1638 unsup:0.1571) | Val: 60.00% | Test: 55.27% | Mask: 0.372
+12:52:08 | INFO | [default] τ=0.95 λ=1.0 | Epoch  30/100 | Loss: 0.4337 (sup:0.2457 unsup:0.1880) | Val: 57.33% | Test: 55.20% | Mask: 0.392
+12:52:50 | INFO | [default] τ=0.95 λ=1.0 | Epoch  31/100 | Loss: 0.3926 (sup:0.2462 unsup:0.1464) | Val: 58.33% | Test: 57.37% | Mask: 0.374
+12:53:30 | INFO | [default] τ=0.95 λ=1.0 | Epoch  32/100 | Loss: 0.3104 (sup:0.1471 unsup:0.1633) | Val: 61.33% | Test: 57.80% | Mask: 0.388
+12:53:49 | INFO | [default] τ=0.95 λ=1.0 | Epoch  33/100 | Loss: 0.2913 (sup:0.1149 unsup:0.1763) | Val: 58.67% | Test: 56.47% | Mask: 0.419
+12:54:07 | INFO | [default] τ=0.95 λ=1.0 | Epoch  34/100 | Loss: 0.2810 (sup:0.1028 unsup:0.1782) | Val: 60.00% | Test: 57.07% | Mask: 0.433
+12:54:25 | INFO | [default] τ=0.95 λ=1.0 | Epoch  35/100 | Loss: 0.2846 (sup:0.0913 unsup:0.1932) | Val: 58.67% | Test: 57.63% | Mask: 0.456
+12:54:42 | INFO | [default] τ=0.95 λ=1.0 | Epoch  36/100 | Loss: 0.2564 (sup:0.0901 unsup:0.1663) | Val: 61.33% | Test: 58.07% | Mask: 0.412
+12:54:59 | INFO | [default] τ=0.95 λ=1.0 | Epoch  37/100 | Loss: 0.2230 (sup:0.0481 unsup:0.1749) | Val: 61.67% | Test: 58.00% | Mask: 0.443
+12:55:17 | INFO | [default] τ=0.95 λ=1.0 | Epoch  38/100 | Loss: 0.2751 (sup:0.0914 unsup:0.1836) | Val: 58.67% | Test: 57.43% | Mask: 0.448
+12:55:34 | INFO | [default] τ=0.95 λ=1.0 | Epoch  39/100 | Loss: 0.2047 (sup:0.0365 unsup:0.1682) | Val: 62.33% | Test: 58.17% | Mask: 0.444
+12:55:52 | INFO | [default] τ=0.95 λ=1.0 | Epoch  40/100 | Loss: 0.2300 (sup:0.0640 unsup:0.1660) | Val: 65.67% | Test: 59.07% | Mask: 0.449
+12:56:10 | INFO | [default] τ=0.95 λ=1.0 | Epoch  41/100 | Loss: 0.2186 (sup:0.0486 unsup:0.1699) | Val: 61.00% | Test: 58.07% | Mask: 0.459
+12:56:28 | INFO | [default] τ=0.95 λ=1.0 | Epoch  42/100 | Loss: 0.2315 (sup:0.0601 unsup:0.1714) | Val: 56.00% | Test: 56.03% | Mask: 0.469
+12:56:46 | INFO | [default] τ=0.95 λ=1.0 | Epoch  43/100 | Loss: 0.2153 (sup:0.0429 unsup:0.1724) | Val: 62.00% | Test: 57.90% | Mask: 0.474
+12:57:03 | INFO | [default] τ=0.95 λ=1.0 | Epoch  44/100 | Loss: 0.2228 (sup:0.0465 unsup:0.1763) | Val: 64.67% | Test: 58.67% | Mask: 0.492
+12:57:21 | INFO | [default] τ=0.95 λ=1.0 | Epoch  45/100 | Loss: 0.2000 (sup:0.0315 unsup:0.1685) | Val: 60.67% | Test: 59.23% | Mask: 0.498
+12:57:39 | INFO | [default] τ=0.95 λ=1.0 | Epoch  46/100 | Loss: 0.1912 (sup:0.0278 unsup:0.1634) | Val: 60.00% | Test: 57.90% | Mask: 0.487
+12:57:57 | INFO | [default] τ=0.95 λ=1.0 | Epoch  47/100 | Loss: 0.2102 (sup:0.0397 unsup:0.1705) | Val: 59.67% | Test: 56.83% | Mask: 0.522
+12:58:15 | INFO | [default] τ=0.95 λ=1.0 | Epoch  48/100 | Loss: 0.2199 (sup:0.0688 unsup:0.1511) | Val: 60.33% | Test: 58.73% | Mask: 0.480
+12:58:33 | INFO | [default] τ=0.95 λ=1.0 | Epoch  49/100 | Loss: 0.1859 (sup:0.0342 unsup:0.1517) | Val: 62.33% | Test: 58.80% | Mask: 0.477
+12:58:50 | INFO | [default] τ=0.95 λ=1.0 | Epoch  50/100 | Loss: 0.2335 (sup:0.0515 unsup:0.1820) | Val: 62.33% | Test: 57.80% | Mask: 0.499
+12:59:09 | INFO | [default] τ=0.95 λ=1.0 | Epoch  51/100 | Loss: 0.1794 (sup:0.0416 unsup:0.1378) | Val: 62.00% | Test: 59.80% | Mask: 0.483
+12:59:27 | INFO | [default] τ=0.95 λ=1.0 | Epoch  52/100 | Loss: 0.1897 (sup:0.0199 unsup:0.1698) | Val: 60.67% | Test: 59.27% | Mask: 0.491
+12:59:45 | INFO | [default] τ=0.95 λ=1.0 | Epoch  53/100 | Loss: 0.1590 (sup:0.0159 unsup:0.1431) | Val: 61.33% | Test: 59.33% | Mask: 0.478
+13:00:03 | INFO | [default] τ=0.95 λ=1.0 | Epoch  54/100 | Loss: 0.1796 (sup:0.0163 unsup:0.1634) | Val: 62.33% | Test: 60.70% | Mask: 0.511
+13:00:20 | INFO | [default] τ=0.95 λ=1.0 | Epoch  55/100 | Loss: 0.1786 (sup:0.0186 unsup:0.1600) | Val: 64.33% | Test: 60.50% | Mask: 0.523
+13:00:38 | INFO | [default] τ=0.95 λ=1.0 | Epoch  56/100 | Loss: 0.1894 (sup:0.0335 unsup:0.1559) | Val: 61.00% | Test: 61.53% | Mask: 0.512
+13:00:57 | INFO | [default] τ=0.95 λ=1.0 | Epoch  57/100 | Loss: 0.1767 (sup:0.0209 unsup:0.1558) | Val: 64.33% | Test: 59.03% | Mask: 0.531
+13:01:14 | INFO | [default] τ=0.95 λ=1.0 | Epoch  58/100 | Loss: 0.1824 (sup:0.0298 unsup:0.1526) | Val: 64.67% | Test: 60.37% | Mask: 0.517
+13:01:32 | INFO | [default] τ=0.95 λ=1.0 | Epoch  59/100 | Loss: 0.1968 (sup:0.0348 unsup:0.1620) | Val: 59.33% | Test: 59.40% | Mask: 0.531
+13:01:50 | INFO | [default] τ=0.95 λ=1.0 | Epoch  60/100 | Loss: 0.1789 (sup:0.0371 unsup:0.1418) | Val: 64.67% | Test: 60.93% | Mask: 0.517
+13:02:08 | INFO | [default] τ=0.95 λ=1.0 | Epoch  61/100 | Loss: 0.1828 (sup:0.0305 unsup:0.1523) | Val: 62.00% | Test: 60.63% | Mask: 0.521
+13:02:26 | INFO | [default] τ=0.95 λ=1.0 | Epoch  62/100 | Loss: 0.1726 (sup:0.0189 unsup:0.1537) | Val: 62.67% | Test: 60.47% | Mask: 0.526
+13:02:44 | INFO | [default] τ=0.95 λ=1.0 | Epoch  63/100 | Loss: 0.1624 (sup:0.0190 unsup:0.1434) | Val: 63.67% | Test: 61.03% | Mask: 0.505
+13:03:02 | INFO | [default] τ=0.95 λ=1.0 | Epoch  64/100 | Loss: 0.1833 (sup:0.0124 unsup:0.1710) | Val: 59.00% | Test: 60.17% | Mask: 0.553
+13:03:20 | INFO | [default] τ=0.95 λ=1.0 | Epoch  65/100 | Loss: 0.1596 (sup:0.0104 unsup:0.1492) | Val: 59.33% | Test: 60.97% | Mask: 0.531
+13:03:38 | INFO | [default] τ=0.95 λ=1.0 | Epoch  66/100 | Loss: 0.1476 (sup:0.0090 unsup:0.1386) | Val: 63.67% | Test: 60.07% | Mask: 0.520
+13:03:55 | INFO | [default] τ=0.95 λ=1.0 | Epoch  67/100 | Loss: 0.1496 (sup:0.0131 unsup:0.1365) | Val: 65.67% | Test: 61.47% | Mask: 0.536
+13:04:13 | INFO | [default] τ=0.95 λ=1.0 | Epoch  68/100 | Loss: 0.1626 (sup:0.0103 unsup:0.1523) | Val: 62.33% | Test: 61.37% | Mask: 0.560
+13:04:28 | INFO | [default] τ=0.95 λ=1.0 | Epoch  69/100 | Loss: 0.1533 (sup:0.0091 unsup:0.1442) | Val: 61.00% | Test: 62.33% | Mask: 0.564
+13:04:47 | INFO | [default] τ=0.95 λ=1.0 | Epoch  70/100 | Loss: 0.1551 (sup:0.0122 unsup:0.1430) | Val: 60.67% | Test: 61.57% | Mask: 0.556
+13:05:05 | INFO | [default] τ=0.95 λ=1.0 | Epoch  71/100 | Loss: 0.1601 (sup:0.0099 unsup:0.1503) | Val: 62.67% | Test: 61.60% | Mask: 0.550
+13:05:23 | INFO | [default] τ=0.95 λ=1.0 | Epoch  72/100 | Loss: 0.1533 (sup:0.0089 unsup:0.1444) | Val: 63.33% | Test: 61.87% | Mask: 0.562
+13:05:41 | INFO | [default] τ=0.95 λ=1.0 | Epoch  73/100 | Loss: 0.1479 (sup:0.0085 unsup:0.1394) | Val: 64.67% | Test: 61.43% | Mask: 0.565
+13:05:59 | INFO | [default] τ=0.95 λ=1.0 | Epoch  74/100 | Loss: 0.1679 (sup:0.0102 unsup:0.1578) | Val: 61.33% | Test: 61.93% | Mask: 0.569
+13:06:17 | INFO | [default] τ=0.95 λ=1.0 | Epoch  75/100 | Loss: 0.1553 (sup:0.0102 unsup:0.1451) | Val: 60.33% | Test: 60.97% | Mask: 0.559
+13:06:34 | INFO | [default] τ=0.95 λ=1.0 | Epoch  76/100 | Loss: 0.1488 (sup:0.0098 unsup:0.1389) | Val: 63.33% | Test: 61.93% | Mask: 0.563
+13:06:51 | INFO | [default] τ=0.95 λ=1.0 | Epoch  77/100 | Loss: 0.1456 (sup:0.0088 unsup:0.1368) | Val: 61.67% | Test: 63.13% | Mask: 0.555
+13:07:09 | INFO | [default] τ=0.95 λ=1.0 | Epoch  78/100 | Loss: 0.1631 (sup:0.0079 unsup:0.1552) | Val: 62.67% | Test: 62.47% | Mask: 0.566
+13:07:27 | INFO | [default] τ=0.95 λ=1.0 | Epoch  79/100 | Loss: 0.1380 (sup:0.0082 unsup:0.1299) | Val: 61.33% | Test: 62.90% | Mask: 0.556
+13:07:45 | INFO | [default] τ=0.95 λ=1.0 | Epoch  80/100 | Loss: 0.1346 (sup:0.0061 unsup:0.1285) | Val: 63.00% | Test: 63.07% | Mask: 0.563
+13:08:03 | INFO | [default] τ=0.95 λ=1.0 | Epoch  81/100 | Loss: 0.1536 (sup:0.0095 unsup:0.1441) | Val: 61.33% | Test: 62.60% | Mask: 0.567
+13:08:21 | INFO | [default] τ=0.95 λ=1.0 | Epoch  82/100 | Loss: 0.1469 (sup:0.0050 unsup:0.1419) | Val: 64.00% | Test: 62.77% | Mask: 0.579
+13:08:38 | INFO | [default] τ=0.95 λ=1.0 | Epoch  83/100 | Loss: 0.1413 (sup:0.0040 unsup:0.1373) | Val: 64.00% | Test: 62.83% | Mask: 0.575
+13:08:56 | INFO | [default] τ=0.95 λ=1.0 | Epoch  84/100 | Loss: 0.1345 (sup:0.0059 unsup:0.1285) | Val: 63.67% | Test: 62.27% | Mask: 0.573
+13:09:14 | INFO | [default] τ=0.95 λ=1.0 | Epoch  85/100 | Loss: 0.1418 (sup:0.0061 unsup:0.1357) | Val: 63.33% | Test: 62.17% | Mask: 0.571
+13:09:32 | INFO | [default] τ=0.95 λ=1.0 | Epoch  86/100 | Loss: 0.1362 (sup:0.0051 unsup:0.1310) | Val: 62.67% | Test: 63.30% | Mask: 0.578
+13:09:51 | INFO | [default] τ=0.95 λ=1.0 | Epoch  87/100 | Loss: 0.1429 (sup:0.0044 unsup:0.1386) | Val: 62.67% | Test: 63.23% | Mask: 0.580
+13:10:10 | INFO | [default] τ=0.95 λ=1.0 | Epoch  88/100 | Loss: 0.1357 (sup:0.0040 unsup:0.1317) | Val: 61.67% | Test: 62.37% | Mask: 0.576
+13:10:27 | INFO | [default] τ=0.95 λ=1.0 | Epoch  89/100 | Loss: 0.1485 (sup:0.0099 unsup:0.1386) | Val: 61.67% | Test: 62.43% | Mask: 0.562
+13:10:45 | INFO | [default] τ=0.95 λ=1.0 | Epoch  90/100 | Loss: 0.1354 (sup:0.0058 unsup:0.1296) | Val: 62.00% | Test: 62.83% | Mask: 0.571
+13:11:03 | INFO | [default] τ=0.95 λ=1.0 | Epoch  91/100 | Loss: 0.1447 (sup:0.0043 unsup:0.1404) | Val: 62.67% | Test: 62.40% | Mask: 0.581
+13:11:21 | INFO | [default] τ=0.95 λ=1.0 | Epoch  92/100 | Loss: 0.1582 (sup:0.0049 unsup:0.1533) | Val: 63.00% | Test: 62.23% | Mask: 0.583
+13:11:40 | INFO | [default] τ=0.95 λ=1.0 | Epoch  93/100 | Loss: 0.1482 (sup:0.0071 unsup:0.1411) | Val: 63.67% | Test: 62.27% | Mask: 0.578
+13:12:00 | INFO | [default] τ=0.95 λ=1.0 | Epoch  94/100 | Loss: 0.1452 (sup:0.0060 unsup:0.1392) | Val: 63.67% | Test: 62.47% | Mask: 0.575
+13:12:20 | INFO | [default] τ=0.95 λ=1.0 | Epoch  95/100 | Loss: 0.1495 (sup:0.0034 unsup:0.1461) | Val: 62.67% | Test: 62.60% | Mask: 0.574
+13:12:40 | INFO | [default] τ=0.95 λ=1.0 | Epoch  96/100 | Loss: 0.1349 (sup:0.0048 unsup:0.1301) | Val: 63.00% | Test: 62.67% | Mask: 0.576
+13:12:58 | INFO | [default] τ=0.95 λ=1.0 | Epoch  97/100 | Loss: 0.1433 (sup:0.0047 unsup:0.1387) | Val: 63.67% | Test: 62.60% | Mask: 0.573
+13:13:17 | INFO | [default] τ=0.95 λ=1.0 | Epoch  98/100 | Loss: 0.1425 (sup:0.0045 unsup:0.1380) | Val: 63.33% | Test: 62.70% | Mask: 0.580
+13:13:36 | INFO | [default] τ=0.95 λ=1.0 | Epoch  99/100 | Loss: 0.1449 (sup:0.0039 unsup:0.1410) | Val: 63.33% | Test: 62.70% | Mask: 0.577
+13:13:53 | INFO | [default] τ=0.95 λ=1.0 | Epoch 100/100 | Loss: 0.1484 (sup:0.0039 unsup:0.1446) | Val: 63.67% | Test: 62.70% | Mask: 0.578
+13:13:54 | INFO | [default] Best Test Accuracy: 63.30%
+
+============================================================
+Q2: HYPERPARAMETER SWEEP (τ × λ)
+     τ values : [0.7, 0.85, 0.95]
+     λ values : [0.5, 1.0, 2.0]
+============================================================
+
+--- Sweep: τ=0.7, λ=0.5 ---
+  Labeled   : 300 samples
+  Val       : 300 samples
+  Test      : 3,000 samples
+  Unlabeled : 5,400 samples
+13:14:11 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch   1/100 | Loss: 3.0475 (sup:2.8710 unsup:0.3529) | Val: 32.67% | Test: 34.27% | Mask: 0.715
+13:14:28 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch   2/100 | Loss: 1.1417 (sup:1.0922 unsup:0.0991) | Val: 44.00% | Test: 41.20% | Mask: 0.234
+13:14:47 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch   3/100 | Loss: 1.1260 (sup:1.0579 unsup:0.1362) | Val: 46.00% | Test: 48.87% | Mask: 0.311
+13:15:05 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch   4/100 | Loss: 1.0832 (sup:0.9979 unsup:0.1705) | Val: 44.33% | Test: 45.13% | Mask: 0.375
+13:15:22 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch   5/100 | Loss: 1.1165 (sup:1.0255 unsup:0.1820) | Val: 45.33% | Test: 46.63% | Mask: 0.446
+13:15:41 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch   6/100 | Loss: 1.1151 (sup:1.0172 unsup:0.1960) | Val: 48.67% | Test: 47.87% | Mask: 0.450
+13:15:59 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch   7/100 | Loss: 1.0227 (sup:0.9165 unsup:0.2124) | Val: 50.67% | Test: 48.70% | Mask: 0.453
+13:16:18 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch   8/100 | Loss: 0.9466 (sup:0.8301 unsup:0.2330) | Val: 52.33% | Test: 52.43% | Mask: 0.486
+13:16:36 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch   9/100 | Loss: 0.9808 (sup:0.8523 unsup:0.2569) | Val: 55.67% | Test: 54.53% | Mask: 0.526
+13:16:54 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  10/100 | Loss: 0.8872 (sup:0.7631 unsup:0.2482) | Val: 48.33% | Test: 44.73% | Mask: 0.539
+13:17:12 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  11/100 | Loss: 0.8567 (sup:0.7339 unsup:0.2456) | Val: 51.67% | Test: 50.53% | Mask: 0.520
+13:17:29 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  12/100 | Loss: 0.7848 (sup:0.6379 unsup:0.2938) | Val: 54.67% | Test: 54.03% | Mask: 0.561
+13:17:47 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  13/100 | Loss: 0.8416 (sup:0.6884 unsup:0.3065) | Val: 53.33% | Test: 47.87% | Mask: 0.611
+13:18:05 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  14/100 | Loss: 0.6873 (sup:0.5173 unsup:0.3401) | Val: 47.67% | Test: 46.80% | Mask: 0.624
+13:18:22 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  15/100 | Loss: 0.7039 (sup:0.5091 unsup:0.3896) | Val: 57.33% | Test: 54.90% | Mask: 0.662
+13:18:40 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  16/100 | Loss: 0.6542 (sup:0.4384 unsup:0.4317) | Val: 56.67% | Test: 53.40% | Mask: 0.696
+13:18:57 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  17/100 | Loss: 0.6128 (sup:0.4187 unsup:0.3884) | Val: 59.00% | Test: 56.73% | Mask: 0.674
+13:19:15 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  18/100 | Loss: 0.6037 (sup:0.3785 unsup:0.4503) | Val: 57.33% | Test: 52.87% | Mask: 0.709
+13:19:32 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  19/100 | Loss: 0.5202 (sup:0.2992 unsup:0.4420) | Val: 61.00% | Test: 55.87% | Mask: 0.713
+13:19:49 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  20/100 | Loss: 0.5070 (sup:0.2772 unsup:0.4597) | Val: 60.33% | Test: 53.70% | Mask: 0.742
+13:20:05 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  21/100 | Loss: 0.4935 (sup:0.2593 unsup:0.4683) | Val: 58.67% | Test: 54.97% | Mask: 0.745
+13:20:25 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  22/100 | Loss: 0.4330 (sup:0.1881 unsup:0.4898) | Val: 56.67% | Test: 54.97% | Mask: 0.766
+13:20:43 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  23/100 | Loss: 0.4299 (sup:0.1868 unsup:0.4863) | Val: 58.33% | Test: 55.87% | Mask: 0.761
+13:21:01 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  24/100 | Loss: 0.4139 (sup:0.1672 unsup:0.4934) | Val: 59.33% | Test: 56.73% | Mask: 0.773
+13:21:18 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  25/100 | Loss: 0.3805 (sup:0.1440 unsup:0.4729) | Val: 60.00% | Test: 54.63% | Mask: 0.754
+13:21:36 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  26/100 | Loss: 0.4151 (sup:0.1640 unsup:0.5022) | Val: 63.33% | Test: 58.83% | Mask: 0.792
+13:21:53 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  27/100 | Loss: 0.3646 (sup:0.1238 unsup:0.4816) | Val: 63.00% | Test: 56.87% | Mask: 0.769
+13:22:10 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  28/100 | Loss: 0.3371 (sup:0.0874 unsup:0.4995) | Val: 62.00% | Test: 58.63% | Mask: 0.789
+13:22:28 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  29/100 | Loss: 0.3193 (sup:0.0786 unsup:0.4814) | Val: 55.67% | Test: 54.20% | Mask: 0.785
+13:22:46 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  30/100 | Loss: 0.3034 (sup:0.0561 unsup:0.4946) | Val: 62.33% | Test: 61.03% | Mask: 0.800
+13:22:54 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  31/100 | Loss: 0.3198 (sup:0.0893 unsup:0.4610) | Val: 64.00% | Test: 59.73% | Mask: 0.796
+13:23:09 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  32/100 | Loss: 0.3079 (sup:0.0795 unsup:0.4567) | Val: 62.33% | Test: 61.27% | Mask: 0.804
+13:23:28 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  33/100 | Loss: 0.3216 (sup:0.0808 unsup:0.4815) | Val: 62.00% | Test: 59.23% | Mask: 0.805
+13:23:47 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  34/100 | Loss: 0.2811 (sup:0.0529 unsup:0.4564) | Val: 65.67% | Test: 60.87% | Mask: 0.782
+13:24:07 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  35/100 | Loss: 0.2770 (sup:0.0633 unsup:0.4274) | Val: 64.00% | Test: 59.27% | Mask: 0.797
+13:24:25 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  36/100 | Loss: 0.2817 (sup:0.0399 unsup:0.4836) | Val: 60.67% | Test: 58.13% | Mask: 0.812
+13:24:44 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  37/100 | Loss: 0.2528 (sup:0.0381 unsup:0.4293) | Val: 62.67% | Test: 61.57% | Mask: 0.794
+13:25:02 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  38/100 | Loss: 0.2589 (sup:0.0372 unsup:0.4434) | Val: 63.33% | Test: 60.57% | Mask: 0.802
+13:25:19 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  39/100 | Loss: 0.2482 (sup:0.0356 unsup:0.4252) | Val: 60.67% | Test: 57.10% | Mask: 0.813
+13:25:37 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  40/100 | Loss: 0.2476 (sup:0.0466 unsup:0.4019) | Val: 64.67% | Test: 59.60% | Mask: 0.811
+13:25:56 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  41/100 | Loss: 0.2582 (sup:0.0385 unsup:0.4394) | Val: 65.33% | Test: 62.90% | Mask: 0.808
+13:26:15 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  42/100 | Loss: 0.2617 (sup:0.0425 unsup:0.4384) | Val: 65.00% | Test: 56.50% | Mask: 0.810
+13:26:34 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  43/100 | Loss: 0.2444 (sup:0.0441 unsup:0.4006) | Val: 66.67% | Test: 62.00% | Mask: 0.811
+13:26:51 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  44/100 | Loss: 0.2472 (sup:0.0392 unsup:0.4160) | Val: 63.67% | Test: 60.50% | Mask: 0.807
+13:27:10 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  45/100 | Loss: 0.2271 (sup:0.0271 unsup:0.3999) | Val: 59.00% | Test: 58.50% | Mask: 0.812
+13:27:26 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  46/100 | Loss: 0.2152 (sup:0.0240 unsup:0.3824) | Val: 62.00% | Test: 62.20% | Mask: 0.811
+13:27:43 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  47/100 | Loss: 0.2213 (sup:0.0220 unsup:0.3985) | Val: 65.33% | Test: 61.27% | Mask: 0.825
+13:28:01 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  48/100 | Loss: 0.2229 (sup:0.0253 unsup:0.3951) | Val: 68.00% | Test: 61.97% | Mask: 0.831
+13:28:20 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  49/100 | Loss: 0.2305 (sup:0.0266 unsup:0.4079) | Val: 61.33% | Test: 60.47% | Mask: 0.832
+13:28:38 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  50/100 | Loss: 0.2044 (sup:0.0157 unsup:0.3774) | Val: 67.00% | Test: 64.00% | Mask: 0.822
+13:28:56 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  51/100 | Loss: 0.2109 (sup:0.0130 unsup:0.3959) | Val: 65.00% | Test: 64.87% | Mask: 0.834
+13:29:14 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  52/100 | Loss: 0.1964 (sup:0.0163 unsup:0.3602) | Val: 66.00% | Test: 64.13% | Mask: 0.831
+13:29:31 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  53/100 | Loss: 0.2062 (sup:0.0143 unsup:0.3838) | Val: 65.67% | Test: 63.13% | Mask: 0.834
+13:29:48 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  54/100 | Loss: 0.1997 (sup:0.0182 unsup:0.3630) | Val: 68.33% | Test: 64.17% | Mask: 0.825
+13:30:06 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  55/100 | Loss: 0.1952 (sup:0.0124 unsup:0.3655) | Val: 66.33% | Test: 64.47% | Mask: 0.844
+13:30:25 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  56/100 | Loss: 0.1919 (sup:0.0151 unsup:0.3537) | Val: 68.00% | Test: 64.27% | Mask: 0.836
+13:30:44 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  57/100 | Loss: 0.1976 (sup:0.0108 unsup:0.3737) | Val: 66.00% | Test: 64.00% | Mask: 0.844
+13:31:02 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  58/100 | Loss: 0.1827 (sup:0.0084 unsup:0.3485) | Val: 69.00% | Test: 64.77% | Mask: 0.836
+13:31:20 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  59/100 | Loss: 0.1889 (sup:0.0135 unsup:0.3507) | Val: 70.00% | Test: 65.03% | Mask: 0.847
+13:31:39 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  60/100 | Loss: 0.1808 (sup:0.0102 unsup:0.3412) | Val: 68.33% | Test: 65.10% | Mask: 0.846
+13:32:00 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  61/100 | Loss: 0.1902 (sup:0.0137 unsup:0.3530) | Val: 67.67% | Test: 64.10% | Mask: 0.844
+13:32:18 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  62/100 | Loss: 0.1824 (sup:0.0094 unsup:0.3461) | Val: 66.33% | Test: 64.87% | Mask: 0.849
+13:32:36 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  63/100 | Loss: 0.1816 (sup:0.0095 unsup:0.3442) | Val: 68.33% | Test: 66.63% | Mask: 0.850
+13:32:56 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  64/100 | Loss: 0.1857 (sup:0.0126 unsup:0.3462) | Val: 67.33% | Test: 65.07% | Mask: 0.851
+13:33:14 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  65/100 | Loss: 0.1810 (sup:0.0105 unsup:0.3409) | Val: 68.33% | Test: 65.70% | Mask: 0.846
+13:33:33 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  66/100 | Loss: 0.1867 (sup:0.0088 unsup:0.3557) | Val: 67.33% | Test: 64.03% | Mask: 0.854
+13:33:51 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  67/100 | Loss: 0.1814 (sup:0.0108 unsup:0.3412) | Val: 67.00% | Test: 65.03% | Mask: 0.852
+13:34:10 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  68/100 | Loss: 0.1790 (sup:0.0110 unsup:0.3360) | Val: 65.33% | Test: 64.33% | Mask: 0.855
+13:34:29 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  69/100 | Loss: 0.1867 (sup:0.0092 unsup:0.3551) | Val: 68.67% | Test: 64.70% | Mask: 0.845
+13:34:46 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  70/100 | Loss: 0.1677 (sup:0.0098 unsup:0.3159) | Val: 66.00% | Test: 64.80% | Mask: 0.850
+13:35:03 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  71/100 | Loss: 0.1780 (sup:0.0109 unsup:0.3343) | Val: 66.67% | Test: 64.90% | Mask: 0.861
+13:35:21 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  72/100 | Loss: 0.1794 (sup:0.0062 unsup:0.3462) | Val: 68.33% | Test: 65.93% | Mask: 0.858
+13:35:40 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  73/100 | Loss: 0.1699 (sup:0.0059 unsup:0.3280) | Val: 70.00% | Test: 66.10% | Mask: 0.856
+13:35:56 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  74/100 | Loss: 0.1782 (sup:0.0073 unsup:0.3419) | Val: 69.33% | Test: 66.53% | Mask: 0.850
+13:36:14 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  75/100 | Loss: 0.1720 (sup:0.0063 unsup:0.3314) | Val: 69.00% | Test: 66.10% | Mask: 0.865
+13:36:31 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  76/100 | Loss: 0.1784 (sup:0.0071 unsup:0.3425) | Val: 66.00% | Test: 65.67% | Mask: 0.852
+13:36:49 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  77/100 | Loss: 0.1728 (sup:0.0064 unsup:0.3330) | Val: 68.33% | Test: 66.93% | Mask: 0.861
+13:37:07 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  78/100 | Loss: 0.1702 (sup:0.0062 unsup:0.3280) | Val: 67.67% | Test: 66.87% | Mask: 0.862
+13:37:25 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  79/100 | Loss: 0.1714 (sup:0.0073 unsup:0.3283) | Val: 70.33% | Test: 65.47% | Mask: 0.867
+13:37:43 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  80/100 | Loss: 0.1686 (sup:0.0060 unsup:0.3253) | Val: 68.67% | Test: 66.40% | Mask: 0.871
+13:38:00 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  81/100 | Loss: 0.1620 (sup:0.0056 unsup:0.3128) | Val: 68.00% | Test: 66.13% | Mask: 0.858
+13:38:18 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  82/100 | Loss: 0.1698 (sup:0.0042 unsup:0.3313) | Val: 71.00% | Test: 66.43% | Mask: 0.866
+13:38:35 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  83/100 | Loss: 0.1675 (sup:0.0059 unsup:0.3232) | Val: 70.33% | Test: 66.60% | Mask: 0.865
+13:38:53 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  84/100 | Loss: 0.1607 (sup:0.0039 unsup:0.3135) | Val: 70.00% | Test: 66.37% | Mask: 0.863
+13:39:11 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  85/100 | Loss: 0.1705 (sup:0.0047 unsup:0.3316) | Val: 70.00% | Test: 66.63% | Mask: 0.875
+13:39:29 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  86/100 | Loss: 0.1645 (sup:0.0052 unsup:0.3185) | Val: 69.67% | Test: 66.23% | Mask: 0.871
+13:39:46 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  87/100 | Loss: 0.1672 (sup:0.0058 unsup:0.3228) | Val: 70.33% | Test: 66.33% | Mask: 0.871
+13:40:04 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  88/100 | Loss: 0.1734 (sup:0.0050 unsup:0.3367) | Val: 70.33% | Test: 65.20% | Mask: 0.865
+13:40:22 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  89/100 | Loss: 0.1631 (sup:0.0051 unsup:0.3160) | Val: 70.67% | Test: 66.27% | Mask: 0.867
+13:40:40 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  90/100 | Loss: 0.1777 (sup:0.0054 unsup:0.3446) | Val: 69.67% | Test: 66.17% | Mask: 0.869
+13:40:59 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  91/100 | Loss: 0.1675 (sup:0.0039 unsup:0.3272) | Val: 70.00% | Test: 66.00% | Mask: 0.878
+13:41:17 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  92/100 | Loss: 0.1785 (sup:0.0047 unsup:0.3476) | Val: 70.00% | Test: 66.30% | Mask: 0.876
+13:41:35 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  93/100 | Loss: 0.1597 (sup:0.0046 unsup:0.3103) | Val: 69.67% | Test: 66.33% | Mask: 0.870
+13:41:52 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  94/100 | Loss: 0.1637 (sup:0.0048 unsup:0.3178) | Val: 70.33% | Test: 66.50% | Mask: 0.871
+13:42:11 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  95/100 | Loss: 0.1627 (sup:0.0046 unsup:0.3162) | Val: 68.67% | Test: 66.40% | Mask: 0.871
+13:42:29 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  96/100 | Loss: 0.1645 (sup:0.0052 unsup:0.3186) | Val: 69.00% | Test: 66.43% | Mask: 0.876
+13:42:46 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  97/100 | Loss: 0.1655 (sup:0.0068 unsup:0.3174) | Val: 69.67% | Test: 66.53% | Mask: 0.872
+13:43:04 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  98/100 | Loss: 0.1669 (sup:0.0055 unsup:0.3227) | Val: 69.33% | Test: 66.40% | Mask: 0.874
+13:43:20 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch  99/100 | Loss: 0.1648 (sup:0.0051 unsup:0.3194) | Val: 69.33% | Test: 66.43% | Mask: 0.872
+13:43:39 | INFO | [tau0.7_lam0.5] τ=0.7 λ=0.5 | Epoch 100/100 | Loss: 0.1726 (sup:0.0063 unsup:0.3327) | Val: 69.67% | Test: 66.57% | Mask: 0.880
+13:43:40 | INFO | [tau0.7_lam0.5] Best Test Accuracy: 66.93%
+
+--- Sweep: τ=0.7, λ=1.0 ---
+  Labeled   : 300 samples
+  Val       : 300 samples
+  Test      : 3,000 samples
+  Unlabeled : 5,400 samples
+13:43:58 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch   1/100 | Loss: 3.3670 (sup:3.1884 unsup:0.1786) | Val: 36.67% | Test: 35.87% | Mask: 0.488
+13:44:17 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch   2/100 | Loss: 1.3568 (sup:1.2519 unsup:0.1049) | Val: 45.67% | Test: 44.50% | Mask: 0.237
+13:44:34 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch   3/100 | Loss: 1.1883 (sup:1.1241 unsup:0.0642) | Val: 41.00% | Test: 46.00% | Mask: 0.168
+13:44:52 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch   4/100 | Loss: 1.1790 (sup:1.1066 unsup:0.0723) | Val: 40.33% | Test: 43.37% | Mask: 0.199
+13:45:10 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch   5/100 | Loss: 1.1955 (sup:1.1057 unsup:0.0897) | Val: 38.00% | Test: 42.20% | Mask: 0.216
+13:45:28 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch   6/100 | Loss: 1.1312 (sup:1.0430 unsup:0.0882) | Val: 47.67% | Test: 49.53% | Mask: 0.227
+13:45:44 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch   7/100 | Loss: 1.0595 (sup:0.9791 unsup:0.0804) | Val: 47.67% | Test: 50.20% | Mask: 0.230
+13:46:03 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch   8/100 | Loss: 1.1779 (sup:1.0682 unsup:0.1097) | Val: 42.67% | Test: 44.20% | Mask: 0.288
+13:46:21 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch   9/100 | Loss: 1.0459 (sup:0.9558 unsup:0.0900) | Val: 47.00% | Test: 50.50% | Mask: 0.227
+13:46:40 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  10/100 | Loss: 1.0164 (sup:0.9013 unsup:0.1150) | Val: 46.67% | Test: 49.33% | Mask: 0.272
+13:46:58 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  11/100 | Loss: 1.0206 (sup:0.8966 unsup:0.1240) | Val: 49.33% | Test: 51.60% | Mask: 0.303
+13:47:16 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  12/100 | Loss: 1.0478 (sup:0.8854 unsup:0.1624) | Val: 48.67% | Test: 54.23% | Mask: 0.368
+13:47:34 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  13/100 | Loss: 0.9551 (sup:0.7893 unsup:0.1658) | Val: 43.00% | Test: 46.07% | Mask: 0.384
+13:47:52 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  14/100 | Loss: 0.9961 (sup:0.7941 unsup:0.2020) | Val: 52.67% | Test: 51.87% | Mask: 0.436
+13:48:09 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  15/100 | Loss: 1.0298 (sup:0.8140 unsup:0.2158) | Val: 48.67% | Test: 52.80% | Mask: 0.445
+13:48:27 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  16/100 | Loss: 0.9952 (sup:0.7778 unsup:0.2174) | Val: 50.00% | Test: 49.67% | Mask: 0.433
+13:48:45 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  17/100 | Loss: 0.9422 (sup:0.6829 unsup:0.2592) | Val: 51.67% | Test: 52.10% | Mask: 0.530
+13:49:02 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  18/100 | Loss: 1.0069 (sup:0.7334 unsup:0.2735) | Val: 56.00% | Test: 54.67% | Mask: 0.565
+13:49:19 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  19/100 | Loss: 0.9595 (sup:0.6609 unsup:0.2986) | Val: 56.33% | Test: 54.10% | Mask: 0.590
+13:49:36 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  20/100 | Loss: 0.8972 (sup:0.5814 unsup:0.3158) | Val: 56.67% | Test: 55.57% | Mask: 0.613
+13:49:56 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  21/100 | Loss: 0.9169 (sup:0.5985 unsup:0.3185) | Val: 54.33% | Test: 53.40% | Mask: 0.651
+13:50:12 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  22/100 | Loss: 0.8286 (sup:0.5022 unsup:0.3264) | Val: 54.67% | Test: 55.37% | Mask: 0.652
+13:50:30 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  23/100 | Loss: 0.8075 (sup:0.4673 unsup:0.3401) | Val: 49.67% | Test: 52.70% | Mask: 0.667
+13:50:47 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  24/100 | Loss: 0.8191 (sup:0.4368 unsup:0.3824) | Val: 55.67% | Test: 56.77% | Mask: 0.704
+13:51:07 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  25/100 | Loss: 0.8073 (sup:0.4432 unsup:0.3641) | Val: 58.67% | Test: 58.77% | Mask: 0.701
+13:51:24 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  26/100 | Loss: 0.8075 (sup:0.4386 unsup:0.3689) | Val: 56.00% | Test: 54.20% | Mask: 0.709
+13:51:42 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  27/100 | Loss: 0.7473 (sup:0.4255 unsup:0.3219) | Val: 55.67% | Test: 59.70% | Mask: 0.666
+13:51:58 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  28/100 | Loss: 0.6682 (sup:0.2843 unsup:0.3838) | Val: 55.00% | Test: 56.47% | Mask: 0.738
+13:52:15 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  29/100 | Loss: 0.6879 (sup:0.2937 unsup:0.3942) | Val: 50.33% | Test: 48.50% | Mask: 0.746
+13:52:32 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  30/100 | Loss: 0.6532 (sup:0.2521 unsup:0.4012) | Val: 53.67% | Test: 56.30% | Mask: 0.741
+13:52:51 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  31/100 | Loss: 0.6568 (sup:0.2540 unsup:0.4028) | Val: 60.67% | Test: 60.07% | Mask: 0.752
+13:53:11 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  32/100 | Loss: 0.6052 (sup:0.2030 unsup:0.4023) | Val: 59.00% | Test: 57.37% | Mask: 0.769
+13:53:30 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  33/100 | Loss: 0.6609 (sup:0.2745 unsup:0.3865) | Val: 59.67% | Test: 58.23% | Mask: 0.760
+13:53:48 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  34/100 | Loss: 0.5704 (sup:0.1932 unsup:0.3771) | Val: 57.67% | Test: 59.90% | Mask: 0.743
+13:54:07 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  35/100 | Loss: 0.5928 (sup:0.1888 unsup:0.4040) | Val: 59.67% | Test: 59.47% | Mask: 0.764
+13:54:27 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  36/100 | Loss: 0.5588 (sup:0.1733 unsup:0.3855) | Val: 57.67% | Test: 58.90% | Mask: 0.760
+13:54:47 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  37/100 | Loss: 0.5508 (sup:0.1577 unsup:0.3931) | Val: 53.00% | Test: 54.10% | Mask: 0.780
+13:55:08 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  38/100 | Loss: 0.5387 (sup:0.1263 unsup:0.4124) | Val: 64.33% | Test: 59.90% | Mask: 0.774
+13:55:30 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  39/100 | Loss: 0.5363 (sup:0.1312 unsup:0.4051) | Val: 60.33% | Test: 59.57% | Mask: 0.793
+13:55:52 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  40/100 | Loss: 0.5478 (sup:0.1510 unsup:0.3968) | Val: 63.33% | Test: 60.43% | Mask: 0.786
+13:56:15 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  41/100 | Loss: 0.5083 (sup:0.1310 unsup:0.3772) | Val: 60.67% | Test: 59.53% | Mask: 0.787
+13:56:39 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  42/100 | Loss: 0.4856 (sup:0.1058 unsup:0.3798) | Val: 61.67% | Test: 61.53% | Mask: 0.786
+13:57:02 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  43/100 | Loss: 0.4629 (sup:0.0827 unsup:0.3802) | Val: 61.67% | Test: 59.97% | Mask: 0.792
+13:57:24 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  44/100 | Loss: 0.4480 (sup:0.0702 unsup:0.3778) | Val: 61.33% | Test: 60.80% | Mask: 0.794
+13:57:45 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  45/100 | Loss: 0.4375 (sup:0.0682 unsup:0.3693) | Val: 62.67% | Test: 62.60% | Mask: 0.792
+13:58:06 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  46/100 | Loss: 0.4482 (sup:0.0676 unsup:0.3806) | Val: 62.67% | Test: 62.63% | Mask: 0.804
+13:58:27 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  47/100 | Loss: 0.4256 (sup:0.0549 unsup:0.3707) | Val: 64.67% | Test: 62.57% | Mask: 0.811
+13:58:52 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  48/100 | Loss: 0.4305 (sup:0.0559 unsup:0.3746) | Val: 61.67% | Test: 63.73% | Mask: 0.812
+13:59:14 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  49/100 | Loss: 0.4295 (sup:0.0590 unsup:0.3704) | Val: 62.33% | Test: 61.97% | Mask: 0.820
+13:59:35 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  50/100 | Loss: 0.4470 (sup:0.0684 unsup:0.3786) | Val: 62.67% | Test: 62.57% | Mask: 0.815
+13:59:57 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  51/100 | Loss: 0.3855 (sup:0.0491 unsup:0.3364) | Val: 63.67% | Test: 63.60% | Mask: 0.801
+14:00:21 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  52/100 | Loss: 0.4009 (sup:0.0477 unsup:0.3532) | Val: 61.67% | Test: 59.70% | Mask: 0.805
+14:00:44 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  53/100 | Loss: 0.4243 (sup:0.0456 unsup:0.3787) | Val: 64.00% | Test: 62.60% | Mask: 0.826
+14:01:05 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  54/100 | Loss: 0.4109 (sup:0.0486 unsup:0.3623) | Val: 65.67% | Test: 63.30% | Mask: 0.826
+14:01:26 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  55/100 | Loss: 0.4169 (sup:0.0575 unsup:0.3594) | Val: 60.00% | Test: 60.67% | Mask: 0.816
+14:01:49 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  56/100 | Loss: 0.3767 (sup:0.0342 unsup:0.3425) | Val: 61.33% | Test: 61.13% | Mask: 0.829
+14:02:13 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  57/100 | Loss: 0.4009 (sup:0.0392 unsup:0.3616) | Val: 64.33% | Test: 62.70% | Mask: 0.822
+14:02:34 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  58/100 | Loss: 0.3875 (sup:0.0389 unsup:0.3486) | Val: 61.67% | Test: 62.90% | Mask: 0.820
+14:02:55 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  59/100 | Loss: 0.3833 (sup:0.0295 unsup:0.3538) | Val: 65.33% | Test: 64.20% | Mask: 0.828
+14:03:17 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  60/100 | Loss: 0.3833 (sup:0.0358 unsup:0.3475) | Val: 65.00% | Test: 64.77% | Mask: 0.829
+14:03:40 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  61/100 | Loss: 0.3749 (sup:0.0219 unsup:0.3530) | Val: 64.67% | Test: 64.03% | Mask: 0.837
+14:04:04 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  62/100 | Loss: 0.3532 (sup:0.0239 unsup:0.3293) | Val: 65.00% | Test: 64.17% | Mask: 0.840
+14:04:26 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  63/100 | Loss: 0.3882 (sup:0.0398 unsup:0.3485) | Val: 67.33% | Test: 63.43% | Mask: 0.850
+14:04:46 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  64/100 | Loss: 0.3658 (sup:0.0301 unsup:0.3357) | Val: 67.33% | Test: 63.83% | Mask: 0.828
+14:05:10 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  65/100 | Loss: 0.3615 (sup:0.0247 unsup:0.3368) | Val: 62.33% | Test: 63.60% | Mask: 0.841
+14:05:32 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  66/100 | Loss: 0.3790 (sup:0.0318 unsup:0.3472) | Val: 66.00% | Test: 64.23% | Mask: 0.836
+14:05:54 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  67/100 | Loss: 0.3645 (sup:0.0378 unsup:0.3267) | Val: 68.00% | Test: 64.80% | Mask: 0.839
+14:06:16 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  68/100 | Loss: 0.3907 (sup:0.0275 unsup:0.3632) | Val: 64.00% | Test: 63.67% | Mask: 0.846
+14:06:38 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  69/100 | Loss: 0.3445 (sup:0.0266 unsup:0.3179) | Val: 67.67% | Test: 64.97% | Mask: 0.835
+14:07:01 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  70/100 | Loss: 0.3383 (sup:0.0172 unsup:0.3210) | Val: 68.00% | Test: 64.50% | Mask: 0.839
+14:07:24 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  71/100 | Loss: 0.3684 (sup:0.0178 unsup:0.3506) | Val: 66.67% | Test: 63.73% | Mask: 0.857
+14:07:47 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  72/100 | Loss: 0.3557 (sup:0.0217 unsup:0.3340) | Val: 68.33% | Test: 63.77% | Mask: 0.836
+14:08:10 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  73/100 | Loss: 0.3525 (sup:0.0187 unsup:0.3338) | Val: 67.00% | Test: 63.47% | Mask: 0.843
+14:08:33 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  74/100 | Loss: 0.3517 (sup:0.0227 unsup:0.3290) | Val: 66.33% | Test: 64.10% | Mask: 0.845
+14:08:55 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  75/100 | Loss: 0.3566 (sup:0.0165 unsup:0.3401) | Val: 66.00% | Test: 64.70% | Mask: 0.845
+14:09:16 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  76/100 | Loss: 0.3481 (sup:0.0159 unsup:0.3321) | Val: 68.00% | Test: 64.50% | Mask: 0.850
+14:09:38 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  77/100 | Loss: 0.3513 (sup:0.0156 unsup:0.3357) | Val: 66.67% | Test: 64.13% | Mask: 0.860
+14:10:00 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  78/100 | Loss: 0.3304 (sup:0.0161 unsup:0.3143) | Val: 68.00% | Test: 64.97% | Mask: 0.853
+14:10:24 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  79/100 | Loss: 0.3453 (sup:0.0133 unsup:0.3320) | Val: 68.33% | Test: 65.03% | Mask: 0.856
+14:10:46 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  80/100 | Loss: 0.3356 (sup:0.0138 unsup:0.3218) | Val: 70.67% | Test: 65.50% | Mask: 0.860
+14:11:07 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  81/100 | Loss: 0.3335 (sup:0.0133 unsup:0.3202) | Val: 68.67% | Test: 64.67% | Mask: 0.859
+14:11:29 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  82/100 | Loss: 0.3312 (sup:0.0122 unsup:0.3189) | Val: 68.67% | Test: 64.30% | Mask: 0.858
+14:11:54 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  83/100 | Loss: 0.3282 (sup:0.0147 unsup:0.3135) | Val: 66.67% | Test: 64.63% | Mask: 0.860
+14:12:16 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  84/100 | Loss: 0.3418 (sup:0.0121 unsup:0.3297) | Val: 67.67% | Test: 65.30% | Mask: 0.861
+14:12:36 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  85/100 | Loss: 0.3329 (sup:0.0125 unsup:0.3204) | Val: 69.33% | Test: 64.90% | Mask: 0.862
+14:12:57 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  86/100 | Loss: 0.3134 (sup:0.0124 unsup:0.3010) | Val: 68.67% | Test: 65.03% | Mask: 0.858
+14:13:19 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  87/100 | Loss: 0.3258 (sup:0.0118 unsup:0.3140) | Val: 68.67% | Test: 65.50% | Mask: 0.862
+14:13:42 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  88/100 | Loss: 0.3177 (sup:0.0103 unsup:0.3074) | Val: 68.67% | Test: 64.87% | Mask: 0.862
+14:14:05 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  89/100 | Loss: 0.3302 (sup:0.0139 unsup:0.3163) | Val: 68.00% | Test: 65.13% | Mask: 0.864
+14:14:26 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  90/100 | Loss: 0.3188 (sup:0.0167 unsup:0.3021) | Val: 68.33% | Test: 64.93% | Mask: 0.858
+14:14:48 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  91/100 | Loss: 0.3294 (sup:0.0132 unsup:0.3161) | Val: 67.33% | Test: 65.43% | Mask: 0.867
+14:15:12 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  92/100 | Loss: 0.3253 (sup:0.0131 unsup:0.3122) | Val: 69.00% | Test: 65.67% | Mask: 0.873
+14:15:34 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  93/100 | Loss: 0.3428 (sup:0.0144 unsup:0.3284) | Val: 68.00% | Test: 65.67% | Mask: 0.874
+14:15:55 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  94/100 | Loss: 0.3254 (sup:0.0121 unsup:0.3133) | Val: 69.33% | Test: 65.47% | Mask: 0.860
+14:16:17 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  95/100 | Loss: 0.3245 (sup:0.0140 unsup:0.3105) | Val: 70.33% | Test: 65.37% | Mask: 0.871
+14:16:37 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  96/100 | Loss: 0.3348 (sup:0.0110 unsup:0.3238) | Val: 69.67% | Test: 65.50% | Mask: 0.869
+14:16:58 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  97/100 | Loss: 0.3341 (sup:0.0115 unsup:0.3226) | Val: 69.67% | Test: 65.30% | Mask: 0.866
+14:17:18 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  98/100 | Loss: 0.3258 (sup:0.0105 unsup:0.3153) | Val: 69.33% | Test: 65.43% | Mask: 0.868
+14:17:38 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch  99/100 | Loss: 0.3223 (sup:0.0082 unsup:0.3140) | Val: 69.67% | Test: 65.43% | Mask: 0.869
+14:18:01 | INFO | [tau0.7_lam1.0] τ=0.7 λ=1.0 | Epoch 100/100 | Loss: 0.3249 (sup:0.0129 unsup:0.3120) | Val: 69.33% | Test: 65.40% | Mask: 0.864
+14:18:01 | INFO | [tau0.7_lam1.0] Best Test Accuracy: 65.67%
+
+--- Sweep: τ=0.7, λ=2.0 ---
+  Labeled   : 300 samples
+  Val       : 300 samples
+  Test      : 3,000 samples
+  Unlabeled : 5,400 samples
+14:18:23 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch   1/100 | Loss: 3.5685 (sup:2.8603 unsup:0.3541) | Val: 35.33% | Test: 34.43% | Mask: 0.682
+14:18:41 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch   2/100 | Loss: 1.7328 (sup:1.4161 unsup:0.1584) | Val: 45.67% | Test: 45.23% | Mask: 0.492
+14:19:02 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch   3/100 | Loss: 1.4996 (sup:1.1590 unsup:0.1703) | Val: 49.33% | Test: 49.43% | Mask: 0.485
+14:19:23 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch   4/100 | Loss: 1.4461 (sup:1.1292 unsup:0.1584) | Val: 42.33% | Test: 43.63% | Mask: 0.469
+14:19:45 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch   5/100 | Loss: 1.3464 (sup:1.0541 unsup:0.1461) | Val: 46.00% | Test: 48.20% | Mask: 0.446
+14:20:05 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch   6/100 | Loss: 1.4293 (sup:1.0834 unsup:0.1729) | Val: 45.67% | Test: 47.23% | Mask: 0.511
+14:20:23 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch   7/100 | Loss: 1.3748 (sup:1.0385 unsup:0.1681) | Val: 47.00% | Test: 51.07% | Mask: 0.530
+14:20:43 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch   8/100 | Loss: 1.3410 (sup:0.9395 unsup:0.2008) | Val: 51.33% | Test: 52.37% | Mask: 0.549
+14:21:03 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch   9/100 | Loss: 1.2841 (sup:0.9144 unsup:0.1848) | Val: 50.00% | Test: 53.27% | Mask: 0.510
+14:21:24 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  10/100 | Loss: 1.3565 (sup:0.8981 unsup:0.2292) | Val: 54.67% | Test: 52.80% | Mask: 0.559
+14:21:48 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  11/100 | Loss: 1.3162 (sup:0.8552 unsup:0.2305) | Val: 51.67% | Test: 47.97% | Mask: 0.571
+14:22:10 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  12/100 | Loss: 1.3330 (sup:0.8659 unsup:0.2335) | Val: 47.00% | Test: 51.33% | Mask: 0.585
+14:22:31 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  13/100 | Loss: 1.2720 (sup:0.7871 unsup:0.2425) | Val: 55.00% | Test: 54.53% | Mask: 0.573
+14:22:53 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  14/100 | Loss: 1.2542 (sup:0.7252 unsup:0.2645) | Val: 53.33% | Test: 54.77% | Mask: 0.598
+14:23:17 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  15/100 | Loss: 1.2801 (sup:0.7519 unsup:0.2641) | Val: 57.33% | Test: 54.63% | Mask: 0.618
+14:23:39 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  16/100 | Loss: 1.2410 (sup:0.6795 unsup:0.2808) | Val: 54.00% | Test: 55.47% | Mask: 0.657
+14:24:02 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  17/100 | Loss: 1.2864 (sup:0.7151 unsup:0.2856) | Val: 54.33% | Test: 54.83% | Mask: 0.641
+14:24:22 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  18/100 | Loss: 1.1857 (sup:0.5938 unsup:0.2960) | Val: 52.33% | Test: 53.10% | Mask: 0.683
+14:24:43 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  19/100 | Loss: 1.1546 (sup:0.5505 unsup:0.3021) | Val: 55.00% | Test: 55.20% | Mask: 0.681
+14:25:04 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  20/100 | Loss: 1.1203 (sup:0.5112 unsup:0.3045) | Val: 55.33% | Test: 58.00% | Mask: 0.708
+14:25:27 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  21/100 | Loss: 1.0928 (sup:0.4950 unsup:0.2989) | Val: 53.67% | Test: 54.93% | Mask: 0.702
+14:25:50 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  22/100 | Loss: 1.1348 (sup:0.5148 unsup:0.3100) | Val: 54.00% | Test: 55.70% | Mask: 0.730
+14:26:12 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  23/100 | Loss: 1.1634 (sup:0.5355 unsup:0.3140) | Val: 55.00% | Test: 54.00% | Mask: 0.703
+14:26:34 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  24/100 | Loss: 1.0503 (sup:0.3970 unsup:0.3266) | Val: 50.67% | Test: 53.03% | Mask: 0.724
+14:26:55 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  25/100 | Loss: 1.0465 (sup:0.3383 unsup:0.3541) | Val: 56.00% | Test: 54.97% | Mask: 0.738
+14:27:20 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  26/100 | Loss: 1.0537 (sup:0.4186 unsup:0.3175) | Val: 55.67% | Test: 56.13% | Mask: 0.727
+14:27:41 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  27/100 | Loss: 1.0317 (sup:0.3666 unsup:0.3326) | Val: 55.33% | Test: 54.77% | Mask: 0.724
+14:28:02 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  28/100 | Loss: 0.9961 (sup:0.3294 unsup:0.3333) | Val: 56.67% | Test: 55.70% | Mask: 0.761
+14:28:24 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  29/100 | Loss: 0.9740 (sup:0.2940 unsup:0.3400) | Val: 55.33% | Test: 60.10% | Mask: 0.752
+14:28:49 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  30/100 | Loss: 0.9302 (sup:0.2541 unsup:0.3381) | Val: 56.00% | Test: 57.83% | Mask: 0.753
+14:29:14 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  31/100 | Loss: 0.9507 (sup:0.2439 unsup:0.3534) | Val: 57.67% | Test: 58.37% | Mask: 0.773
+14:29:37 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  32/100 | Loss: 0.9259 (sup:0.2226 unsup:0.3517) | Val: 59.00% | Test: 58.97% | Mask: 0.776
+14:30:01 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  33/100 | Loss: 0.9122 (sup:0.2088 unsup:0.3517) | Val: 51.67% | Test: 57.13% | Mask: 0.775
+14:30:28 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  34/100 | Loss: 0.9588 (sup:0.2673 unsup:0.3457) | Val: 56.00% | Test: 58.53% | Mask: 0.762
+14:30:53 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  35/100 | Loss: 0.8842 (sup:0.2153 unsup:0.3345) | Val: 56.33% | Test: 58.77% | Mask: 0.773
+14:31:16 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  36/100 | Loss: 0.8766 (sup:0.1951 unsup:0.3407) | Val: 51.33% | Test: 58.30% | Mask: 0.781
+14:31:41 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  37/100 | Loss: 0.8052 (sup:0.1679 unsup:0.3187) | Val: 57.67% | Test: 58.20% | Mask: 0.771
+14:32:08 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  38/100 | Loss: 0.8681 (sup:0.1715 unsup:0.3483) | Val: 52.33% | Test: 58.90% | Mask: 0.775
+14:32:31 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  39/100 | Loss: 0.9001 (sup:0.1878 unsup:0.3562) | Val: 53.67% | Test: 57.93% | Mask: 0.778
+14:32:57 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  40/100 | Loss: 0.8364 (sup:0.1639 unsup:0.3362) | Val: 57.33% | Test: 60.10% | Mask: 0.785
+14:33:21 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  41/100 | Loss: 0.8150 (sup:0.1428 unsup:0.3361) | Val: 58.00% | Test: 58.53% | Mask: 0.802
+14:33:44 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  42/100 | Loss: 0.8257 (sup:0.1222 unsup:0.3518) | Val: 59.00% | Test: 58.67% | Mask: 0.790
+14:34:09 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  43/100 | Loss: 0.8656 (sup:0.1680 unsup:0.3488) | Val: 60.33% | Test: 60.93% | Mask: 0.807
+14:34:36 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  44/100 | Loss: 0.7805 (sup:0.1269 unsup:0.3268) | Val: 58.00% | Test: 59.60% | Mask: 0.798
+14:35:00 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  45/100 | Loss: 0.8750 (sup:0.1437 unsup:0.3657) | Val: 59.67% | Test: 56.73% | Mask: 0.799
+14:35:28 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  46/100 | Loss: 0.7995 (sup:0.1187 unsup:0.3404) | Val: 58.67% | Test: 60.83% | Mask: 0.802
+14:35:52 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  47/100 | Loss: 0.8174 (sup:0.1398 unsup:0.3388) | Val: 54.33% | Test: 58.67% | Mask: 0.805
+14:36:17 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  48/100 | Loss: 0.8006 (sup:0.0913 unsup:0.3546) | Val: 59.33% | Test: 60.77% | Mask: 0.797
+14:36:43 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  49/100 | Loss: 0.7664 (sup:0.1114 unsup:0.3275) | Val: 61.33% | Test: 61.57% | Mask: 0.805
+14:37:09 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  50/100 | Loss: 0.7477 (sup:0.0870 unsup:0.3303) | Val: 59.00% | Test: 60.97% | Mask: 0.813
+14:37:36 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  51/100 | Loss: 0.7640 (sup:0.0846 unsup:0.3397) | Val: 59.33% | Test: 63.30% | Mask: 0.813
+14:38:00 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  52/100 | Loss: 0.7473 (sup:0.0686 unsup:0.3394) | Val: 58.67% | Test: 58.00% | Mask: 0.822
+14:38:24 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  53/100 | Loss: 0.7543 (sup:0.0869 unsup:0.3337) | Val: 62.00% | Test: 59.80% | Mask: 0.811
+14:38:52 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  54/100 | Loss: 0.7519 (sup:0.0793 unsup:0.3363) | Val: 59.00% | Test: 61.17% | Mask: 0.815
+14:39:15 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  55/100 | Loss: 0.7194 (sup:0.0823 unsup:0.3186) | Val: 55.67% | Test: 59.33% | Mask: 0.822
+14:39:37 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  56/100 | Loss: 0.7287 (sup:0.0726 unsup:0.3281) | Val: 61.33% | Test: 64.03% | Mask: 0.815
+14:40:02 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  57/100 | Loss: 0.7214 (sup:0.0893 unsup:0.3161) | Val: 62.33% | Test: 63.50% | Mask: 0.818
+14:40:28 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  58/100 | Loss: 0.7384 (sup:0.0799 unsup:0.3292) | Val: 58.67% | Test: 61.30% | Mask: 0.816
+14:40:50 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  59/100 | Loss: 0.7199 (sup:0.0528 unsup:0.3336) | Val: 63.00% | Test: 62.60% | Mask: 0.829
+14:41:13 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  60/100 | Loss: 0.7309 (sup:0.0702 unsup:0.3303) | Val: 57.67% | Test: 60.23% | Mask: 0.831
+14:41:39 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  61/100 | Loss: 0.6770 (sup:0.0610 unsup:0.3080) | Val: 60.67% | Test: 62.37% | Mask: 0.823
+14:42:03 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  62/100 | Loss: 0.6852 (sup:0.0374 unsup:0.3239) | Val: 62.33% | Test: 61.90% | Mask: 0.834
+14:42:28 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  63/100 | Loss: 0.7415 (sup:0.0573 unsup:0.3421) | Val: 60.33% | Test: 58.33% | Mask: 0.839
+14:42:53 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  64/100 | Loss: 0.7172 (sup:0.0659 unsup:0.3256) | Val: 62.00% | Test: 64.10% | Mask: 0.828
+14:43:16 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  65/100 | Loss: 0.6566 (sup:0.0418 unsup:0.3074) | Val: 62.33% | Test: 64.17% | Mask: 0.834
+14:43:42 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  66/100 | Loss: 0.6669 (sup:0.0501 unsup:0.3084) | Val: 63.33% | Test: 63.37% | Mask: 0.838
+14:44:08 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  67/100 | Loss: 0.6662 (sup:0.0334 unsup:0.3164) | Val: 62.33% | Test: 64.63% | Mask: 0.831
+14:44:30 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  68/100 | Loss: 0.7011 (sup:0.0435 unsup:0.3288) | Val: 61.33% | Test: 64.17% | Mask: 0.851
+14:44:51 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  69/100 | Loss: 0.6296 (sup:0.0379 unsup:0.2958) | Val: 65.67% | Test: 64.10% | Mask: 0.840
+14:45:15 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  70/100 | Loss: 0.6643 (sup:0.0423 unsup:0.3110) | Val: 64.00% | Test: 63.53% | Mask: 0.851
+14:45:38 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  71/100 | Loss: 0.6584 (sup:0.0331 unsup:0.3126) | Val: 62.67% | Test: 64.83% | Mask: 0.848
+14:45:59 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  72/100 | Loss: 0.6758 (sup:0.0424 unsup:0.3167) | Val: 63.33% | Test: 64.37% | Mask: 0.841
+14:46:20 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  73/100 | Loss: 0.6435 (sup:0.0414 unsup:0.3010) | Val: 61.33% | Test: 64.60% | Mask: 0.851
+14:46:41 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  74/100 | Loss: 0.6842 (sup:0.0364 unsup:0.3239) | Val: 64.00% | Test: 63.83% | Mask: 0.848
+14:47:05 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  75/100 | Loss: 0.6828 (sup:0.0341 unsup:0.3244) | Val: 65.33% | Test: 64.97% | Mask: 0.850
+14:47:28 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  76/100 | Loss: 0.6264 (sup:0.0274 unsup:0.2995) | Val: 64.00% | Test: 65.13% | Mask: 0.848
+14:47:50 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  77/100 | Loss: 0.6339 (sup:0.0278 unsup:0.3030) | Val: 64.00% | Test: 63.53% | Mask: 0.852
+14:48:11 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  78/100 | Loss: 0.6350 (sup:0.0285 unsup:0.3032) | Val: 64.00% | Test: 65.40% | Mask: 0.858
+14:48:34 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  79/100 | Loss: 0.6512 (sup:0.0345 unsup:0.3083) | Val: 67.00% | Test: 64.77% | Mask: 0.853
+14:48:58 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  80/100 | Loss: 0.6439 (sup:0.0346 unsup:0.3046) | Val: 65.00% | Test: 65.13% | Mask: 0.866
+14:49:20 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  81/100 | Loss: 0.5954 (sup:0.0226 unsup:0.2864) | Val: 65.67% | Test: 65.80% | Mask: 0.862
+14:49:40 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  82/100 | Loss: 0.5999 (sup:0.0255 unsup:0.2872) | Val: 63.33% | Test: 63.60% | Mask: 0.864
+14:50:02 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  83/100 | Loss: 0.6305 (sup:0.0268 unsup:0.3018) | Val: 66.00% | Test: 66.17% | Mask: 0.859
+14:50:25 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  84/100 | Loss: 0.6380 (sup:0.0291 unsup:0.3045) | Val: 64.33% | Test: 65.97% | Mask: 0.865
+14:50:46 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  85/100 | Loss: 0.6058 (sup:0.0230 unsup:0.2914) | Val: 62.33% | Test: 66.07% | Mask: 0.867
+14:51:06 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  86/100 | Loss: 0.6319 (sup:0.0189 unsup:0.3065) | Val: 66.00% | Test: 65.50% | Mask: 0.877
+14:51:26 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  87/100 | Loss: 0.6283 (sup:0.0237 unsup:0.3023) | Val: 65.67% | Test: 66.00% | Mask: 0.875
+14:51:47 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  88/100 | Loss: 0.6101 (sup:0.0185 unsup:0.2958) | Val: 66.00% | Test: 66.13% | Mask: 0.873
+14:52:07 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  89/100 | Loss: 0.6339 (sup:0.0281 unsup:0.3029) | Val: 65.00% | Test: 66.20% | Mask: 0.868
+14:52:29 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  90/100 | Loss: 0.6586 (sup:0.0209 unsup:0.3189) | Val: 66.67% | Test: 66.20% | Mask: 0.873
+14:52:52 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  91/100 | Loss: 0.6114 (sup:0.0186 unsup:0.2964) | Val: 67.00% | Test: 65.50% | Mask: 0.873
+14:53:16 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  92/100 | Loss: 0.6491 (sup:0.0173 unsup:0.3159) | Val: 66.33% | Test: 65.47% | Mask: 0.873
+14:53:39 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  93/100 | Loss: 0.6176 (sup:0.0134 unsup:0.3021) | Val: 64.33% | Test: 65.97% | Mask: 0.875
+14:54:00 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  94/100 | Loss: 0.6410 (sup:0.0254 unsup:0.3078) | Val: 66.00% | Test: 65.87% | Mask: 0.870
+14:54:23 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  95/100 | Loss: 0.5997 (sup:0.0195 unsup:0.2901) | Val: 65.67% | Test: 65.53% | Mask: 0.874
+14:54:48 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  96/100 | Loss: 0.5986 (sup:0.0173 unsup:0.2906) | Val: 66.00% | Test: 65.67% | Mask: 0.873
+14:55:10 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  97/100 | Loss: 0.6108 (sup:0.0176 unsup:0.2966) | Val: 65.33% | Test: 66.00% | Mask: 0.870
+14:55:31 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  98/100 | Loss: 0.6168 (sup:0.0178 unsup:0.2995) | Val: 66.00% | Test: 65.97% | Mask: 0.877
+14:55:51 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch  99/100 | Loss: 0.6069 (sup:0.0181 unsup:0.2944) | Val: 66.00% | Test: 65.83% | Mask: 0.875
+14:56:12 | INFO | [tau0.7_lam2.0] τ=0.7 λ=2.0 | Epoch 100/100 | Loss: 0.5893 (sup:0.0175 unsup:0.2859) | Val: 66.33% | Test: 65.83% | Mask: 0.873
+14:56:12 | INFO | [tau0.7_lam2.0] Best Test Accuracy: 66.20%
+
+--- Sweep: τ=0.85, λ=0.5 ---
+  Labeled   : 300 samples
+  Val       : 300 samples
+  Test      : 3,000 samples
+  Unlabeled : 5,400 samples
+14:56:26 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch   1/100 | Loss: 3.5118 (sup:3.4487 unsup:0.1262) | Val: 43.67% | Test: 43.33% | Mask: 0.313
+14:56:42 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch   2/100 | Loss: 1.7853 (sup:1.7028 unsup:0.1651) | Val: 35.00% | Test: 34.20% | Mask: 0.341
+14:56:57 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch   3/100 | Loss: 1.2942 (sup:1.2624 unsup:0.0636) | Val: 49.67% | Test: 47.97% | Mask: 0.232
+14:57:08 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch   4/100 | Loss: 1.0248 (sup:0.9971 unsup:0.0553) | Val: 48.67% | Test: 48.93% | Mask: 0.157
+14:57:17 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch   5/100 | Loss: 1.1431 (sup:1.1081 unsup:0.0699) | Val: 54.33% | Test: 51.20% | Mask: 0.195
+14:57:27 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch   6/100 | Loss: 0.9759 (sup:0.9400 unsup:0.0720) | Val: 55.00% | Test: 51.10% | Mask: 0.184
+14:57:36 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch   7/100 | Loss: 1.0174 (sup:0.9814 unsup:0.0720) | Val: 54.33% | Test: 52.20% | Mask: 0.192
+14:57:46 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch   8/100 | Loss: 0.9684 (sup:0.9278 unsup:0.0813) | Val: 48.33% | Test: 46.27% | Mask: 0.220
+14:57:56 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch   9/100 | Loss: 1.0434 (sup:0.9943 unsup:0.0983) | Val: 58.00% | Test: 55.50% | Mask: 0.254
+14:58:05 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  10/100 | Loss: 0.8584 (sup:0.8040 unsup:0.1089) | Val: 55.33% | Test: 51.47% | Mask: 0.245
+14:58:15 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  11/100 | Loss: 0.8209 (sup:0.7809 unsup:0.0802) | Val: 54.67% | Test: 51.70% | Mask: 0.203
+14:58:24 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  12/100 | Loss: 0.7187 (sup:0.6738 unsup:0.0898) | Val: 56.33% | Test: 53.50% | Mask: 0.257
+14:58:35 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  13/100 | Loss: 0.6937 (sup:0.6291 unsup:0.1294) | Val: 59.67% | Test: 55.37% | Mask: 0.303
+14:58:45 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  14/100 | Loss: 0.7077 (sup:0.6251 unsup:0.1653) | Val: 57.67% | Test: 53.13% | Mask: 0.355
+14:58:56 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  15/100 | Loss: 0.6738 (sup:0.5894 unsup:0.1689) | Val: 57.33% | Test: 53.30% | Mask: 0.355
+14:59:06 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  16/100 | Loss: 0.6871 (sup:0.5967 unsup:0.1807) | Val: 56.67% | Test: 54.47% | Mask: 0.381
+14:59:16 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  17/100 | Loss: 0.6086 (sup:0.5172 unsup:0.1828) | Val: 56.00% | Test: 54.87% | Mask: 0.384
+14:59:27 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  18/100 | Loss: 0.5872 (sup:0.4864 unsup:0.2016) | Val: 56.00% | Test: 51.13% | Mask: 0.440
+14:59:37 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  19/100 | Loss: 0.5988 (sup:0.4752 unsup:0.2471) | Val: 57.00% | Test: 54.00% | Mask: 0.449
+14:59:48 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  20/100 | Loss: 0.6170 (sup:0.4896 unsup:0.2549) | Val: 53.33% | Test: 52.33% | Mask: 0.471
+14:59:58 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  21/100 | Loss: 0.5118 (sup:0.3857 unsup:0.2521) | Val: 56.33% | Test: 54.70% | Mask: 0.480
+15:00:09 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  22/100 | Loss: 0.5179 (sup:0.3716 unsup:0.2927) | Val: 60.00% | Test: 58.73% | Mask: 0.520
+15:00:19 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  23/100 | Loss: 0.4665 (sup:0.3177 unsup:0.2977) | Val: 51.67% | Test: 48.83% | Mask: 0.531
+15:00:29 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  24/100 | Loss: 0.4090 (sup:0.2479 unsup:0.3222) | Val: 59.67% | Test: 55.93% | Mask: 0.536
+15:00:39 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  25/100 | Loss: 0.3969 (sup:0.2359 unsup:0.3221) | Val: 59.67% | Test: 57.00% | Mask: 0.570
+15:00:50 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  26/100 | Loss: 0.3767 (sup:0.1982 unsup:0.3571) | Val: 55.33% | Test: 55.33% | Mask: 0.589
+15:01:00 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  27/100 | Loss: 0.3781 (sup:0.2067 unsup:0.3427) | Val: 58.00% | Test: 55.50% | Mask: 0.583
+15:01:10 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  28/100 | Loss: 0.3412 (sup:0.1619 unsup:0.3585) | Val: 54.33% | Test: 52.23% | Mask: 0.608
+15:01:20 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  29/100 | Loss: 0.3093 (sup:0.1480 unsup:0.3225) | Val: 61.33% | Test: 58.13% | Mask: 0.584
+15:01:30 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  30/100 | Loss: 0.3314 (sup:0.1509 unsup:0.3610) | Val: 62.33% | Test: 56.47% | Mask: 0.635
+15:01:40 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  31/100 | Loss: 0.2882 (sup:0.1093 unsup:0.3578) | Val: 60.00% | Test: 57.63% | Mask: 0.618
+15:01:51 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  32/100 | Loss: 0.3043 (sup:0.1387 unsup:0.3312) | Val: 60.67% | Test: 59.20% | Mask: 0.610
+15:02:02 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  33/100 | Loss: 0.2751 (sup:0.0937 unsup:0.3627) | Val: 65.33% | Test: 60.40% | Mask: 0.642
+15:02:12 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  34/100 | Loss: 0.3196 (sup:0.1474 unsup:0.3444) | Val: 58.67% | Test: 58.90% | Mask: 0.637
+15:02:22 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  35/100 | Loss: 0.2348 (sup:0.0622 unsup:0.3452) | Val: 59.33% | Test: 60.33% | Mask: 0.646
+15:02:33 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  36/100 | Loss: 0.2433 (sup:0.0652 unsup:0.3562) | Val: 62.00% | Test: 58.40% | Mask: 0.633
+15:02:43 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  37/100 | Loss: 0.1950 (sup:0.0427 unsup:0.3046) | Val: 62.00% | Test: 59.40% | Mask: 0.645
+15:02:53 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  38/100 | Loss: 0.1950 (sup:0.0351 unsup:0.3198) | Val: 62.67% | Test: 59.23% | Mask: 0.666
+15:03:03 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  39/100 | Loss: 0.1982 (sup:0.0371 unsup:0.3221) | Val: 62.33% | Test: 60.20% | Mask: 0.658
+15:03:12 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  40/100 | Loss: 0.2033 (sup:0.0365 unsup:0.3336) | Val: 65.00% | Test: 62.13% | Mask: 0.669
+15:03:22 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  41/100 | Loss: 0.2511 (sup:0.0843 unsup:0.3337) | Val: 63.00% | Test: 58.43% | Mask: 0.668
+15:03:32 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  42/100 | Loss: 0.2201 (sup:0.0624 unsup:0.3153) | Val: 63.00% | Test: 60.40% | Mask: 0.659
+15:03:41 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  43/100 | Loss: 0.1875 (sup:0.0250 unsup:0.3250) | Val: 64.33% | Test: 61.93% | Mask: 0.668
+15:03:51 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  44/100 | Loss: 0.1850 (sup:0.0331 unsup:0.3039) | Val: 61.67% | Test: 61.93% | Mask: 0.683
+15:04:01 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  45/100 | Loss: 0.1921 (sup:0.0325 unsup:0.3191) | Val: 65.00% | Test: 58.00% | Mask: 0.673
+15:04:10 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  46/100 | Loss: 0.2042 (sup:0.0540 unsup:0.3004) | Val: 60.33% | Test: 57.53% | Mask: 0.674
+15:04:20 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  47/100 | Loss: 0.1811 (sup:0.0240 unsup:0.3141) | Val: 61.33% | Test: 60.90% | Mask: 0.677
+15:04:30 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  48/100 | Loss: 0.1699 (sup:0.0264 unsup:0.2870) | Val: 64.67% | Test: 61.90% | Mask: 0.688
+15:04:40 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  49/100 | Loss: 0.1692 (sup:0.0277 unsup:0.2831) | Val: 63.33% | Test: 61.93% | Mask: 0.690
+15:04:50 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  50/100 | Loss: 0.1664 (sup:0.0234 unsup:0.2861) | Val: 65.67% | Test: 62.23% | Mask: 0.690
+15:05:00 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  51/100 | Loss: 0.1665 (sup:0.0214 unsup:0.2903) | Val: 66.00% | Test: 61.97% | Mask: 0.701
+15:05:10 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  52/100 | Loss: 0.1714 (sup:0.0277 unsup:0.2873) | Val: 64.67% | Test: 60.73% | Mask: 0.694
+15:05:20 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  53/100 | Loss: 0.1583 (sup:0.0210 unsup:0.2746) | Val: 55.67% | Test: 54.17% | Mask: 0.695
+15:05:30 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  54/100 | Loss: 0.1550 (sup:0.0163 unsup:0.2773) | Val: 65.67% | Test: 63.53% | Mask: 0.691
+15:05:40 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  55/100 | Loss: 0.1499 (sup:0.0122 unsup:0.2754) | Val: 66.00% | Test: 63.10% | Mask: 0.713
+15:05:50 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  56/100 | Loss: 0.1500 (sup:0.0133 unsup:0.2734) | Val: 65.33% | Test: 63.57% | Mask: 0.699
+15:06:00 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  57/100 | Loss: 0.1424 (sup:0.0122 unsup:0.2604) | Val: 65.33% | Test: 63.17% | Mask: 0.709
+15:06:10 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  58/100 | Loss: 0.1453 (sup:0.0142 unsup:0.2623) | Val: 64.67% | Test: 63.43% | Mask: 0.719
+15:06:20 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  59/100 | Loss: 0.1477 (sup:0.0125 unsup:0.2704) | Val: 65.67% | Test: 62.93% | Mask: 0.720
+15:06:30 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  60/100 | Loss: 0.1420 (sup:0.0097 unsup:0.2646) | Val: 65.33% | Test: 63.83% | Mask: 0.701
+15:06:40 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  61/100 | Loss: 0.1444 (sup:0.0111 unsup:0.2666) | Val: 68.33% | Test: 63.80% | Mask: 0.727
+15:06:50 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  62/100 | Loss: 0.1394 (sup:0.0132 unsup:0.2524) | Val: 65.33% | Test: 62.87% | Mask: 0.705
+15:07:00 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  63/100 | Loss: 0.1484 (sup:0.0107 unsup:0.2754) | Val: 61.67% | Test: 62.27% | Mask: 0.707
+15:07:10 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  64/100 | Loss: 0.1379 (sup:0.0151 unsup:0.2457) | Val: 66.67% | Test: 63.57% | Mask: 0.705
+15:07:20 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  65/100 | Loss: 0.1411 (sup:0.0102 unsup:0.2618) | Val: 64.33% | Test: 62.37% | Mask: 0.712
+15:07:30 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  66/100 | Loss: 0.1287 (sup:0.0063 unsup:0.2448) | Val: 67.00% | Test: 64.37% | Mask: 0.709
+15:07:40 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  67/100 | Loss: 0.1374 (sup:0.0121 unsup:0.2506) | Val: 67.33% | Test: 64.33% | Mask: 0.722
+15:07:49 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  68/100 | Loss: 0.1272 (sup:0.0112 unsup:0.2319) | Val: 68.00% | Test: 64.07% | Mask: 0.724
+15:07:59 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  69/100 | Loss: 0.1410 (sup:0.0095 unsup:0.2630) | Val: 65.67% | Test: 64.97% | Mask: 0.733
+15:08:09 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  70/100 | Loss: 0.1387 (sup:0.0088 unsup:0.2599) | Val: 67.33% | Test: 64.53% | Mask: 0.728
+15:08:19 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  71/100 | Loss: 0.1291 (sup:0.0077 unsup:0.2429) | Val: 65.00% | Test: 65.23% | Mask: 0.723
+15:08:29 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  72/100 | Loss: 0.1403 (sup:0.0089 unsup:0.2629) | Val: 66.00% | Test: 63.17% | Mask: 0.725
+15:08:40 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  73/100 | Loss: 0.1316 (sup:0.0101 unsup:0.2432) | Val: 66.00% | Test: 65.27% | Mask: 0.706
+15:08:50 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  74/100 | Loss: 0.1292 (sup:0.0064 unsup:0.2456) | Val: 64.67% | Test: 64.20% | Mask: 0.720
+15:09:01 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  75/100 | Loss: 0.1295 (sup:0.0130 unsup:0.2329) | Val: 68.67% | Test: 65.60% | Mask: 0.726
+15:09:11 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  76/100 | Loss: 0.1307 (sup:0.0056 unsup:0.2503) | Val: 66.00% | Test: 65.80% | Mask: 0.733
+15:09:21 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  77/100 | Loss: 0.1271 (sup:0.0067 unsup:0.2407) | Val: 65.33% | Test: 64.77% | Mask: 0.731
+15:09:31 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  78/100 | Loss: 0.1375 (sup:0.0081 unsup:0.2587) | Val: 63.67% | Test: 63.97% | Mask: 0.737
+15:09:41 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  79/100 | Loss: 0.1319 (sup:0.0060 unsup:0.2518) | Val: 67.00% | Test: 65.93% | Mask: 0.738
+15:09:51 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  80/100 | Loss: 0.1364 (sup:0.0080 unsup:0.2568) | Val: 64.67% | Test: 63.83% | Mask: 0.735
+15:10:01 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  81/100 | Loss: 0.1277 (sup:0.0084 unsup:0.2387) | Val: 67.00% | Test: 65.73% | Mask: 0.733
+15:10:11 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  82/100 | Loss: 0.1333 (sup:0.0048 unsup:0.2570) | Val: 67.67% | Test: 66.33% | Mask: 0.741
+15:10:21 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  83/100 | Loss: 0.1255 (sup:0.0055 unsup:0.2399) | Val: 66.33% | Test: 66.10% | Mask: 0.737
+15:10:31 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  84/100 | Loss: 0.1215 (sup:0.0049 unsup:0.2333) | Val: 67.00% | Test: 66.20% | Mask: 0.739
+15:10:41 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  85/100 | Loss: 0.1168 (sup:0.0055 unsup:0.2227) | Val: 66.67% | Test: 65.80% | Mask: 0.736
+15:10:51 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  86/100 | Loss: 0.1221 (sup:0.0061 unsup:0.2320) | Val: 67.00% | Test: 65.77% | Mask: 0.740
+15:11:01 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  87/100 | Loss: 0.1274 (sup:0.0087 unsup:0.2374) | Val: 66.00% | Test: 65.13% | Mask: 0.736
+15:11:11 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  88/100 | Loss: 0.1179 (sup:0.0070 unsup:0.2219) | Val: 66.33% | Test: 65.57% | Mask: 0.732
+15:11:22 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  89/100 | Loss: 0.1256 (sup:0.0054 unsup:0.2403) | Val: 65.67% | Test: 65.77% | Mask: 0.741
+15:11:32 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  90/100 | Loss: 0.1251 (sup:0.0066 unsup:0.2370) | Val: 65.00% | Test: 65.80% | Mask: 0.746
+15:11:43 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  91/100 | Loss: 0.1282 (sup:0.0038 unsup:0.2487) | Val: 65.00% | Test: 65.93% | Mask: 0.740
+15:11:52 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  92/100 | Loss: 0.1255 (sup:0.0045 unsup:0.2422) | Val: 65.33% | Test: 65.70% | Mask: 0.737
+15:12:02 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  93/100 | Loss: 0.1227 (sup:0.0054 unsup:0.2346) | Val: 66.33% | Test: 66.20% | Mask: 0.739
+15:12:13 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  94/100 | Loss: 0.1218 (sup:0.0075 unsup:0.2285) | Val: 65.00% | Test: 66.10% | Mask: 0.744
+15:12:23 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  95/100 | Loss: 0.1200 (sup:0.0046 unsup:0.2307) | Val: 64.67% | Test: 66.17% | Mask: 0.742
+15:12:34 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  96/100 | Loss: 0.1192 (sup:0.0045 unsup:0.2293) | Val: 65.67% | Test: 65.73% | Mask: 0.742
+15:12:44 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  97/100 | Loss: 0.1208 (sup:0.0044 unsup:0.2328) | Val: 65.00% | Test: 66.23% | Mask: 0.737
+15:12:54 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  98/100 | Loss: 0.1265 (sup:0.0049 unsup:0.2433) | Val: 66.33% | Test: 65.97% | Mask: 0.743
+15:13:04 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch  99/100 | Loss: 0.1224 (sup:0.0043 unsup:0.2362) | Val: 66.00% | Test: 66.30% | Mask: 0.741
+15:13:14 | INFO | [tau0.85_lam0.5] τ=0.85 λ=0.5 | Epoch 100/100 | Loss: 0.1200 (sup:0.0036 unsup:0.2328) | Val: 65.33% | Test: 66.10% | Mask: 0.740
+15:13:14 | INFO | [tau0.85_lam0.5] Best Test Accuracy: 66.33%
+
+--- Sweep: τ=0.85, λ=1.0 ---
+  Labeled   : 300 samples
+  Val       : 300 samples
+  Test      : 3,000 samples
+  Unlabeled : 5,400 samples
+15:13:24 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch   1/100 | Loss: 3.1913 (sup:3.1114 unsup:0.0799) | Val: 39.67% | Test: 44.17% | Mask: 0.422
+15:13:33 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch   2/100 | Loss: 1.3152 (sup:1.2862 unsup:0.0290) | Val: 33.00% | Test: 31.80% | Mask: 0.118
+15:13:43 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch   3/100 | Loss: 1.1704 (sup:1.1404 unsup:0.0299) | Val: 38.33% | Test: 40.87% | Mask: 0.097
+15:13:53 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch   4/100 | Loss: 1.1351 (sup:1.0922 unsup:0.0429) | Val: 46.67% | Test: 47.13% | Mask: 0.133
+15:14:03 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch   5/100 | Loss: 1.0773 (sup:1.0405 unsup:0.0367) | Val: 47.00% | Test: 47.57% | Mask: 0.136
+15:14:13 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch   6/100 | Loss: 1.1030 (sup:1.0493 unsup:0.0537) | Val: 48.33% | Test: 49.73% | Mask: 0.165
+15:14:23 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch   7/100 | Loss: 0.9923 (sup:0.9460 unsup:0.0463) | Val: 47.33% | Test: 48.83% | Mask: 0.149
+15:14:33 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch   8/100 | Loss: 1.1327 (sup:1.0868 unsup:0.0458) | Val: 45.00% | Test: 51.10% | Mask: 0.167
+15:14:44 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch   9/100 | Loss: 0.9940 (sup:0.9528 unsup:0.0413) | Val: 48.33% | Test: 49.77% | Mask: 0.148
+15:14:55 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  10/100 | Loss: 0.9698 (sup:0.9161 unsup:0.0537) | Val: 48.67% | Test: 48.83% | Mask: 0.159
+15:15:06 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  11/100 | Loss: 0.9713 (sup:0.9062 unsup:0.0651) | Val: 51.67% | Test: 52.47% | Mask: 0.194
+15:15:17 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  12/100 | Loss: 0.8496 (sup:0.8041 unsup:0.0455) | Val: 50.33% | Test: 50.50% | Mask: 0.162
+15:15:28 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  13/100 | Loss: 0.8999 (sup:0.8217 unsup:0.0782) | Val: 55.67% | Test: 54.57% | Mask: 0.216
+15:15:39 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  14/100 | Loss: 0.8311 (sup:0.7501 unsup:0.0809) | Val: 52.67% | Test: 52.27% | Mask: 0.227
+15:15:50 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  15/100 | Loss: 0.8219 (sup:0.7278 unsup:0.0940) | Val: 53.33% | Test: 53.10% | Mask: 0.275
+15:16:00 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  16/100 | Loss: 0.7372 (sup:0.6314 unsup:0.1058) | Val: 54.33% | Test: 52.33% | Mask: 0.278
+15:16:10 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  17/100 | Loss: 0.8270 (sup:0.6736 unsup:0.1534) | Val: 49.67% | Test: 53.50% | Mask: 0.356
+15:16:20 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  18/100 | Loss: 0.6846 (sup:0.5869 unsup:0.0977) | Val: 56.00% | Test: 54.53% | Mask: 0.284
+15:16:31 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  19/100 | Loss: 0.6982 (sup:0.5156 unsup:0.1826) | Val: 54.67% | Test: 55.57% | Mask: 0.411
+15:16:42 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  20/100 | Loss: 0.7288 (sup:0.5508 unsup:0.1780) | Val: 54.00% | Test: 54.20% | Mask: 0.410
+15:16:54 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  21/100 | Loss: 0.6994 (sup:0.4912 unsup:0.2082) | Val: 53.67% | Test: 54.93% | Mask: 0.466
+15:17:05 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  22/100 | Loss: 0.6949 (sup:0.5024 unsup:0.1924) | Val: 50.33% | Test: 50.93% | Mask: 0.468
+15:17:17 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  23/100 | Loss: 0.6157 (sup:0.4028 unsup:0.2129) | Val: 54.33% | Test: 52.13% | Mask: 0.484
+15:17:28 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  24/100 | Loss: 0.6152 (sup:0.3893 unsup:0.2259) | Val: 54.33% | Test: 55.50% | Mask: 0.501
+15:17:39 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  25/100 | Loss: 0.5730 (sup:0.3218 unsup:0.2512) | Val: 52.00% | Test: 51.13% | Mask: 0.544
+15:17:50 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  26/100 | Loss: 0.6224 (sup:0.3462 unsup:0.2762) | Val: 55.00% | Test: 53.07% | Mask: 0.545
+15:18:00 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  27/100 | Loss: 0.5386 (sup:0.3152 unsup:0.2234) | Val: 53.67% | Test: 52.67% | Mask: 0.509
+15:18:12 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  28/100 | Loss: 0.5527 (sup:0.2842 unsup:0.2686) | Val: 60.67% | Test: 55.90% | Mask: 0.541
+15:18:22 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  29/100 | Loss: 0.4782 (sup:0.2098 unsup:0.2684) | Val: 55.67% | Test: 55.23% | Mask: 0.584
+15:18:41 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  30/100 | Loss: 0.5301 (sup:0.2428 unsup:0.2873) | Val: 51.00% | Test: 51.40% | Mask: 0.602
+15:18:58 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  31/100 | Loss: 0.4907 (sup:0.2222 unsup:0.2685) | Val: 57.00% | Test: 55.63% | Mask: 0.565
+15:19:08 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  32/100 | Loss: 0.4176 (sup:0.1637 unsup:0.2539) | Val: 58.33% | Test: 56.90% | Mask: 0.588
+15:19:19 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  33/100 | Loss: 0.4254 (sup:0.1251 unsup:0.3003) | Val: 59.67% | Test: 57.50% | Mask: 0.627
+15:19:30 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  34/100 | Loss: 0.4347 (sup:0.1555 unsup:0.2793) | Val: 59.00% | Test: 57.37% | Mask: 0.617
+15:19:40 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  35/100 | Loss: 0.3830 (sup:0.1003 unsup:0.2826) | Val: 60.00% | Test: 58.17% | Mask: 0.620
+15:19:51 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  36/100 | Loss: 0.3980 (sup:0.0957 unsup:0.3023) | Val: 58.67% | Test: 57.87% | Mask: 0.638
+15:20:01 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  37/100 | Loss: 0.3683 (sup:0.0863 unsup:0.2820) | Val: 58.67% | Test: 59.33% | Mask: 0.654
+15:20:11 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  38/100 | Loss: 0.3795 (sup:0.1022 unsup:0.2774) | Val: 60.00% | Test: 58.67% | Mask: 0.644
+15:20:23 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  39/100 | Loss: 0.3652 (sup:0.0793 unsup:0.2860) | Val: 59.33% | Test: 59.60% | Mask: 0.649
+15:20:34 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  40/100 | Loss: 0.3339 (sup:0.0758 unsup:0.2581) | Val: 60.33% | Test: 59.70% | Mask: 0.648
+15:20:45 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  41/100 | Loss: 0.3422 (sup:0.0697 unsup:0.2725) | Val: 58.67% | Test: 59.13% | Mask: 0.637
+15:20:55 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  42/100 | Loss: 0.3696 (sup:0.0851 unsup:0.2845) | Val: 56.33% | Test: 59.17% | Mask: 0.651
+15:21:06 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  43/100 | Loss: 0.3308 (sup:0.0697 unsup:0.2610) | Val: 59.00% | Test: 59.50% | Mask: 0.656
+15:21:16 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  44/100 | Loss: 0.3732 (sup:0.1085 unsup:0.2647) | Val: 61.33% | Test: 59.33% | Mask: 0.648
+15:21:27 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  45/100 | Loss: 0.3109 (sup:0.0445 unsup:0.2664) | Val: 60.33% | Test: 59.90% | Mask: 0.647
+15:21:37 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  46/100 | Loss: 0.3100 (sup:0.0494 unsup:0.2606) | Val: 58.00% | Test: 59.20% | Mask: 0.654
+15:21:48 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  47/100 | Loss: 0.3210 (sup:0.0653 unsup:0.2556) | Val: 61.67% | Test: 61.37% | Mask: 0.659
+15:21:58 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  48/100 | Loss: 0.3343 (sup:0.0708 unsup:0.2635) | Val: 60.00% | Test: 61.03% | Mask: 0.684
+15:22:09 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  49/100 | Loss: 0.2875 (sup:0.0356 unsup:0.2520) | Val: 59.33% | Test: 61.53% | Mask: 0.651
+15:22:19 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  50/100 | Loss: 0.3057 (sup:0.0425 unsup:0.2632) | Val: 60.67% | Test: 59.63% | Mask: 0.684
+15:22:31 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  51/100 | Loss: 0.2921 (sup:0.0379 unsup:0.2542) | Val: 61.67% | Test: 61.03% | Mask: 0.681
+15:22:41 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  52/100 | Loss: 0.2945 (sup:0.0327 unsup:0.2617) | Val: 60.67% | Test: 60.40% | Mask: 0.694
+15:22:51 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  53/100 | Loss: 0.3090 (sup:0.0525 unsup:0.2566) | Val: 61.33% | Test: 60.60% | Mask: 0.698
+15:23:02 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  54/100 | Loss: 0.2899 (sup:0.0412 unsup:0.2487) | Val: 60.67% | Test: 61.83% | Mask: 0.672
+15:23:11 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  55/100 | Loss: 0.2815 (sup:0.0337 unsup:0.2477) | Val: 61.33% | Test: 61.20% | Mask: 0.688
+15:23:22 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  56/100 | Loss: 0.2879 (sup:0.0217 unsup:0.2662) | Val: 60.00% | Test: 61.33% | Mask: 0.686
+15:23:32 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  57/100 | Loss: 0.2755 (sup:0.0216 unsup:0.2539) | Val: 62.00% | Test: 62.37% | Mask: 0.690
+15:23:43 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  58/100 | Loss: 0.2585 (sup:0.0281 unsup:0.2305) | Val: 60.67% | Test: 61.87% | Mask: 0.694
+15:23:54 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  59/100 | Loss: 0.2721 (sup:0.0154 unsup:0.2566) | Val: 62.00% | Test: 61.27% | Mask: 0.691
+15:24:04 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  60/100 | Loss: 0.2695 (sup:0.0307 unsup:0.2388) | Val: 60.33% | Test: 61.57% | Mask: 0.690
+15:24:14 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  61/100 | Loss: 0.2735 (sup:0.0245 unsup:0.2490) | Val: 59.00% | Test: 60.30% | Mask: 0.710
+15:24:25 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  62/100 | Loss: 0.2898 (sup:0.0238 unsup:0.2660) | Val: 60.33% | Test: 62.97% | Mask: 0.700
+15:24:37 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  63/100 | Loss: 0.2813 (sup:0.0221 unsup:0.2592) | Val: 57.67% | Test: 61.27% | Mask: 0.706
+15:24:48 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  64/100 | Loss: 0.2500 (sup:0.0221 unsup:0.2279) | Val: 63.67% | Test: 62.50% | Mask: 0.709
+15:24:59 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  65/100 | Loss: 0.2561 (sup:0.0178 unsup:0.2383) | Val: 61.33% | Test: 62.70% | Mask: 0.712
+15:25:10 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  66/100 | Loss: 0.2536 (sup:0.0181 unsup:0.2355) | Val: 62.33% | Test: 61.83% | Mask: 0.714
+15:25:22 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  67/100 | Loss: 0.2603 (sup:0.0211 unsup:0.2391) | Val: 62.00% | Test: 63.13% | Mask: 0.715
+15:25:33 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  68/100 | Loss: 0.2510 (sup:0.0147 unsup:0.2363) | Val: 62.00% | Test: 62.67% | Mask: 0.722
+15:25:45 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  69/100 | Loss: 0.2522 (sup:0.0226 unsup:0.2296) | Val: 61.00% | Test: 63.13% | Mask: 0.710
+15:25:57 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  70/100 | Loss: 0.2431 (sup:0.0138 unsup:0.2293) | Val: 62.33% | Test: 62.97% | Mask: 0.704
+15:26:09 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  71/100 | Loss: 0.2501 (sup:0.0162 unsup:0.2339) | Val: 62.67% | Test: 62.33% | Mask: 0.705
+15:26:21 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  72/100 | Loss: 0.2489 (sup:0.0126 unsup:0.2363) | Val: 62.33% | Test: 63.40% | Mask: 0.723
+15:26:33 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  73/100 | Loss: 0.2538 (sup:0.0104 unsup:0.2433) | Val: 62.67% | Test: 63.80% | Mask: 0.735
+15:26:44 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  74/100 | Loss: 0.2604 (sup:0.0176 unsup:0.2429) | Val: 63.33% | Test: 63.47% | Mask: 0.729
+15:26:55 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  75/100 | Loss: 0.2372 (sup:0.0091 unsup:0.2282) | Val: 61.33% | Test: 63.70% | Mask: 0.725
+15:27:07 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  76/100 | Loss: 0.2398 (sup:0.0185 unsup:0.2213) | Val: 61.67% | Test: 63.80% | Mask: 0.728
+15:27:19 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  77/100 | Loss: 0.2420 (sup:0.0200 unsup:0.2220) | Val: 61.00% | Test: 62.80% | Mask: 0.713
+15:27:30 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  78/100 | Loss: 0.2462 (sup:0.0111 unsup:0.2351) | Val: 63.67% | Test: 64.40% | Mask: 0.732
+15:27:41 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  79/100 | Loss: 0.2323 (sup:0.0112 unsup:0.2212) | Val: 60.67% | Test: 63.73% | Mask: 0.715
+15:27:53 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  80/100 | Loss: 0.2519 (sup:0.0189 unsup:0.2331) | Val: 62.67% | Test: 63.83% | Mask: 0.727
+15:28:04 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  81/100 | Loss: 0.2439 (sup:0.0099 unsup:0.2339) | Val: 64.00% | Test: 63.77% | Mask: 0.724
+15:28:16 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  82/100 | Loss: 0.2457 (sup:0.0115 unsup:0.2342) | Val: 64.00% | Test: 63.93% | Mask: 0.726
+15:28:27 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  83/100 | Loss: 0.2342 (sup:0.0076 unsup:0.2267) | Val: 63.67% | Test: 63.73% | Mask: 0.734
+15:28:39 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  84/100 | Loss: 0.2184 (sup:0.0072 unsup:0.2112) | Val: 62.00% | Test: 63.97% | Mask: 0.736
+15:28:51 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  85/100 | Loss: 0.2289 (sup:0.0075 unsup:0.2214) | Val: 62.67% | Test: 64.00% | Mask: 0.727
+15:29:03 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  86/100 | Loss: 0.2394 (sup:0.0060 unsup:0.2334) | Val: 62.67% | Test: 63.90% | Mask: 0.741
+15:29:15 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  87/100 | Loss: 0.2450 (sup:0.0082 unsup:0.2368) | Val: 65.00% | Test: 64.03% | Mask: 0.733
+15:29:27 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  88/100 | Loss: 0.2309 (sup:0.0061 unsup:0.2248) | Val: 63.00% | Test: 63.83% | Mask: 0.728
+15:29:41 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  89/100 | Loss: 0.2427 (sup:0.0093 unsup:0.2334) | Val: 64.33% | Test: 63.73% | Mask: 0.724
+15:29:54 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  90/100 | Loss: 0.2276 (sup:0.0080 unsup:0.2197) | Val: 65.33% | Test: 64.07% | Mask: 0.729
+15:30:07 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  91/100 | Loss: 0.2338 (sup:0.0075 unsup:0.2263) | Val: 64.00% | Test: 64.17% | Mask: 0.726
+15:30:21 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  92/100 | Loss: 0.2270 (sup:0.0104 unsup:0.2165) | Val: 64.67% | Test: 63.70% | Mask: 0.724
+15:30:34 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  93/100 | Loss: 0.2460 (sup:0.0107 unsup:0.2354) | Val: 64.33% | Test: 63.97% | Mask: 0.734
+15:30:45 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  94/100 | Loss: 0.2302 (sup:0.0070 unsup:0.2232) | Val: 64.67% | Test: 63.93% | Mask: 0.730
+15:30:55 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  95/100 | Loss: 0.2295 (sup:0.0049 unsup:0.2245) | Val: 64.33% | Test: 63.93% | Mask: 0.735
+15:31:05 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  96/100 | Loss: 0.2241 (sup:0.0083 unsup:0.2158) | Val: 64.33% | Test: 63.97% | Mask: 0.731
+15:31:16 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  97/100 | Loss: 0.2284 (sup:0.0095 unsup:0.2189) | Val: 63.67% | Test: 64.00% | Mask: 0.734
+15:31:26 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  98/100 | Loss: 0.2253 (sup:0.0059 unsup:0.2193) | Val: 64.67% | Test: 63.90% | Mask: 0.735
+15:31:36 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch  99/100 | Loss: 0.2259 (sup:0.0088 unsup:0.2171) | Val: 64.33% | Test: 63.93% | Mask: 0.735
+15:31:47 | INFO | [tau0.85_lam1.0] τ=0.85 λ=1.0 | Epoch 100/100 | Loss: 0.2285 (sup:0.0065 unsup:0.2219) | Val: 64.33% | Test: 63.83% | Mask: 0.741
+15:31:47 | INFO | [tau0.85_lam1.0] Best Test Accuracy: 64.40%
+
+--- Sweep: τ=0.85, λ=2.0 ---
+  Labeled   : 300 samples
+  Val       : 300 samples
+  Test      : 3,000 samples
+  Unlabeled : 5,400 samples
+15:31:58 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch   1/100 | Loss: 2.6563 (sup:2.4679 unsup:0.0942) | Val: 35.00% | Test: 37.37% | Mask: 0.330
+15:32:08 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch   2/100 | Loss: 1.2018 (sup:1.1329 unsup:0.0345) | Val: 44.67% | Test: 48.20% | Mask: 0.135
+15:32:19 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch   3/100 | Loss: 1.1860 (sup:1.1153 unsup:0.0354) | Val: 48.67% | Test: 50.57% | Mask: 0.136
+15:32:30 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch   4/100 | Loss: 1.0769 (sup:0.9855 unsup:0.0457) | Val: 50.00% | Test: 49.63% | Mask: 0.158
+15:32:40 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch   5/100 | Loss: 1.0227 (sup:0.9339 unsup:0.0444) | Val: 47.33% | Test: 46.30% | Mask: 0.182
+15:32:50 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch   6/100 | Loss: 1.0437 (sup:0.9324 unsup:0.0557) | Val: 52.67% | Test: 51.40% | Mask: 0.202
+15:33:01 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch   7/100 | Loss: 0.9660 (sup:0.8362 unsup:0.0649) | Val: 54.67% | Test: 53.73% | Mask: 0.236
+15:33:12 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch   8/100 | Loss: 1.0219 (sup:0.8784 unsup:0.0718) | Val: 54.33% | Test: 51.57% | Mask: 0.232
+15:33:22 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch   9/100 | Loss: 0.9838 (sup:0.8304 unsup:0.0767) | Val: 53.67% | Test: 51.77% | Mask: 0.256
+15:33:32 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  10/100 | Loss: 0.9585 (sup:0.7734 unsup:0.0925) | Val: 51.00% | Test: 51.63% | Mask: 0.320
+15:33:43 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  11/100 | Loss: 0.9228 (sup:0.7115 unsup:0.1056) | Val: 54.00% | Test: 50.53% | Mask: 0.327
+15:33:53 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  12/100 | Loss: 0.9435 (sup:0.6620 unsup:0.1407) | Val: 52.67% | Test: 51.50% | Mask: 0.402
+15:34:04 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  13/100 | Loss: 0.9059 (sup:0.6658 unsup:0.1201) | Val: 51.67% | Test: 52.40% | Mask: 0.371
+15:34:14 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  14/100 | Loss: 0.9085 (sup:0.6025 unsup:0.1530) | Val: 53.00% | Test: 52.60% | Mask: 0.400
+15:34:25 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  15/100 | Loss: 0.8799 (sup:0.5666 unsup:0.1566) | Val: 47.67% | Test: 50.20% | Mask: 0.411
+15:34:36 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  16/100 | Loss: 0.8089 (sup:0.5077 unsup:0.1506) | Val: 50.67% | Test: 51.40% | Mask: 0.419
+15:34:47 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  17/100 | Loss: 0.8660 (sup:0.4771 unsup:0.1944) | Val: 48.33% | Test: 54.90% | Mask: 0.475
+15:34:58 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  18/100 | Loss: 0.8509 (sup:0.4676 unsup:0.1916) | Val: 52.67% | Test: 52.30% | Mask: 0.498
+15:35:09 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  19/100 | Loss: 0.8236 (sup:0.4392 unsup:0.1922) | Val: 53.33% | Test: 53.17% | Mask: 0.478
+15:35:20 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  20/100 | Loss: 0.7871 (sup:0.3711 unsup:0.2080) | Val: 48.67% | Test: 51.77% | Mask: 0.512
+15:35:31 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  21/100 | Loss: 0.9235 (sup:0.4678 unsup:0.2279) | Val: 51.67% | Test: 52.23% | Mask: 0.545
+15:35:42 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  22/100 | Loss: 0.7791 (sup:0.3936 unsup:0.1928) | Val: 54.33% | Test: 54.93% | Mask: 0.493
+15:35:53 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  23/100 | Loss: 0.7278 (sup:0.2625 unsup:0.2327) | Val: 52.00% | Test: 54.17% | Mask: 0.554
+15:36:05 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  24/100 | Loss: 0.7733 (sup:0.3148 unsup:0.2293) | Val: 54.00% | Test: 54.63% | Mask: 0.579
+15:36:16 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  25/100 | Loss: 0.7631 (sup:0.2926 unsup:0.2353) | Val: 53.33% | Test: 54.40% | Mask: 0.558
+15:36:27 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  26/100 | Loss: 0.6585 (sup:0.2023 unsup:0.2281) | Val: 51.33% | Test: 55.13% | Mask: 0.548
+15:36:38 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  27/100 | Loss: 0.7258 (sup:0.2381 unsup:0.2439) | Val: 56.00% | Test: 56.57% | Mask: 0.587
+15:36:49 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  28/100 | Loss: 0.7181 (sup:0.2626 unsup:0.2277) | Val: 52.00% | Test: 52.80% | Mask: 0.589
+15:36:59 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  29/100 | Loss: 0.6900 (sup:0.2127 unsup:0.2386) | Val: 55.00% | Test: 57.50% | Mask: 0.575
+15:37:09 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  30/100 | Loss: 0.6623 (sup:0.1787 unsup:0.2418) | Val: 58.67% | Test: 55.50% | Mask: 0.604
+15:37:20 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  31/100 | Loss: 0.6404 (sup:0.1844 unsup:0.2280) | Val: 53.00% | Test: 53.00% | Mask: 0.624
+15:37:30 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  32/100 | Loss: 0.6648 (sup:0.2125 unsup:0.2262) | Val: 53.33% | Test: 56.53% | Mask: 0.584
+15:37:40 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  33/100 | Loss: 0.5933 (sup:0.1288 unsup:0.2322) | Val: 56.67% | Test: 56.53% | Mask: 0.610
+15:37:50 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  34/100 | Loss: 0.6491 (sup:0.1529 unsup:0.2481) | Val: 53.00% | Test: 55.17% | Mask: 0.616
+15:38:00 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  35/100 | Loss: 0.5930 (sup:0.1327 unsup:0.2302) | Val: 57.33% | Test: 58.43% | Mask: 0.608
+15:38:10 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  36/100 | Loss: 0.5944 (sup:0.1007 unsup:0.2468) | Val: 56.67% | Test: 59.20% | Mask: 0.617
+15:38:21 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  37/100 | Loss: 0.6158 (sup:0.1200 unsup:0.2479) | Val: 57.33% | Test: 58.27% | Mask: 0.634
+15:38:31 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  38/100 | Loss: 0.6052 (sup:0.1029 unsup:0.2511) | Val: 55.33% | Test: 54.60% | Mask: 0.643
+15:38:41 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  39/100 | Loss: 0.5781 (sup:0.0879 unsup:0.2451) | Val: 58.67% | Test: 57.57% | Mask: 0.637
+15:38:51 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  40/100 | Loss: 0.6070 (sup:0.1209 unsup:0.2430) | Val: 56.67% | Test: 55.57% | Mask: 0.625
+15:39:02 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  41/100 | Loss: 0.5533 (sup:0.1088 unsup:0.2223) | Val: 58.33% | Test: 56.13% | Mask: 0.649
+15:39:13 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  42/100 | Loss: 0.5569 (sup:0.0958 unsup:0.2305) | Val: 56.33% | Test: 59.43% | Mask: 0.655
+15:39:23 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  43/100 | Loss: 0.5677 (sup:0.0846 unsup:0.2416) | Val: 55.67% | Test: 57.00% | Mask: 0.685
+15:39:35 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  44/100 | Loss: 0.5744 (sup:0.1217 unsup:0.2264) | Val: 54.00% | Test: 58.20% | Mask: 0.640
+15:39:46 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  45/100 | Loss: 0.5588 (sup:0.0888 unsup:0.2350) | Val: 54.00% | Test: 56.27% | Mask: 0.659
+15:39:57 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  46/100 | Loss: 0.5428 (sup:0.0820 unsup:0.2304) | Val: 59.67% | Test: 59.10% | Mask: 0.627
+15:40:08 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  47/100 | Loss: 0.5009 (sup:0.0569 unsup:0.2220) | Val: 59.00% | Test: 58.77% | Mask: 0.659
+15:40:19 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  48/100 | Loss: 0.5335 (sup:0.0509 unsup:0.2413) | Val: 56.67% | Test: 57.97% | Mask: 0.657
+15:40:30 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  49/100 | Loss: 0.5239 (sup:0.0620 unsup:0.2310) | Val: 60.00% | Test: 60.23% | Mask: 0.651
+15:40:41 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  50/100 | Loss: 0.5409 (sup:0.0714 unsup:0.2347) | Val: 58.67% | Test: 59.70% | Mask: 0.650
+15:40:52 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  51/100 | Loss: 0.5045 (sup:0.0652 unsup:0.2197) | Val: 59.33% | Test: 59.00% | Mask: 0.676
+15:41:03 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  52/100 | Loss: 0.5022 (sup:0.0507 unsup:0.2257) | Val: 59.00% | Test: 60.40% | Mask: 0.683
+15:41:14 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  53/100 | Loss: 0.5498 (sup:0.0810 unsup:0.2344) | Val: 57.67% | Test: 60.87% | Mask: 0.681
+15:41:24 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  54/100 | Loss: 0.5075 (sup:0.0470 unsup:0.2302) | Val: 57.00% | Test: 60.33% | Mask: 0.707
+15:41:35 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  55/100 | Loss: 0.4942 (sup:0.0414 unsup:0.2264) | Val: 62.33% | Test: 60.87% | Mask: 0.694
+15:41:46 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  56/100 | Loss: 0.4846 (sup:0.0439 unsup:0.2203) | Val: 57.67% | Test: 58.10% | Mask: 0.663
+15:41:56 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  57/100 | Loss: 0.5114 (sup:0.0508 unsup:0.2303) | Val: 59.00% | Test: 59.00% | Mask: 0.702
+15:42:06 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  58/100 | Loss: 0.4535 (sup:0.0371 unsup:0.2082) | Val: 60.33% | Test: 59.57% | Mask: 0.683
+15:42:17 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  59/100 | Loss: 0.4926 (sup:0.0288 unsup:0.2319) | Val: 57.67% | Test: 60.20% | Mask: 0.691
+15:42:27 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  60/100 | Loss: 0.4663 (sup:0.0288 unsup:0.2188) | Val: 59.33% | Test: 61.33% | Mask: 0.698
+15:42:38 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  61/100 | Loss: 0.4725 (sup:0.0303 unsup:0.2211) | Val: 59.00% | Test: 61.20% | Mask: 0.716
+15:42:48 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  62/100 | Loss: 0.4744 (sup:0.0392 unsup:0.2176) | Val: 61.67% | Test: 61.77% | Mask: 0.710
+15:42:58 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  63/100 | Loss: 0.4701 (sup:0.0369 unsup:0.2166) | Val: 58.33% | Test: 62.47% | Mask: 0.728
+15:43:08 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  64/100 | Loss: 0.4806 (sup:0.0502 unsup:0.2152) | Val: 59.67% | Test: 60.17% | Mask: 0.688
+15:43:19 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  65/100 | Loss: 0.4452 (sup:0.0367 unsup:0.2042) | Val: 58.67% | Test: 60.97% | Mask: 0.700
+15:43:29 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  66/100 | Loss: 0.4328 (sup:0.0332 unsup:0.1998) | Val: 59.67% | Test: 62.30% | Mask: 0.707
+15:43:40 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  67/100 | Loss: 0.4794 (sup:0.0192 unsup:0.2301) | Val: 61.00% | Test: 62.60% | Mask: 0.722
+15:43:50 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  68/100 | Loss: 0.4903 (sup:0.0349 unsup:0.2277) | Val: 57.33% | Test: 60.07% | Mask: 0.742
+15:44:00 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  69/100 | Loss: 0.4539 (sup:0.0313 unsup:0.2113) | Val: 58.33% | Test: 61.50% | Mask: 0.711
+15:44:10 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  70/100 | Loss: 0.4563 (sup:0.0258 unsup:0.2152) | Val: 61.00% | Test: 61.50% | Mask: 0.722
+15:44:20 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  71/100 | Loss: 0.4660 (sup:0.0276 unsup:0.2192) | Val: 58.00% | Test: 61.50% | Mask: 0.733
+15:44:31 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  72/100 | Loss: 0.4214 (sup:0.0250 unsup:0.1982) | Val: 62.33% | Test: 62.93% | Mask: 0.738
+15:44:41 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  73/100 | Loss: 0.4320 (sup:0.0191 unsup:0.2064) | Val: 58.00% | Test: 62.27% | Mask: 0.735
+15:44:51 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  74/100 | Loss: 0.4485 (sup:0.0178 unsup:0.2154) | Val: 60.33% | Test: 61.70% | Mask: 0.746
+15:45:01 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  75/100 | Loss: 0.4509 (sup:0.0205 unsup:0.2152) | Val: 59.67% | Test: 61.97% | Mask: 0.733
+15:45:11 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  76/100 | Loss: 0.4510 (sup:0.0188 unsup:0.2161) | Val: 59.33% | Test: 63.77% | Mask: 0.735
+15:45:21 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  77/100 | Loss: 0.4257 (sup:0.0161 unsup:0.2048) | Val: 64.33% | Test: 62.93% | Mask: 0.745
+15:45:31 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  78/100 | Loss: 0.4636 (sup:0.0180 unsup:0.2228) | Val: 59.33% | Test: 63.23% | Mask: 0.739
+15:45:41 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  79/100 | Loss: 0.4283 (sup:0.0154 unsup:0.2064) | Val: 61.67% | Test: 63.03% | Mask: 0.745
+15:45:51 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  80/100 | Loss: 0.4520 (sup:0.0211 unsup:0.2154) | Val: 60.67% | Test: 64.47% | Mask: 0.750
+15:46:02 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  81/100 | Loss: 0.4335 (sup:0.0186 unsup:0.2075) | Val: 61.33% | Test: 64.03% | Mask: 0.746
+15:46:11 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  82/100 | Loss: 0.4217 (sup:0.0120 unsup:0.2049) | Val: 59.00% | Test: 64.10% | Mask: 0.746
+15:46:19 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  83/100 | Loss: 0.4277 (sup:0.0153 unsup:0.2062) | Val: 59.00% | Test: 62.57% | Mask: 0.745
+15:46:26 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  84/100 | Loss: 0.4191 (sup:0.0152 unsup:0.2019) | Val: 61.33% | Test: 63.03% | Mask: 0.745
+15:46:34 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  85/100 | Loss: 0.4116 (sup:0.0126 unsup:0.1995) | Val: 59.00% | Test: 63.17% | Mask: 0.746
+15:46:41 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  86/100 | Loss: 0.4233 (sup:0.0141 unsup:0.2046) | Val: 59.33% | Test: 63.07% | Mask: 0.751
+15:46:49 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  87/100 | Loss: 0.3967 (sup:0.0128 unsup:0.1920) | Val: 58.00% | Test: 64.10% | Mask: 0.747
+15:46:57 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  88/100 | Loss: 0.4042 (sup:0.0111 unsup:0.1965) | Val: 58.33% | Test: 63.57% | Mask: 0.754
+15:47:04 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  89/100 | Loss: 0.4000 (sup:0.0104 unsup:0.1948) | Val: 62.33% | Test: 63.97% | Mask: 0.753
+15:47:12 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  90/100 | Loss: 0.4300 (sup:0.0088 unsup:0.2106) | Val: 60.33% | Test: 63.80% | Mask: 0.763
+15:47:19 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  91/100 | Loss: 0.3907 (sup:0.0081 unsup:0.1913) | Val: 61.33% | Test: 63.97% | Mask: 0.757
+15:47:26 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  92/100 | Loss: 0.4200 (sup:0.0119 unsup:0.2040) | Val: 61.33% | Test: 63.67% | Mask: 0.752
+15:47:33 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  93/100 | Loss: 0.4001 (sup:0.0078 unsup:0.1961) | Val: 60.67% | Test: 63.63% | Mask: 0.757
+15:47:41 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  94/100 | Loss: 0.4004 (sup:0.0086 unsup:0.1959) | Val: 60.00% | Test: 63.63% | Mask: 0.753
+15:47:49 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  95/100 | Loss: 0.3955 (sup:0.0094 unsup:0.1930) | Val: 60.00% | Test: 63.83% | Mask: 0.751
+15:47:56 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  96/100 | Loss: 0.4195 (sup:0.0082 unsup:0.2057) | Val: 60.00% | Test: 64.03% | Mask: 0.755
+15:48:04 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  97/100 | Loss: 0.3945 (sup:0.0098 unsup:0.1924) | Val: 60.67% | Test: 64.00% | Mask: 0.759
+15:48:12 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  98/100 | Loss: 0.3936 (sup:0.0096 unsup:0.1920) | Val: 60.33% | Test: 63.77% | Mask: 0.757
+15:48:19 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch  99/100 | Loss: 0.4007 (sup:0.0078 unsup:0.1964) | Val: 60.67% | Test: 63.70% | Mask: 0.761
+15:48:27 | INFO | [tau0.85_lam2.0] τ=0.85 λ=2.0 | Epoch 100/100 | Loss: 0.4064 (sup:0.0123 unsup:0.1970) | Val: 60.33% | Test: 63.80% | Mask: 0.758
+15:48:27 | INFO | [tau0.85_lam2.0] Best Test Accuracy: 64.47%
+
+--- Sweep: τ=0.95, λ=0.5 ---
+  Labeled   : 300 samples
+  Val       : 300 samples
+  Test      : 3,000 samples
+  Unlabeled : 5,400 samples
+15:48:35 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch   1/100 | Loss: 3.5850 (sup:3.5179 unsup:0.1342) | Val: 40.33% | Test: 42.17% | Mask: 0.289
+15:48:43 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch   2/100 | Loss: 1.1136 (sup:1.1095 unsup:0.0082) | Val: 46.67% | Test: 48.57% | Mask: 0.028
+15:48:50 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch   3/100 | Loss: 1.0978 (sup:1.0938 unsup:0.0080) | Val: 44.33% | Test: 48.00% | Mask: 0.031
+15:48:58 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch   4/100 | Loss: 1.1364 (sup:1.1304 unsup:0.0119) | Val: 46.00% | Test: 48.57% | Mask: 0.041
+15:49:06 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch   5/100 | Loss: 0.9623 (sup:0.9613 unsup:0.0020) | Val: 45.67% | Test: 50.93% | Mask: 0.014
+15:49:14 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch   6/100 | Loss: 0.9855 (sup:0.9814 unsup:0.0083) | Val: 49.00% | Test: 50.20% | Mask: 0.035
+15:49:21 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch   7/100 | Loss: 0.9372 (sup:0.9299 unsup:0.0147) | Val: 49.67% | Test: 51.57% | Mask: 0.031
+15:49:29 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch   8/100 | Loss: 0.9149 (sup:0.9043 unsup:0.0213) | Val: 52.33% | Test: 53.43% | Mask: 0.041
+15:49:36 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch   9/100 | Loss: 0.9322 (sup:0.9172 unsup:0.0301) | Val: 49.33% | Test: 54.53% | Mask: 0.055
+15:49:44 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  10/100 | Loss: 0.9174 (sup:0.9086 unsup:0.0177) | Val: 48.00% | Test: 54.73% | Mask: 0.055
+15:49:52 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  11/100 | Loss: 0.8256 (sup:0.8176 unsup:0.0160) | Val: 48.67% | Test: 52.57% | Mask: 0.050
+15:49:59 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  12/100 | Loss: 0.7888 (sup:0.7718 unsup:0.0340) | Val: 54.00% | Test: 55.27% | Mask: 0.088
+15:50:07 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  13/100 | Loss: 0.7555 (sup:0.7371 unsup:0.0368) | Val: 49.33% | Test: 53.47% | Mask: 0.091
+15:50:15 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  14/100 | Loss: 0.7325 (sup:0.7106 unsup:0.0437) | Val: 49.33% | Test: 55.10% | Mask: 0.117
+15:50:23 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  15/100 | Loss: 0.7492 (sup:0.7226 unsup:0.0532) | Val: 48.00% | Test: 53.63% | Mask: 0.123
+15:50:30 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  16/100 | Loss: 0.7419 (sup:0.7184 unsup:0.0471) | Val: 49.00% | Test: 55.40% | Mask: 0.115
+15:50:37 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  17/100 | Loss: 0.6708 (sup:0.6464 unsup:0.0488) | Val: 50.33% | Test: 53.03% | Mask: 0.137
+15:50:45 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  18/100 | Loss: 0.6126 (sup:0.5799 unsup:0.0654) | Val: 53.67% | Test: 55.43% | Mask: 0.151
+15:50:52 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  19/100 | Loss: 0.6341 (sup:0.6037 unsup:0.0607) | Val: 50.00% | Test: 53.70% | Mask: 0.149
+15:51:00 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  20/100 | Loss: 0.5371 (sup:0.4870 unsup:0.1002) | Val: 55.67% | Test: 56.00% | Mask: 0.216
+15:51:07 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  21/100 | Loss: 0.6430 (sup:0.5897 unsup:0.1066) | Val: 57.67% | Test: 55.33% | Mask: 0.231
+15:51:15 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  22/100 | Loss: 0.5709 (sup:0.5345 unsup:0.0728) | Val: 52.33% | Test: 55.87% | Mask: 0.176
+15:51:22 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  23/100 | Loss: 0.5477 (sup:0.4925 unsup:0.1104) | Val: 56.00% | Test: 56.07% | Mask: 0.236
+15:51:30 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  24/100 | Loss: 0.4603 (sup:0.3991 unsup:0.1223) | Val: 50.67% | Test: 52.80% | Mask: 0.282
+15:51:37 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  25/100 | Loss: 0.4929 (sup:0.4140 unsup:0.1577) | Val: 57.00% | Test: 56.37% | Mask: 0.310
+15:51:45 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  26/100 | Loss: 0.4034 (sup:0.3229 unsup:0.1609) | Val: 55.67% | Test: 54.77% | Mask: 0.339
+15:51:52 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  27/100 | Loss: 0.4260 (sup:0.3560 unsup:0.1401) | Val: 59.67% | Test: 57.63% | Mask: 0.342
+15:51:59 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  28/100 | Loss: 0.3581 (sup:0.2747 unsup:0.1669) | Val: 57.67% | Test: 54.10% | Mask: 0.356
+15:52:07 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  29/100 | Loss: 0.4023 (sup:0.3081 unsup:0.1883) | Val: 52.33% | Test: 55.17% | Mask: 0.374
+15:52:14 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  30/100 | Loss: 0.2897 (sup:0.1936 unsup:0.1922) | Val: 54.00% | Test: 54.17% | Mask: 0.397
+15:52:21 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  31/100 | Loss: 0.2965 (sup:0.1567 unsup:0.2797) | Val: 53.67% | Test: 55.93% | Mask: 0.463
+15:52:29 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  32/100 | Loss: 0.3045 (sup:0.2008 unsup:0.2074) | Val: 54.00% | Test: 52.20% | Mask: 0.434
+15:52:36 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  33/100 | Loss: 0.2796 (sup:0.1805 unsup:0.1983) | Val: 57.00% | Test: 55.57% | Mask: 0.425
+15:52:43 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  34/100 | Loss: 0.3424 (sup:0.2325 unsup:0.2197) | Val: 55.67% | Test: 55.07% | Mask: 0.450
+15:52:51 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  35/100 | Loss: 0.2617 (sup:0.1448 unsup:0.2337) | Val: 56.67% | Test: 56.90% | Mask: 0.456
+15:52:59 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  36/100 | Loss: 0.2526 (sup:0.1304 unsup:0.2444) | Val: 57.00% | Test: 55.53% | Mask: 0.473
+15:53:07 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  37/100 | Loss: 0.2324 (sup:0.1338 unsup:0.1973) | Val: 55.33% | Test: 55.83% | Mask: 0.464
+15:53:14 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  38/100 | Loss: 0.1936 (sup:0.0682 unsup:0.2508) | Val: 56.67% | Test: 57.20% | Mask: 0.481
+15:53:22 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  39/100 | Loss: 0.1633 (sup:0.0510 unsup:0.2245) | Val: 57.33% | Test: 57.10% | Mask: 0.491
+15:53:29 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  40/100 | Loss: 0.1807 (sup:0.0539 unsup:0.2535) | Val: 59.00% | Test: 57.30% | Mask: 0.501
+15:53:37 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  41/100 | Loss: 0.1841 (sup:0.0693 unsup:0.2297) | Val: 58.67% | Test: 57.17% | Mask: 0.513
+15:53:45 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  42/100 | Loss: 0.1672 (sup:0.0459 unsup:0.2426) | Val: 58.33% | Test: 58.20% | Mask: 0.523
+15:53:53 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  43/100 | Loss: 0.1581 (sup:0.0356 unsup:0.2450) | Val: 58.33% | Test: 58.23% | Mask: 0.525
+15:54:00 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  44/100 | Loss: 0.1446 (sup:0.0310 unsup:0.2273) | Val: 58.33% | Test: 58.53% | Mask: 0.512
+15:54:08 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  45/100 | Loss: 0.1277 (sup:0.0201 unsup:0.2152) | Val: 61.33% | Test: 58.33% | Mask: 0.511
+15:54:16 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  46/100 | Loss: 0.1543 (sup:0.0525 unsup:0.2038) | Val: 57.67% | Test: 56.23% | Mask: 0.522
+15:54:23 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  47/100 | Loss: 0.1294 (sup:0.0238 unsup:0.2113) | Val: 59.33% | Test: 58.67% | Mask: 0.506
+15:54:31 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  48/100 | Loss: 0.1240 (sup:0.0143 unsup:0.2193) | Val: 58.33% | Test: 60.17% | Mask: 0.523
+15:54:38 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  49/100 | Loss: 0.1202 (sup:0.0163 unsup:0.2078) | Val: 58.00% | Test: 58.97% | Mask: 0.530
+15:54:46 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  50/100 | Loss: 0.1218 (sup:0.0226 unsup:0.1985) | Val: 59.33% | Test: 58.50% | Mask: 0.543
+15:54:54 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  51/100 | Loss: 0.1484 (sup:0.0331 unsup:0.2305) | Val: 61.00% | Test: 58.53% | Mask: 0.547
+15:55:01 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  52/100 | Loss: 0.1566 (sup:0.0605 unsup:0.1923) | Val: 60.67% | Test: 58.47% | Mask: 0.510
+15:55:09 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  53/100 | Loss: 0.1414 (sup:0.0355 unsup:0.2117) | Val: 57.00% | Test: 57.97% | Mask: 0.536
+15:55:17 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  54/100 | Loss: 0.1278 (sup:0.0215 unsup:0.2126) | Val: 59.67% | Test: 58.47% | Mask: 0.531
+15:55:24 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  55/100 | Loss: 0.1262 (sup:0.0122 unsup:0.2280) | Val: 60.00% | Test: 59.63% | Mask: 0.530
+15:55:32 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  56/100 | Loss: 0.1071 (sup:0.0158 unsup:0.1827) | Val: 61.33% | Test: 59.70% | Mask: 0.541
+15:55:39 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  57/100 | Loss: 0.1135 (sup:0.0124 unsup:0.2022) | Val: 60.67% | Test: 60.20% | Mask: 0.546
+15:55:47 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  58/100 | Loss: 0.1090 (sup:0.0123 unsup:0.1935) | Val: 61.33% | Test: 59.50% | Mask: 0.533
+15:55:54 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  59/100 | Loss: 0.1134 (sup:0.0099 unsup:0.2070) | Val: 62.00% | Test: 59.20% | Mask: 0.543
+15:56:02 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  60/100 | Loss: 0.1086 (sup:0.0078 unsup:0.2014) | Val: 60.67% | Test: 60.40% | Mask: 0.554
+15:56:10 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  61/100 | Loss: 0.1066 (sup:0.0098 unsup:0.1937) | Val: 60.00% | Test: 61.37% | Mask: 0.533
+15:56:17 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  62/100 | Loss: 0.1003 (sup:0.0065 unsup:0.1877) | Val: 62.33% | Test: 60.53% | Mask: 0.541
+15:56:24 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  63/100 | Loss: 0.1031 (sup:0.0140 unsup:0.1782) | Val: 62.00% | Test: 60.13% | Mask: 0.553
+15:56:32 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  64/100 | Loss: 0.1078 (sup:0.0075 unsup:0.2005) | Val: 64.67% | Test: 59.57% | Mask: 0.555
+15:56:39 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  65/100 | Loss: 0.1116 (sup:0.0102 unsup:0.2028) | Val: 63.67% | Test: 61.37% | Mask: 0.548
+15:56:47 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  66/100 | Loss: 0.0856 (sup:0.0068 unsup:0.1576) | Val: 62.67% | Test: 61.17% | Mask: 0.548
+15:56:54 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  67/100 | Loss: 0.1032 (sup:0.0075 unsup:0.1915) | Val: 64.00% | Test: 60.60% | Mask: 0.564
+15:57:01 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  68/100 | Loss: 0.1023 (sup:0.0059 unsup:0.1927) | Val: 62.67% | Test: 60.47% | Mask: 0.540
+15:57:09 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  69/100 | Loss: 0.0986 (sup:0.0080 unsup:0.1811) | Val: 62.67% | Test: 60.77% | Mask: 0.571
+15:57:16 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  70/100 | Loss: 0.1042 (sup:0.0067 unsup:0.1950) | Val: 62.00% | Test: 61.83% | Mask: 0.562
+15:57:24 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  71/100 | Loss: 0.0948 (sup:0.0088 unsup:0.1720) | Val: 63.67% | Test: 60.47% | Mask: 0.561
+15:57:31 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  72/100 | Loss: 0.0895 (sup:0.0062 unsup:0.1665) | Val: 61.67% | Test: 61.67% | Mask: 0.558
+15:57:39 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  73/100 | Loss: 0.1006 (sup:0.0052 unsup:0.1909) | Val: 62.00% | Test: 61.77% | Mask: 0.574
+15:57:46 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  74/100 | Loss: 0.1018 (sup:0.0072 unsup:0.1891) | Val: 64.33% | Test: 61.97% | Mask: 0.560
+15:57:54 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  75/100 | Loss: 0.0992 (sup:0.0118 unsup:0.1747) | Val: 64.00% | Test: 60.77% | Mask: 0.556
+15:58:01 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  76/100 | Loss: 0.1000 (sup:0.0048 unsup:0.1903) | Val: 63.00% | Test: 61.83% | Mask: 0.560
+15:58:08 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  77/100 | Loss: 0.0954 (sup:0.0067 unsup:0.1774) | Val: 65.67% | Test: 61.53% | Mask: 0.552
+15:58:16 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  78/100 | Loss: 0.0988 (sup:0.0083 unsup:0.1810) | Val: 63.67% | Test: 61.07% | Mask: 0.549
+15:58:23 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  79/100 | Loss: 0.0943 (sup:0.0052 unsup:0.1783) | Val: 63.33% | Test: 61.17% | Mask: 0.546
+15:58:31 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  80/100 | Loss: 0.0947 (sup:0.0062 unsup:0.1770) | Val: 63.67% | Test: 61.73% | Mask: 0.563
+15:58:38 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  81/100 | Loss: 0.0973 (sup:0.0070 unsup:0.1807) | Val: 64.00% | Test: 61.63% | Mask: 0.573
+15:58:46 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  82/100 | Loss: 0.0899 (sup:0.0048 unsup:0.1701) | Val: 63.00% | Test: 61.17% | Mask: 0.560
+15:58:54 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  83/100 | Loss: 0.0949 (sup:0.0039 unsup:0.1820) | Val: 63.67% | Test: 61.83% | Mask: 0.566
+15:59:01 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  84/100 | Loss: 0.0900 (sup:0.0048 unsup:0.1703) | Val: 65.00% | Test: 61.93% | Mask: 0.569
+15:59:08 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  85/100 | Loss: 0.0952 (sup:0.0075 unsup:0.1753) | Val: 64.33% | Test: 62.30% | Mask: 0.568
+15:59:16 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  86/100 | Loss: 0.0902 (sup:0.0041 unsup:0.1721) | Val: 65.00% | Test: 62.13% | Mask: 0.561
+15:59:23 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  87/100 | Loss: 0.0872 (sup:0.0055 unsup:0.1634) | Val: 64.67% | Test: 62.30% | Mask: 0.554
+15:59:31 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  88/100 | Loss: 0.0824 (sup:0.0048 unsup:0.1551) | Val: 63.00% | Test: 62.50% | Mask: 0.560
+15:59:38 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  89/100 | Loss: 0.0897 (sup:0.0050 unsup:0.1695) | Val: 64.33% | Test: 62.37% | Mask: 0.578
+15:59:45 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  90/100 | Loss: 0.0918 (sup:0.0042 unsup:0.1751) | Val: 63.67% | Test: 62.57% | Mask: 0.578
+15:59:53 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  91/100 | Loss: 0.0889 (sup:0.0039 unsup:0.1700) | Val: 64.33% | Test: 62.43% | Mask: 0.577
+16:00:00 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  92/100 | Loss: 0.0880 (sup:0.0054 unsup:0.1652) | Val: 63.67% | Test: 62.07% | Mask: 0.576
+16:00:07 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  93/100 | Loss: 0.1000 (sup:0.0074 unsup:0.1852) | Val: 63.33% | Test: 62.30% | Mask: 0.572
+16:00:14 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  94/100 | Loss: 0.0967 (sup:0.0042 unsup:0.1851) | Val: 63.67% | Test: 62.43% | Mask: 0.573
+16:00:22 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  95/100 | Loss: 0.0933 (sup:0.0056 unsup:0.1752) | Val: 64.00% | Test: 62.13% | Mask: 0.567
+16:00:29 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  96/100 | Loss: 0.0898 (sup:0.0062 unsup:0.1672) | Val: 63.33% | Test: 62.37% | Mask: 0.575
+16:00:36 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  97/100 | Loss: 0.0929 (sup:0.0060 unsup:0.1737) | Val: 63.67% | Test: 62.30% | Mask: 0.574
+16:00:43 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  98/100 | Loss: 0.0889 (sup:0.0049 unsup:0.1679) | Val: 64.00% | Test: 62.07% | Mask: 0.582
+16:00:50 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch  99/100 | Loss: 0.0869 (sup:0.0039 unsup:0.1661) | Val: 63.67% | Test: 62.53% | Mask: 0.572
+16:00:58 | INFO | [tau0.95_lam0.5] τ=0.95 λ=0.5 | Epoch 100/100 | Loss: 0.0808 (sup:0.0050 unsup:0.1516) | Val: 63.67% | Test: 62.43% | Mask: 0.568
+16:00:58 | INFO | [tau0.95_lam0.5] Best Test Accuracy: 62.57%
+
+--- Sweep: τ=0.95, λ=1.0 ---
+  Labeled   : 300 samples
+  Val       : 300 samples
+  Test      : 3,000 samples
+  Unlabeled : 5,400 samples
+16:01:06 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch   1/100 | Loss: 2.9430 (sup:2.7385 unsup:0.2044) | Val: 33.67% | Test: 33.40% | Mask: 0.211
+16:01:13 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch   2/100 | Loss: 1.5999 (sup:1.5781 unsup:0.0218) | Val: 39.33% | Test: 39.27% | Mask: 0.076
+16:01:21 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch   3/100 | Loss: 1.2032 (sup:1.1940 unsup:0.0092) | Val: 44.67% | Test: 47.33% | Mask: 0.041
+16:01:28 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch   4/100 | Loss: 1.0590 (sup:1.0499 unsup:0.0091) | Val: 50.00% | Test: 46.80% | Mask: 0.032
+16:01:36 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch   5/100 | Loss: 1.1189 (sup:1.0958 unsup:0.0232) | Val: 47.00% | Test: 46.30% | Mask: 0.065
+16:01:43 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch   6/100 | Loss: 1.0111 (sup:0.9945 unsup:0.0166) | Val: 50.00% | Test: 48.10% | Mask: 0.060
+16:01:52 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch   7/100 | Loss: 0.9063 (sup:0.8905 unsup:0.0158) | Val: 49.33% | Test: 52.23% | Mask: 0.045
+16:02:01 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch   8/100 | Loss: 0.8706 (sup:0.8539 unsup:0.0167) | Val: 53.67% | Test: 50.67% | Mask: 0.057
+16:02:09 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch   9/100 | Loss: 0.8382 (sup:0.8147 unsup:0.0235) | Val: 52.67% | Test: 50.97% | Mask: 0.074
+16:02:17 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  10/100 | Loss: 0.8763 (sup:0.8454 unsup:0.0309) | Val: 52.00% | Test: 53.37% | Mask: 0.092
+16:02:24 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  11/100 | Loss: 0.9045 (sup:0.8729 unsup:0.0317) | Val: 51.33% | Test: 51.80% | Mask: 0.099
+16:02:33 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  12/100 | Loss: 0.8245 (sup:0.7820 unsup:0.0425) | Val: 55.00% | Test: 52.50% | Mask: 0.129
+16:02:42 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  13/100 | Loss: 0.7424 (sup:0.7070 unsup:0.0353) | Val: 53.00% | Test: 51.87% | Mask: 0.090
+16:02:49 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  14/100 | Loss: 0.7291 (sup:0.6848 unsup:0.0443) | Val: 56.33% | Test: 54.87% | Mask: 0.138
+16:02:57 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  15/100 | Loss: 0.6240 (sup:0.5760 unsup:0.0480) | Val: 54.00% | Test: 54.53% | Mask: 0.127
+16:03:04 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  16/100 | Loss: 0.7733 (sup:0.7004 unsup:0.0729) | Val: 56.33% | Test: 55.70% | Mask: 0.202
+16:03:12 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  17/100 | Loss: 0.6651 (sup:0.6214 unsup:0.0437) | Val: 53.67% | Test: 54.93% | Mask: 0.131
+16:03:19 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  18/100 | Loss: 0.5396 (sup:0.4772 unsup:0.0624) | Val: 54.33% | Test: 53.57% | Mask: 0.153
+16:03:26 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  19/100 | Loss: 0.6238 (sup:0.5259 unsup:0.0979) | Val: 54.33% | Test: 50.47% | Mask: 0.216
+16:03:34 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  20/100 | Loss: 0.6350 (sup:0.5546 unsup:0.0805) | Val: 58.00% | Test: 56.73% | Mask: 0.225
+16:03:41 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  21/100 | Loss: 0.5544 (sup:0.4361 unsup:0.1183) | Val: 46.00% | Test: 43.13% | Mask: 0.259
+16:03:49 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  22/100 | Loss: 0.4975 (sup:0.4144 unsup:0.0831) | Val: 58.00% | Test: 55.10% | Mask: 0.243
+16:03:57 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  23/100 | Loss: 0.5052 (sup:0.3918 unsup:0.1134) | Val: 51.67% | Test: 52.07% | Mask: 0.291
+16:04:04 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  24/100 | Loss: 0.4275 (sup:0.3021 unsup:0.1254) | Val: 56.67% | Test: 54.00% | Mask: 0.311
+16:04:12 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  25/100 | Loss: 0.4904 (sup:0.3284 unsup:0.1620) | Val: 51.00% | Test: 48.90% | Mask: 0.344
+16:04:20 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  26/100 | Loss: 0.4041 (sup:0.2307 unsup:0.1734) | Val: 55.67% | Test: 53.33% | Mask: 0.375
+16:04:27 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  27/100 | Loss: 0.4919 (sup:0.3419 unsup:0.1500) | Val: 50.33% | Test: 50.47% | Mask: 0.364
+16:04:35 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  28/100 | Loss: 0.3510 (sup:0.2088 unsup:0.1422) | Val: 57.00% | Test: 56.93% | Mask: 0.340
+16:04:42 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  29/100 | Loss: 0.3855 (sup:0.1969 unsup:0.1885) | Val: 57.00% | Test: 56.97% | Mask: 0.417
+16:04:50 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  30/100 | Loss: 0.3373 (sup:0.1464 unsup:0.1910) | Val: 56.33% | Test: 57.03% | Mask: 0.426
+16:04:58 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  31/100 | Loss: 0.3422 (sup:0.1407 unsup:0.2015) | Val: 58.00% | Test: 57.67% | Mask: 0.432
+16:05:06 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  32/100 | Loss: 0.2990 (sup:0.1065 unsup:0.1925) | Val: 55.33% | Test: 56.57% | Mask: 0.442
+16:05:13 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  33/100 | Loss: 0.3393 (sup:0.1178 unsup:0.2215) | Val: 53.33% | Test: 52.53% | Mask: 0.455
+16:05:20 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  34/100 | Loss: 0.3178 (sup:0.1180 unsup:0.1999) | Val: 55.67% | Test: 53.83% | Mask: 0.434
+16:05:28 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  35/100 | Loss: 0.2830 (sup:0.0928 unsup:0.1901) | Val: 60.00% | Test: 56.57% | Mask: 0.466
+16:05:35 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  36/100 | Loss: 0.2524 (sup:0.0768 unsup:0.1756) | Val: 55.67% | Test: 55.23% | Mask: 0.474
+16:05:42 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  37/100 | Loss: 0.2922 (sup:0.0860 unsup:0.2063) | Val: 60.67% | Test: 56.97% | Mask: 0.477
+16:05:50 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  38/100 | Loss: 0.2697 (sup:0.0710 unsup:0.1987) | Val: 57.67% | Test: 59.43% | Mask: 0.482
+16:05:57 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  39/100 | Loss: 0.2877 (sup:0.1053 unsup:0.1825) | Val: 56.00% | Test: 53.30% | Mask: 0.474
+16:06:05 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  40/100 | Loss: 0.2606 (sup:0.0863 unsup:0.1743) | Val: 53.33% | Test: 55.13% | Mask: 0.456
+16:06:12 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  41/100 | Loss: 0.2728 (sup:0.0751 unsup:0.1978) | Val: 63.67% | Test: 59.60% | Mask: 0.468
+16:06:20 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  42/100 | Loss: 0.2093 (sup:0.0456 unsup:0.1637) | Val: 60.00% | Test: 59.40% | Mask: 0.511
+16:06:27 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  43/100 | Loss: 0.2329 (sup:0.0427 unsup:0.1902) | Val: 58.33% | Test: 59.17% | Mask: 0.515
+16:06:35 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  44/100 | Loss: 0.2517 (sup:0.0502 unsup:0.2016) | Val: 61.00% | Test: 59.20% | Mask: 0.503
+16:06:42 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  45/100 | Loss: 0.2041 (sup:0.0399 unsup:0.1642) | Val: 63.33% | Test: 61.40% | Mask: 0.501
+16:06:50 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  46/100 | Loss: 0.2070 (sup:0.0365 unsup:0.1705) | Val: 62.67% | Test: 60.17% | Mask: 0.513
+16:06:57 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  47/100 | Loss: 0.1988 (sup:0.0335 unsup:0.1652) | Val: 62.00% | Test: 59.37% | Mask: 0.524
+16:07:04 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  48/100 | Loss: 0.2170 (sup:0.0277 unsup:0.1893) | Val: 61.67% | Test: 60.70% | Mask: 0.536
+16:07:12 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  49/100 | Loss: 0.1904 (sup:0.0321 unsup:0.1583) | Val: 62.67% | Test: 60.37% | Mask: 0.530
+16:07:19 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  50/100 | Loss: 0.1940 (sup:0.0312 unsup:0.1629) | Val: 64.67% | Test: 61.27% | Mask: 0.547
+16:07:27 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  51/100 | Loss: 0.2166 (sup:0.0327 unsup:0.1839) | Val: 62.33% | Test: 61.93% | Mask: 0.542
+16:07:34 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  52/100 | Loss: 0.2069 (sup:0.0270 unsup:0.1799) | Val: 62.33% | Test: 60.33% | Mask: 0.530
+16:07:42 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  53/100 | Loss: 0.1945 (sup:0.0331 unsup:0.1614) | Val: 64.33% | Test: 60.80% | Mask: 0.540
+16:07:49 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  54/100 | Loss: 0.2060 (sup:0.0341 unsup:0.1720) | Val: 59.33% | Test: 60.47% | Mask: 0.545
+16:07:56 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  55/100 | Loss: 0.2253 (sup:0.0364 unsup:0.1890) | Val: 63.00% | Test: 58.97% | Mask: 0.556
+16:08:07 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  56/100 | Loss: 0.1970 (sup:0.0235 unsup:0.1736) | Val: 62.33% | Test: 60.63% | Mask: 0.533
+16:08:14 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  57/100 | Loss: 0.1697 (sup:0.0214 unsup:0.1483) | Val: 64.00% | Test: 63.50% | Mask: 0.528
+16:08:21 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  58/100 | Loss: 0.1887 (sup:0.0154 unsup:0.1733) | Val: 62.33% | Test: 62.27% | Mask: 0.543
+16:08:28 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  59/100 | Loss: 0.1745 (sup:0.0257 unsup:0.1488) | Val: 63.67% | Test: 61.97% | Mask: 0.515
+16:08:35 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  60/100 | Loss: 0.1817 (sup:0.0196 unsup:0.1621) | Val: 63.67% | Test: 62.03% | Mask: 0.542
+16:08:42 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  61/100 | Loss: 0.1706 (sup:0.0161 unsup:0.1545) | Val: 66.00% | Test: 61.47% | Mask: 0.528
+16:08:49 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  62/100 | Loss: 0.1676 (sup:0.0132 unsup:0.1544) | Val: 63.67% | Test: 62.30% | Mask: 0.558
+16:08:57 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  63/100 | Loss: 0.1720 (sup:0.0147 unsup:0.1573) | Val: 64.67% | Test: 62.47% | Mask: 0.562
+16:09:04 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  64/100 | Loss: 0.1599 (sup:0.0162 unsup:0.1437) | Val: 65.33% | Test: 61.47% | Mask: 0.555
+16:09:11 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  65/100 | Loss: 0.1859 (sup:0.0216 unsup:0.1644) | Val: 63.67% | Test: 61.90% | Mask: 0.568
+16:09:18 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  66/100 | Loss: 0.1707 (sup:0.0212 unsup:0.1495) | Val: 63.33% | Test: 62.20% | Mask: 0.537
+16:09:25 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  67/100 | Loss: 0.1599 (sup:0.0149 unsup:0.1450) | Val: 65.67% | Test: 62.90% | Mask: 0.559
+16:09:32 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  68/100 | Loss: 0.1651 (sup:0.0095 unsup:0.1556) | Val: 62.67% | Test: 62.20% | Mask: 0.573
+16:09:39 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  69/100 | Loss: 0.1739 (sup:0.0167 unsup:0.1572) | Val: 65.67% | Test: 63.57% | Mask: 0.565
+16:09:47 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  70/100 | Loss: 0.1613 (sup:0.0145 unsup:0.1468) | Val: 66.00% | Test: 62.87% | Mask: 0.563
+16:09:54 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  71/100 | Loss: 0.1724 (sup:0.0121 unsup:0.1603) | Val: 65.00% | Test: 62.57% | Mask: 0.585
+16:10:01 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  72/100 | Loss: 0.1716 (sup:0.0120 unsup:0.1596) | Val: 65.00% | Test: 62.13% | Mask: 0.581
+16:10:08 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  73/100 | Loss: 0.1823 (sup:0.0172 unsup:0.1651) | Val: 63.33% | Test: 61.63% | Mask: 0.566
+16:10:15 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  74/100 | Loss: 0.1571 (sup:0.0109 unsup:0.1462) | Val: 65.00% | Test: 63.77% | Mask: 0.565
+16:10:22 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  75/100 | Loss: 0.1578 (sup:0.0110 unsup:0.1468) | Val: 67.67% | Test: 64.10% | Mask: 0.582
+16:10:29 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  76/100 | Loss: 0.1586 (sup:0.0093 unsup:0.1492) | Val: 66.67% | Test: 63.53% | Mask: 0.580
+16:10:36 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  77/100 | Loss: 0.1657 (sup:0.0081 unsup:0.1576) | Val: 65.00% | Test: 63.73% | Mask: 0.578
+16:10:44 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  78/100 | Loss: 0.1440 (sup:0.0100 unsup:0.1340) | Val: 66.00% | Test: 63.87% | Mask: 0.577
+16:10:51 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  79/100 | Loss: 0.1565 (sup:0.0101 unsup:0.1464) | Val: 67.33% | Test: 63.17% | Mask: 0.584
+16:10:58 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  80/100 | Loss: 0.1633 (sup:0.0081 unsup:0.1552) | Val: 66.00% | Test: 64.47% | Mask: 0.589
+16:11:05 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  81/100 | Loss: 0.1542 (sup:0.0111 unsup:0.1431) | Val: 64.33% | Test: 64.17% | Mask: 0.582
+16:11:12 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  82/100 | Loss: 0.1519 (sup:0.0114 unsup:0.1405) | Val: 65.00% | Test: 63.93% | Mask: 0.576
+16:11:20 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  83/100 | Loss: 0.1493 (sup:0.0072 unsup:0.1421) | Val: 65.67% | Test: 64.43% | Mask: 0.577
+16:11:27 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  84/100 | Loss: 0.1568 (sup:0.0080 unsup:0.1488) | Val: 66.33% | Test: 64.83% | Mask: 0.594
+16:11:34 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  85/100 | Loss: 0.1573 (sup:0.0065 unsup:0.1508) | Val: 67.00% | Test: 63.93% | Mask: 0.588
+16:11:41 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  86/100 | Loss: 0.1580 (sup:0.0058 unsup:0.1523) | Val: 67.67% | Test: 64.40% | Mask: 0.581
+16:11:48 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  87/100 | Loss: 0.1407 (sup:0.0094 unsup:0.1312) | Val: 67.33% | Test: 64.87% | Mask: 0.586
+16:11:55 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  88/100 | Loss: 0.1565 (sup:0.0105 unsup:0.1460) | Val: 66.33% | Test: 64.67% | Mask: 0.593
+16:12:02 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  89/100 | Loss: 0.1520 (sup:0.0077 unsup:0.1444) | Val: 66.67% | Test: 65.23% | Mask: 0.589
+16:12:09 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  90/100 | Loss: 0.1556 (sup:0.0048 unsup:0.1508) | Val: 65.67% | Test: 65.23% | Mask: 0.593
+16:12:17 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  91/100 | Loss: 0.1581 (sup:0.0080 unsup:0.1501) | Val: 66.33% | Test: 64.87% | Mask: 0.591
+16:12:24 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  92/100 | Loss: 0.1574 (sup:0.0091 unsup:0.1483) | Val: 67.00% | Test: 65.17% | Mask: 0.589
+16:12:31 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  93/100 | Loss: 0.1593 (sup:0.0064 unsup:0.1529) | Val: 67.33% | Test: 64.93% | Mask: 0.594
+16:12:38 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  94/100 | Loss: 0.1587 (sup:0.0071 unsup:0.1516) | Val: 67.33% | Test: 64.93% | Mask: 0.588
+16:12:45 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  95/100 | Loss: 0.1465 (sup:0.0063 unsup:0.1401) | Val: 68.00% | Test: 64.70% | Mask: 0.592
+16:12:52 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  96/100 | Loss: 0.1533 (sup:0.0077 unsup:0.1457) | Val: 67.00% | Test: 65.07% | Mask: 0.590
+16:12:59 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  97/100 | Loss: 0.1470 (sup:0.0080 unsup:0.1390) | Val: 68.00% | Test: 64.77% | Mask: 0.592
+16:13:06 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  98/100 | Loss: 0.1543 (sup:0.0060 unsup:0.1483) | Val: 67.00% | Test: 65.30% | Mask: 0.590
+16:13:14 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch  99/100 | Loss: 0.1496 (sup:0.0075 unsup:0.1421) | Val: 67.33% | Test: 64.90% | Mask: 0.591
+16:13:21 | INFO | [tau0.95_lam1.0] τ=0.95 λ=1.0 | Epoch 100/100 | Loss: 0.1344 (sup:0.0053 unsup:0.1291) | Val: 67.33% | Test: 64.93% | Mask: 0.586
+16:13:21 | INFO | [tau0.95_lam1.0] Best Test Accuracy: 65.30%
+
+--- Sweep: τ=0.95, λ=2.0 ---
+  Labeled   : 300 samples
+  Val       : 300 samples
+  Test      : 3,000 samples
+  Unlabeled : 5,400 samples
+16:13:28 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch   1/100 | Loss: 3.7835 (sup:3.5368 unsup:0.1233) | Val: 32.00% | Test: 35.80% | Mask: 0.415
+16:13:35 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch   2/100 | Loss: 1.2745 (sup:1.2487 unsup:0.0129) | Val: 45.00% | Test: 44.23% | Mask: 0.097
+16:13:42 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch   3/100 | Loss: 1.2693 (sup:1.2369 unsup:0.0162) | Val: 45.67% | Test: 47.30% | Mask: 0.090
+16:13:49 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch   4/100 | Loss: 1.1539 (sup:1.1254 unsup:0.0142) | Val: 44.67% | Test: 47.80% | Mask: 0.094
+16:13:57 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch   5/100 | Loss: 1.0509 (sup:1.0232 unsup:0.0138) | Val: 41.00% | Test: 45.03% | Mask: 0.089
+16:14:04 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch   6/100 | Loss: 1.1502 (sup:1.1248 unsup:0.0127) | Val: 42.00% | Test: 49.83% | Mask: 0.091
+16:14:11 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch   7/100 | Loss: 0.9343 (sup:0.9213 unsup:0.0065) | Val: 49.67% | Test: 47.27% | Mask: 0.042
+16:14:18 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch   8/100 | Loss: 0.9187 (sup:0.9018 unsup:0.0084) | Val: 53.00% | Test: 52.07% | Mask: 0.048
+16:14:25 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch   9/100 | Loss: 0.9294 (sup:0.9158 unsup:0.0068) | Val: 53.67% | Test: 51.47% | Mask: 0.054
+16:14:32 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  10/100 | Loss: 1.0037 (sup:0.9712 unsup:0.0163) | Val: 51.67% | Test: 52.57% | Mask: 0.077
+16:14:40 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  11/100 | Loss: 0.9642 (sup:0.9366 unsup:0.0138) | Val: 52.33% | Test: 51.83% | Mask: 0.089
+16:14:47 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  12/100 | Loss: 0.8226 (sup:0.7890 unsup:0.0168) | Val: 55.00% | Test: 50.90% | Mask: 0.076
+16:14:54 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  13/100 | Loss: 0.7999 (sup:0.7542 unsup:0.0228) | Val: 54.33% | Test: 50.00% | Mask: 0.101
+16:15:01 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  14/100 | Loss: 0.8181 (sup:0.7714 unsup:0.0233) | Val: 49.00% | Test: 50.63% | Mask: 0.121
+16:15:08 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  15/100 | Loss: 0.6945 (sup:0.6175 unsup:0.0385) | Val: 55.33% | Test: 55.03% | Mask: 0.118
+16:15:15 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  16/100 | Loss: 0.6581 (sup:0.5732 unsup:0.0424) | Val: 50.00% | Test: 53.83% | Mask: 0.172
+16:15:22 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  17/100 | Loss: 0.7142 (sup:0.5605 unsup:0.0768) | Val: 50.33% | Test: 50.60% | Mask: 0.230
+16:15:30 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  18/100 | Loss: 0.6908 (sup:0.5397 unsup:0.0756) | Val: 55.67% | Test: 51.23% | Mask: 0.210
+16:15:37 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  19/100 | Loss: 0.7617 (sup:0.6324 unsup:0.0647) | Val: 49.67% | Test: 49.60% | Mask: 0.232
+16:15:43 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  20/100 | Loss: 0.6284 (sup:0.4741 unsup:0.0772) | Val: 56.33% | Test: 56.60% | Mask: 0.217
+16:15:51 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  21/100 | Loss: 0.6952 (sup:0.4864 unsup:0.1044) | Val: 57.33% | Test: 53.00% | Mask: 0.289
+16:15:58 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  22/100 | Loss: 0.6020 (sup:0.4426 unsup:0.0797) | Val: 56.00% | Test: 55.93% | Mask: 0.248
+16:16:05 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  23/100 | Loss: 0.6124 (sup:0.3879 unsup:0.1123) | Val: 54.67% | Test: 54.07% | Mask: 0.313
+16:16:12 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  24/100 | Loss: 0.5567 (sup:0.3448 unsup:0.1060) | Val: 58.00% | Test: 54.87% | Mask: 0.330
+16:16:19 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  25/100 | Loss: 0.5628 (sup:0.2930 unsup:0.1349) | Val: 55.33% | Test: 53.53% | Mask: 0.372
+16:16:26 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  26/100 | Loss: 0.5005 (sup:0.2635 unsup:0.1185) | Val: 57.67% | Test: 57.03% | Mask: 0.371
+16:16:34 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  27/100 | Loss: 0.7141 (sup:0.4841 unsup:0.1150) | Val: 57.33% | Test: 55.90% | Mask: 0.359
+16:16:41 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  28/100 | Loss: 0.5220 (sup:0.2695 unsup:0.1263) | Val: 59.00% | Test: 54.23% | Mask: 0.358
+16:16:48 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  29/100 | Loss: 0.4848 (sup:0.2220 unsup:0.1314) | Val: 54.33% | Test: 55.60% | Mask: 0.379
+16:16:55 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  30/100 | Loss: 0.5355 (sup:0.1991 unsup:0.1682) | Val: 59.33% | Test: 55.13% | Mask: 0.433
+16:17:02 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  31/100 | Loss: 0.4924 (sup:0.2265 unsup:0.1329) | Val: 61.33% | Test: 59.33% | Mask: 0.404
+16:17:10 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  32/100 | Loss: 0.4812 (sup:0.1464 unsup:0.1674) | Val: 57.00% | Test: 57.87% | Mask: 0.436
+16:17:17 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  33/100 | Loss: 0.4835 (sup:0.1880 unsup:0.1478) | Val: 62.00% | Test: 59.47% | Mask: 0.415
+16:17:24 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  34/100 | Loss: 0.4615 (sup:0.1532 unsup:0.1541) | Val: 57.67% | Test: 55.10% | Mask: 0.455
+16:17:31 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  35/100 | Loss: 0.4723 (sup:0.1652 unsup:0.1535) | Val: 58.33% | Test: 59.20% | Mask: 0.440
+16:17:39 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  36/100 | Loss: 0.4052 (sup:0.1189 unsup:0.1431) | Val: 58.33% | Test: 57.70% | Mask: 0.432
+16:17:46 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  37/100 | Loss: 0.4226 (sup:0.1150 unsup:0.1538) | Val: 59.67% | Test: 59.17% | Mask: 0.483
+16:17:53 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  38/100 | Loss: 0.4200 (sup:0.1146 unsup:0.1527) | Val: 57.67% | Test: 57.50% | Mask: 0.478
+16:18:01 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  39/100 | Loss: 0.4054 (sup:0.1154 unsup:0.1450) | Val: 60.67% | Test: 60.07% | Mask: 0.472
+16:18:08 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  40/100 | Loss: 0.4412 (sup:0.1059 unsup:0.1676) | Val: 61.67% | Test: 57.87% | Mask: 0.458
+16:18:15 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  41/100 | Loss: 0.4277 (sup:0.1035 unsup:0.1621) | Val: 56.67% | Test: 56.67% | Mask: 0.477
+16:18:22 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  42/100 | Loss: 0.4190 (sup:0.1144 unsup:0.1523) | Val: 60.33% | Test: 58.93% | Mask: 0.468
+16:18:30 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  43/100 | Loss: 0.3905 (sup:0.1052 unsup:0.1426) | Val: 60.33% | Test: 60.60% | Mask: 0.481
+16:18:37 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  44/100 | Loss: 0.3815 (sup:0.0813 unsup:0.1501) | Val: 61.67% | Test: 59.00% | Mask: 0.523
+16:18:45 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  45/100 | Loss: 0.4310 (sup:0.0898 unsup:0.1706) | Val: 59.33% | Test: 57.50% | Mask: 0.528
+16:18:53 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  46/100 | Loss: 0.3792 (sup:0.0806 unsup:0.1493) | Val: 59.33% | Test: 58.10% | Mask: 0.499
+16:19:00 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  47/100 | Loss: 0.3797 (sup:0.0772 unsup:0.1512) | Val: 60.00% | Test: 60.17% | Mask: 0.487
+16:19:07 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  48/100 | Loss: 0.3726 (sup:0.0751 unsup:0.1488) | Val: 61.67% | Test: 59.23% | Mask: 0.507
+16:19:14 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  49/100 | Loss: 0.3669 (sup:0.0559 unsup:0.1555) | Val: 63.33% | Test: 60.63% | Mask: 0.511
+16:19:22 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  50/100 | Loss: 0.4108 (sup:0.0812 unsup:0.1648) | Val: 61.00% | Test: 60.87% | Mask: 0.531
+16:19:29 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  51/100 | Loss: 0.3657 (sup:0.0566 unsup:0.1546) | Val: 63.67% | Test: 60.23% | Mask: 0.509
+16:19:36 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  52/100 | Loss: 0.3465 (sup:0.0625 unsup:0.1420) | Val: 59.67% | Test: 60.23% | Mask: 0.501
+16:19:43 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  53/100 | Loss: 0.3625 (sup:0.0588 unsup:0.1519) | Val: 61.33% | Test: 61.70% | Mask: 0.545
+16:19:51 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  54/100 | Loss: 0.3422 (sup:0.0455 unsup:0.1483) | Val: 60.33% | Test: 61.13% | Mask: 0.536
+16:19:58 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  55/100 | Loss: 0.3345 (sup:0.0353 unsup:0.1496) | Val: 64.33% | Test: 61.23% | Mask: 0.541
+16:20:05 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  56/100 | Loss: 0.3591 (sup:0.0600 unsup:0.1496) | Val: 64.00% | Test: 60.20% | Mask: 0.554
+16:20:12 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  57/100 | Loss: 0.3360 (sup:0.0436 unsup:0.1462) | Val: 66.00% | Test: 62.23% | Mask: 0.544
+16:20:19 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  58/100 | Loss: 0.3427 (sup:0.0447 unsup:0.1490) | Val: 62.00% | Test: 63.03% | Mask: 0.531
+16:20:26 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  59/100 | Loss: 0.3090 (sup:0.0322 unsup:0.1384) | Val: 62.67% | Test: 62.40% | Mask: 0.513
+16:20:34 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  60/100 | Loss: 0.3381 (sup:0.0416 unsup:0.1483) | Val: 62.67% | Test: 62.17% | Mask: 0.524
+16:20:41 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  61/100 | Loss: 0.3188 (sup:0.0283 unsup:0.1453) | Val: 63.00% | Test: 62.97% | Mask: 0.543
+16:20:48 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  62/100 | Loss: 0.3264 (sup:0.0380 unsup:0.1442) | Val: 64.00% | Test: 62.63% | Mask: 0.532
+16:20:55 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  63/100 | Loss: 0.2795 (sup:0.0244 unsup:0.1276) | Val: 64.67% | Test: 62.27% | Mask: 0.526
+16:21:02 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  64/100 | Loss: 0.3267 (sup:0.0278 unsup:0.1494) | Val: 66.00% | Test: 63.27% | Mask: 0.562
+16:21:09 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  65/100 | Loss: 0.3120 (sup:0.0406 unsup:0.1357) | Val: 65.33% | Test: 61.30% | Mask: 0.539
+16:21:16 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  66/100 | Loss: 0.3130 (sup:0.0275 unsup:0.1427) | Val: 64.67% | Test: 63.17% | Mask: 0.546
+16:21:23 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  67/100 | Loss: 0.2997 (sup:0.0241 unsup:0.1378) | Val: 64.33% | Test: 63.37% | Mask: 0.543
+16:21:30 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  68/100 | Loss: 0.2784 (sup:0.0259 unsup:0.1263) | Val: 63.00% | Test: 61.87% | Mask: 0.543
+16:21:37 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  69/100 | Loss: 0.3368 (sup:0.0268 unsup:0.1550) | Val: 66.67% | Test: 64.03% | Mask: 0.556
+16:21:44 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  70/100 | Loss: 0.3021 (sup:0.0200 unsup:0.1411) | Val: 62.00% | Test: 64.90% | Mask: 0.554
+16:21:51 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  71/100 | Loss: 0.2911 (sup:0.0261 unsup:0.1325) | Val: 65.00% | Test: 62.73% | Mask: 0.555
+16:21:57 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  72/100 | Loss: 0.3014 (sup:0.0270 unsup:0.1372) | Val: 68.00% | Test: 65.47% | Mask: 0.564
+16:22:04 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  73/100 | Loss: 0.3040 (sup:0.0215 unsup:0.1412) | Val: 64.00% | Test: 64.27% | Mask: 0.575
+16:22:11 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  74/100 | Loss: 0.2570 (sup:0.0216 unsup:0.1177) | Val: 64.67% | Test: 63.53% | Mask: 0.580
+16:22:18 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  75/100 | Loss: 0.2744 (sup:0.0129 unsup:0.1308) | Val: 64.67% | Test: 65.20% | Mask: 0.575
+16:22:25 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  76/100 | Loss: 0.3289 (sup:0.0206 unsup:0.1542) | Val: 65.33% | Test: 64.93% | Mask: 0.597
+16:22:32 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  77/100 | Loss: 0.2798 (sup:0.0202 unsup:0.1298) | Val: 66.33% | Test: 64.10% | Mask: 0.579
+16:22:39 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  78/100 | Loss: 0.2717 (sup:0.0138 unsup:0.1290) | Val: 66.33% | Test: 65.27% | Mask: 0.585
+16:22:46 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  79/100 | Loss: 0.3033 (sup:0.0156 unsup:0.1439) | Val: 66.33% | Test: 64.47% | Mask: 0.605
+16:22:53 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  80/100 | Loss: 0.2773 (sup:0.0141 unsup:0.1316) | Val: 63.33% | Test: 64.23% | Mask: 0.595
+16:23:00 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  81/100 | Loss: 0.3230 (sup:0.0166 unsup:0.1532) | Val: 66.00% | Test: 64.63% | Mask: 0.594
+16:23:07 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  82/100 | Loss: 0.2904 (sup:0.0121 unsup:0.1392) | Val: 67.33% | Test: 65.57% | Mask: 0.582
+16:23:13 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  83/100 | Loss: 0.2787 (sup:0.0165 unsup:0.1311) | Val: 66.67% | Test: 66.13% | Mask: 0.579
+16:23:21 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  84/100 | Loss: 0.2759 (sup:0.0123 unsup:0.1318) | Val: 65.67% | Test: 65.73% | Mask: 0.597
+16:23:27 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  85/100 | Loss: 0.2818 (sup:0.0116 unsup:0.1351) | Val: 66.00% | Test: 65.17% | Mask: 0.597
+16:23:34 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  86/100 | Loss: 0.2689 (sup:0.0146 unsup:0.1271) | Val: 65.33% | Test: 64.77% | Mask: 0.593
+16:23:41 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  87/100 | Loss: 0.2730 (sup:0.0134 unsup:0.1298) | Val: 65.67% | Test: 65.63% | Mask: 0.595
+16:23:48 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  88/100 | Loss: 0.2663 (sup:0.0114 unsup:0.1274) | Val: 66.67% | Test: 65.47% | Mask: 0.599
+16:23:55 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  89/100 | Loss: 0.3186 (sup:0.0140 unsup:0.1523) | Val: 65.33% | Test: 65.67% | Mask: 0.599
+16:24:02 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  90/100 | Loss: 0.3032 (sup:0.0106 unsup:0.1463) | Val: 65.67% | Test: 65.17% | Mask: 0.591
+16:24:09 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  91/100 | Loss: 0.2708 (sup:0.0128 unsup:0.1290) | Val: 66.33% | Test: 65.90% | Mask: 0.591
+16:24:16 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  92/100 | Loss: 0.2785 (sup:0.0116 unsup:0.1335) | Val: 65.67% | Test: 65.77% | Mask: 0.593
+16:24:23 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  93/100 | Loss: 0.2488 (sup:0.0109 unsup:0.1189) | Val: 66.33% | Test: 65.83% | Mask: 0.594
+16:24:31 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  94/100 | Loss: 0.2845 (sup:0.0136 unsup:0.1355) | Val: 66.67% | Test: 65.83% | Mask: 0.593
+16:24:38 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  95/100 | Loss: 0.2696 (sup:0.0124 unsup:0.1286) | Val: 66.33% | Test: 65.43% | Mask: 0.597
+16:24:45 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  96/100 | Loss: 0.2771 (sup:0.0106 unsup:0.1333) | Val: 65.67% | Test: 65.33% | Mask: 0.600
+16:24:52 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  97/100 | Loss: 0.2907 (sup:0.0099 unsup:0.1404) | Val: 65.33% | Test: 65.37% | Mask: 0.598
+16:24:59 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  98/100 | Loss: 0.2579 (sup:0.0129 unsup:0.1225) | Val: 66.33% | Test: 65.57% | Mask: 0.596
+16:25:06 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch  99/100 | Loss: 0.2590 (sup:0.0108 unsup:0.1241) | Val: 66.67% | Test: 65.30% | Mask: 0.592
+16:25:13 | INFO | [tau0.95_lam2.0] τ=0.95 λ=2.0 | Epoch 100/100 | Loss: 0.2643 (sup:0.0151 unsup:0.1246) | Val: 66.33% | Test: 65.27% | Mask: 0.596
+16:25:13 | INFO | [tau0.95_lam2.0] Best Test Accuracy: 66.13%
+
+Best config: τ=0.7, λ=0.5 → 66.93%
+  Saved: ./outputs/plots/fixmatch/hyperparameter_heatmap.png
+
+--- FixMatch Best Config Re-run: τ=0.7, λ=0.5 ---
+  Labeled   : 300 samples
+  Val       : 300 samples
+  Test      : 3,000 samples
+  Unlabeled : 5,400 samples
+16:25:21 | INFO | [best] τ=0.7 λ=0.5 | Epoch   1/100 | Loss: 3.2744 (sup:3.1848 unsup:0.1793) | Val: 33.00% | Test: 33.30% | Mask: 0.485
+16:25:28 | INFO | [best] τ=0.7 λ=0.5 | Epoch   2/100 | Loss: 1.6615 (sup:1.6060 unsup:0.1109) | Val: 34.00% | Test: 35.50% | Mask: 0.321
+16:25:36 | INFO | [best] τ=0.7 λ=0.5 | Epoch   3/100 | Loss: 1.1838 (sup:1.1480 unsup:0.0715) | Val: 35.33% | Test: 34.93% | Mask: 0.213
+16:25:43 | INFO | [best] τ=0.7 λ=0.5 | Epoch   4/100 | Loss: 1.0998 (sup:1.0520 unsup:0.0957) | Val: 41.33% | Test: 42.53% | Mask: 0.246
+16:25:50 | INFO | [best] τ=0.7 λ=0.5 | Epoch   5/100 | Loss: 1.0539 (sup:0.9966 unsup:0.1145) | Val: 49.67% | Test: 47.87% | Mask: 0.259
+16:25:57 | INFO | [best] τ=0.7 λ=0.5 | Epoch   6/100 | Loss: 0.9844 (sup:0.9121 unsup:0.1446) | Val: 49.67% | Test: 50.70% | Mask: 0.303
+16:26:04 | INFO | [best] τ=0.7 λ=0.5 | Epoch   7/100 | Loss: 0.9624 (sup:0.8736 unsup:0.1774) | Val: 48.33% | Test: 47.50% | Mask: 0.365
+16:26:11 | INFO | [best] τ=0.7 λ=0.5 | Epoch   8/100 | Loss: 1.0513 (sup:0.9601 unsup:0.1824) | Val: 50.67% | Test: 51.50% | Mask: 0.394
+16:26:18 | INFO | [best] τ=0.7 λ=0.5 | Epoch   9/100 | Loss: 0.8956 (sup:0.7948 unsup:0.2016) | Val: 48.00% | Test: 46.87% | Mask: 0.400
+16:26:25 | INFO | [best] τ=0.7 λ=0.5 | Epoch  10/100 | Loss: 0.8667 (sup:0.7566 unsup:0.2201) | Val: 54.67% | Test: 53.80% | Mask: 0.429
+16:26:32 | INFO | [best] τ=0.7 λ=0.5 | Epoch  11/100 | Loss: 0.9625 (sup:0.8328 unsup:0.2593) | Val: 51.00% | Test: 52.70% | Mask: 0.509
+16:26:39 | INFO | [best] τ=0.7 λ=0.5 | Epoch  12/100 | Loss: 0.8584 (sup:0.7329 unsup:0.2510) | Val: 52.67% | Test: 50.73% | Mask: 0.490
+16:26:46 | INFO | [best] τ=0.7 λ=0.5 | Epoch  13/100 | Loss: 0.8503 (sup:0.7108 unsup:0.2790) | Val: 55.00% | Test: 55.10% | Mask: 0.522
+16:26:54 | INFO | [best] τ=0.7 λ=0.5 | Epoch  14/100 | Loss: 0.7945 (sup:0.6556 unsup:0.2777) | Val: 56.67% | Test: 54.43% | Mask: 0.508
+16:27:01 | INFO | [best] τ=0.7 λ=0.5 | Epoch  15/100 | Loss: 0.7973 (sup:0.6406 unsup:0.3135) | Val: 54.00% | Test: 54.03% | Mask: 0.587
+16:27:08 | INFO | [best] τ=0.7 λ=0.5 | Epoch  16/100 | Loss: 0.7555 (sup:0.5911 unsup:0.3288) | Val: 52.00% | Test: 54.97% | Mask: 0.575
+16:27:15 | INFO | [best] τ=0.7 λ=0.5 | Epoch  17/100 | Loss: 0.6928 (sup:0.5196 unsup:0.3465) | Val: 51.67% | Test: 55.40% | Mask: 0.591
+16:27:22 | INFO | [best] τ=0.7 λ=0.5 | Epoch  18/100 | Loss: 0.7104 (sup:0.5277 unsup:0.3654) | Val: 54.67% | Test: 49.63% | Mask: 0.643
+16:27:29 | INFO | [best] τ=0.7 λ=0.5 | Epoch  19/100 | Loss: 0.7226 (sup:0.5437 unsup:0.3579) | Val: 58.00% | Test: 53.63% | Mask: 0.646
+16:27:36 | INFO | [best] τ=0.7 λ=0.5 | Epoch  20/100 | Loss: 0.6263 (sup:0.4427 unsup:0.3673) | Val: 55.67% | Test: 54.10% | Mask: 0.661
+16:27:43 | INFO | [best] τ=0.7 λ=0.5 | Epoch  21/100 | Loss: 0.5950 (sup:0.3780 unsup:0.4339) | Val: 54.00% | Test: 54.90% | Mask: 0.697
+16:27:50 | INFO | [best] τ=0.7 λ=0.5 | Epoch  22/100 | Loss: 0.6343 (sup:0.4050 unsup:0.4586) | Val: 57.00% | Test: 54.93% | Mask: 0.707
+16:27:57 | INFO | [best] τ=0.7 λ=0.5 | Epoch  23/100 | Loss: 0.5425 (sup:0.3182 unsup:0.4487) | Val: 52.00% | Test: 53.70% | Mask: 0.718
+16:28:04 | INFO | [best] τ=0.7 λ=0.5 | Epoch  24/100 | Loss: 0.5825 (sup:0.3583 unsup:0.4483) | Val: 52.00% | Test: 46.67% | Mask: 0.745
+16:28:11 | INFO | [best] τ=0.7 λ=0.5 | Epoch  25/100 | Loss: 0.6315 (sup:0.4313 unsup:0.4005) | Val: 54.00% | Test: 55.70% | Mask: 0.710
+16:28:18 | INFO | [best] τ=0.7 λ=0.5 | Epoch  26/100 | Loss: 0.5862 (sup:0.3640 unsup:0.4445) | Val: 62.67% | Test: 58.30% | Mask: 0.720
+16:28:26 | INFO | [best] τ=0.7 λ=0.5 | Epoch  27/100 | Loss: 0.4373 (sup:0.2019 unsup:0.4708) | Val: 57.33% | Test: 56.70% | Mask: 0.756
+16:28:33 | INFO | [best] τ=0.7 λ=0.5 | Epoch  28/100 | Loss: 0.4653 (sup:0.2098 unsup:0.5109) | Val: 58.00% | Test: 54.47% | Mask: 0.775
+16:28:40 | INFO | [best] τ=0.7 λ=0.5 | Epoch  29/100 | Loss: 0.4028 (sup:0.1571 unsup:0.4914) | Val: 58.67% | Test: 57.13% | Mask: 0.771
+16:28:47 | INFO | [best] τ=0.7 λ=0.5 | Epoch  30/100 | Loss: 0.4611 (sup:0.2073 unsup:0.5076) | Val: 56.33% | Test: 56.23% | Mask: 0.777
+16:28:53 | INFO | [best] τ=0.7 λ=0.5 | Epoch  31/100 | Loss: 0.3924 (sup:0.1544 unsup:0.4759) | Val: 58.67% | Test: 57.50% | Mask: 0.755
+16:29:00 | INFO | [best] τ=0.7 λ=0.5 | Epoch  32/100 | Loss: 0.3963 (sup:0.1652 unsup:0.4622) | Val: 55.67% | Test: 56.80% | Mask: 0.765
+16:29:07 | INFO | [best] τ=0.7 λ=0.5 | Epoch  33/100 | Loss: 0.3635 (sup:0.1209 unsup:0.4853) | Val: 59.67% | Test: 54.47% | Mask: 0.780
+16:29:14 | INFO | [best] τ=0.7 λ=0.5 | Epoch  34/100 | Loss: 0.3648 (sup:0.1242 unsup:0.4812) | Val: 60.67% | Test: 57.57% | Mask: 0.774
+16:29:21 | INFO | [best] τ=0.7 λ=0.5 | Epoch  35/100 | Loss: 0.3309 (sup:0.0980 unsup:0.4658) | Val: 55.33% | Test: 56.07% | Mask: 0.781
+16:29:27 | INFO | [best] τ=0.7 λ=0.5 | Epoch  36/100 | Loss: 0.3150 (sup:0.0827 unsup:0.4647) | Val: 61.33% | Test: 59.47% | Mask: 0.792
+16:29:34 | INFO | [best] τ=0.7 λ=0.5 | Epoch  37/100 | Loss: 0.3237 (sup:0.0744 unsup:0.4986) | Val: 58.33% | Test: 56.17% | Mask: 0.802
+16:29:41 | INFO | [best] τ=0.7 λ=0.5 | Epoch  38/100 | Loss: 0.2898 (sup:0.0555 unsup:0.4686) | Val: 59.67% | Test: 59.43% | Mask: 0.798
+16:29:47 | INFO | [best] τ=0.7 λ=0.5 | Epoch  39/100 | Loss: 0.3129 (sup:0.0879 unsup:0.4500) | Val: 53.67% | Test: 56.47% | Mask: 0.805
+16:29:54 | INFO | [best] τ=0.7 λ=0.5 | Epoch  40/100 | Loss: 0.3005 (sup:0.0564 unsup:0.4883) | Val: 58.67% | Test: 60.00% | Mask: 0.812
+16:30:01 | INFO | [best] τ=0.7 λ=0.5 | Epoch  41/100 | Loss: 0.2931 (sup:0.0687 unsup:0.4488) | Val: 57.00% | Test: 58.93% | Mask: 0.803
+16:30:08 | INFO | [best] τ=0.7 λ=0.5 | Epoch  42/100 | Loss: 0.2878 (sup:0.0501 unsup:0.4753) | Val: 61.67% | Test: 59.50% | Mask: 0.807
+16:30:14 | INFO | [best] τ=0.7 λ=0.5 | Epoch  43/100 | Loss: 0.2854 (sup:0.0584 unsup:0.4540) | Val: 62.67% | Test: 59.07% | Mask: 0.804
+16:30:21 | INFO | [best] τ=0.7 λ=0.5 | Epoch  44/100 | Loss: 0.2681 (sup:0.0561 unsup:0.4240) | Val: 58.67% | Test: 58.57% | Mask: 0.799
+16:30:28 | INFO | [best] τ=0.7 λ=0.5 | Epoch  45/100 | Loss: 0.2679 (sup:0.0439 unsup:0.4479) | Val: 60.67% | Test: 61.00% | Mask: 0.810
+16:30:35 | INFO | [best] τ=0.7 λ=0.5 | Epoch  46/100 | Loss: 0.2570 (sup:0.0411 unsup:0.4319) | Val: 62.33% | Test: 59.87% | Mask: 0.813
+16:30:41 | INFO | [best] τ=0.7 λ=0.5 | Epoch  47/100 | Loss: 0.2596 (sup:0.0414 unsup:0.4363) | Val: 59.33% | Test: 58.67% | Mask: 0.818
+16:30:48 | INFO | [best] τ=0.7 λ=0.5 | Epoch  48/100 | Loss: 0.2615 (sup:0.0432 unsup:0.4366) | Val: 59.33% | Test: 60.30% | Mask: 0.822
+16:30:55 | INFO | [best] τ=0.7 λ=0.5 | Epoch  49/100 | Loss: 0.2394 (sup:0.0319 unsup:0.4150) | Val: 61.33% | Test: 62.27% | Mask: 0.825
+16:31:01 | INFO | [best] τ=0.7 λ=0.5 | Epoch  50/100 | Loss: 0.2383 (sup:0.0318 unsup:0.4129) | Val: 62.00% | Test: 61.23% | Mask: 0.818
+16:31:08 | INFO | [best] τ=0.7 λ=0.5 | Epoch  51/100 | Loss: 0.2344 (sup:0.0306 unsup:0.4077) | Val: 62.00% | Test: 59.50% | Mask: 0.825
+16:31:15 | INFO | [best] τ=0.7 λ=0.5 | Epoch  52/100 | Loss: 0.2472 (sup:0.0427 unsup:0.4091) | Val: 62.33% | Test: 60.17% | Mask: 0.831
+16:31:21 | INFO | [best] τ=0.7 λ=0.5 | Epoch  53/100 | Loss: 0.2276 (sup:0.0276 unsup:0.4000) | Val: 58.67% | Test: 61.00% | Mask: 0.817
+16:31:28 | INFO | [best] τ=0.7 λ=0.5 | Epoch  54/100 | Loss: 0.2282 (sup:0.0223 unsup:0.4118) | Val: 59.67% | Test: 61.20% | Mask: 0.839
+16:31:35 | INFO | [best] τ=0.7 λ=0.5 | Epoch  55/100 | Loss: 0.2325 (sup:0.0219 unsup:0.4214) | Val: 63.67% | Test: 62.37% | Mask: 0.831
+16:31:41 | INFO | [best] τ=0.7 λ=0.5 | Epoch  56/100 | Loss: 0.2501 (sup:0.0452 unsup:0.4099) | Val: 61.00% | Test: 61.53% | Mask: 0.820
+16:31:48 | INFO | [best] τ=0.7 λ=0.5 | Epoch  57/100 | Loss: 0.2278 (sup:0.0225 unsup:0.4106) | Val: 61.00% | Test: 61.80% | Mask: 0.831
+16:31:55 | INFO | [best] τ=0.7 λ=0.5 | Epoch  58/100 | Loss: 0.2197 (sup:0.0169 unsup:0.4057) | Val: 62.33% | Test: 62.97% | Mask: 0.827
+16:32:02 | INFO | [best] τ=0.7 λ=0.5 | Epoch  59/100 | Loss: 0.2243 (sup:0.0252 unsup:0.3983) | Val: 62.00% | Test: 62.10% | Mask: 0.842
+16:32:09 | INFO | [best] τ=0.7 λ=0.5 | Epoch  60/100 | Loss: 0.2117 (sup:0.0195 unsup:0.3844) | Val: 63.00% | Test: 63.57% | Mask: 0.831
+16:32:16 | INFO | [best] τ=0.7 λ=0.5 | Epoch  61/100 | Loss: 0.2217 (sup:0.0204 unsup:0.4027) | Val: 62.67% | Test: 63.13% | Mask: 0.850
+16:32:23 | INFO | [best] τ=0.7 λ=0.5 | Epoch  62/100 | Loss: 0.1996 (sup:0.0133 unsup:0.3727) | Val: 63.67% | Test: 63.23% | Mask: 0.837
+16:32:30 | INFO | [best] τ=0.7 λ=0.5 | Epoch  63/100 | Loss: 0.2033 (sup:0.0149 unsup:0.3767) | Val: 64.00% | Test: 63.67% | Mask: 0.841
+16:32:37 | INFO | [best] τ=0.7 λ=0.5 | Epoch  64/100 | Loss: 0.2147 (sup:0.0243 unsup:0.3807) | Val: 63.33% | Test: 62.43% | Mask: 0.839
+16:32:44 | INFO | [best] τ=0.7 λ=0.5 | Epoch  65/100 | Loss: 0.2096 (sup:0.0207 unsup:0.3778) | Val: 62.67% | Test: 63.97% | Mask: 0.842
+16:32:51 | INFO | [best] τ=0.7 λ=0.5 | Epoch  66/100 | Loss: 0.1997 (sup:0.0135 unsup:0.3725) | Val: 63.67% | Test: 63.03% | Mask: 0.845
+16:32:57 | INFO | [best] τ=0.7 λ=0.5 | Epoch  67/100 | Loss: 0.2039 (sup:0.0166 unsup:0.3747) | Val: 63.67% | Test: 63.73% | Mask: 0.847
+16:33:04 | INFO | [best] τ=0.7 λ=0.5 | Epoch  68/100 | Loss: 0.2045 (sup:0.0128 unsup:0.3835) | Val: 64.67% | Test: 63.73% | Mask: 0.849
+16:33:11 | INFO | [best] τ=0.7 λ=0.5 | Epoch  69/100 | Loss: 0.2014 (sup:0.0190 unsup:0.3649) | Val: 62.67% | Test: 63.87% | Mask: 0.850
+16:33:18 | INFO | [best] τ=0.7 λ=0.5 | Epoch  70/100 | Loss: 0.2005 (sup:0.0135 unsup:0.3739) | Val: 61.67% | Test: 63.37% | Mask: 0.846
+16:33:25 | INFO | [best] τ=0.7 λ=0.5 | Epoch  71/100 | Loss: 0.2125 (sup:0.0105 unsup:0.4040) | Val: 63.67% | Test: 64.53% | Mask: 0.850
+16:33:31 | INFO | [best] τ=0.7 λ=0.5 | Epoch  72/100 | Loss: 0.1959 (sup:0.0147 unsup:0.3624) | Val: 66.00% | Test: 64.47% | Mask: 0.850
+16:33:38 | INFO | [best] τ=0.7 λ=0.5 | Epoch  73/100 | Loss: 0.1996 (sup:0.0122 unsup:0.3748) | Val: 63.00% | Test: 64.33% | Mask: 0.852
+16:33:45 | INFO | [best] τ=0.7 λ=0.5 | Epoch  74/100 | Loss: 0.1894 (sup:0.0103 unsup:0.3584) | Val: 65.00% | Test: 64.27% | Mask: 0.851
+16:33:51 | INFO | [best] τ=0.7 λ=0.5 | Epoch  75/100 | Loss: 0.1966 (sup:0.0112 unsup:0.3709) | Val: 64.33% | Test: 65.20% | Mask: 0.857
+16:33:58 | INFO | [best] τ=0.7 λ=0.5 | Epoch  76/100 | Loss: 0.1913 (sup:0.0101 unsup:0.3623) | Val: 63.33% | Test: 64.53% | Mask: 0.852
+16:34:05 | INFO | [best] τ=0.7 λ=0.5 | Epoch  77/100 | Loss: 0.1886 (sup:0.0114 unsup:0.3545) | Val: 65.33% | Test: 64.60% | Mask: 0.858
+16:34:11 | INFO | [best] τ=0.7 λ=0.5 | Epoch  78/100 | Loss: 0.1920 (sup:0.0129 unsup:0.3582) | Val: 63.00% | Test: 65.23% | Mask: 0.857
+16:34:18 | INFO | [best] τ=0.7 λ=0.5 | Epoch  79/100 | Loss: 0.1863 (sup:0.0097 unsup:0.3533) | Val: 65.33% | Test: 64.90% | Mask: 0.858
+16:34:25 | INFO | [best] τ=0.7 λ=0.5 | Epoch  80/100 | Loss: 0.1808 (sup:0.0083 unsup:0.3450) | Val: 64.33% | Test: 64.77% | Mask: 0.856
+16:34:32 | INFO | [best] τ=0.7 λ=0.5 | Epoch  81/100 | Loss: 0.1960 (sup:0.0099 unsup:0.3720) | Val: 66.67% | Test: 64.90% | Mask: 0.866
+16:34:39 | INFO | [best] τ=0.7 λ=0.5 | Epoch  82/100 | Loss: 0.1832 (sup:0.0100 unsup:0.3462) | Val: 63.67% | Test: 63.97% | Mask: 0.865
+16:34:46 | INFO | [best] τ=0.7 λ=0.5 | Epoch  83/100 | Loss: 0.1844 (sup:0.0082 unsup:0.3523) | Val: 64.00% | Test: 64.60% | Mask: 0.863
+16:34:53 | INFO | [best] τ=0.7 λ=0.5 | Epoch  84/100 | Loss: 0.1845 (sup:0.0076 unsup:0.3538) | Val: 65.00% | Test: 64.83% | Mask: 0.869
+16:34:59 | INFO | [best] τ=0.7 λ=0.5 | Epoch  85/100 | Loss: 0.1886 (sup:0.0097 unsup:0.3578) | Val: 64.00% | Test: 65.03% | Mask: 0.864
+16:35:06 | INFO | [best] τ=0.7 λ=0.5 | Epoch  86/100 | Loss: 0.1814 (sup:0.0074 unsup:0.3479) | Val: 64.33% | Test: 65.13% | Mask: 0.867
+16:35:13 | INFO | [best] τ=0.7 λ=0.5 | Epoch  87/100 | Loss: 0.1835 (sup:0.0081 unsup:0.3508) | Val: 63.33% | Test: 64.77% | Mask: 0.863
+16:35:20 | INFO | [best] τ=0.7 λ=0.5 | Epoch  88/100 | Loss: 0.1881 (sup:0.0087 unsup:0.3588) | Val: 63.67% | Test: 65.17% | Mask: 0.863
+16:35:27 | INFO | [best] τ=0.7 λ=0.5 | Epoch  89/100 | Loss: 0.1861 (sup:0.0086 unsup:0.3550) | Val: 65.00% | Test: 65.30% | Mask: 0.869
+16:35:34 | INFO | [best] τ=0.7 λ=0.5 | Epoch  90/100 | Loss: 0.1891 (sup:0.0083 unsup:0.3618) | Val: 65.67% | Test: 65.13% | Mask: 0.871
+16:35:41 | INFO | [best] τ=0.7 λ=0.5 | Epoch  91/100 | Loss: 0.1854 (sup:0.0074 unsup:0.3560) | Val: 64.00% | Test: 65.20% | Mask: 0.869
+16:35:48 | INFO | [best] τ=0.7 λ=0.5 | Epoch  92/100 | Loss: 0.1867 (sup:0.0139 unsup:0.3455) | Val: 63.33% | Test: 65.03% | Mask: 0.869
+16:35:56 | INFO | [best] τ=0.7 λ=0.5 | Epoch  93/100 | Loss: 0.1875 (sup:0.0095 unsup:0.3561) | Val: 65.00% | Test: 64.97% | Mask: 0.870
+16:36:03 | INFO | [best] τ=0.7 λ=0.5 | Epoch  94/100 | Loss: 0.1904 (sup:0.0127 unsup:0.3554) | Val: 64.33% | Test: 64.80% | Mask: 0.869
+16:36:10 | INFO | [best] τ=0.7 λ=0.5 | Epoch  95/100 | Loss: 0.1803 (sup:0.0052 unsup:0.3501) | Val: 65.00% | Test: 65.10% | Mask: 0.866
+16:36:18 | INFO | [best] τ=0.7 λ=0.5 | Epoch  96/100 | Loss: 0.1846 (sup:0.0055 unsup:0.3582) | Val: 65.33% | Test: 65.10% | Mask: 0.871
+16:36:25 | INFO | [best] τ=0.7 λ=0.5 | Epoch  97/100 | Loss: 0.1778 (sup:0.0086 unsup:0.3383) | Val: 65.00% | Test: 64.93% | Mask: 0.870
+16:36:33 | INFO | [best] τ=0.7 λ=0.5 | Epoch  98/100 | Loss: 0.1753 (sup:0.0077 unsup:0.3352) | Val: 65.33% | Test: 64.90% | Mask: 0.869
+16:36:40 | INFO | [best] τ=0.7 λ=0.5 | Epoch  99/100 | Loss: 0.1850 (sup:0.0092 unsup:0.3517) | Val: 65.00% | Test: 65.07% | Mask: 0.867
+16:36:47 | INFO | [best] τ=0.7 λ=0.5 | Epoch 100/100 | Loss: 0.1880 (sup:0.0091 unsup:0.3578) | Val: 65.33% | Test: 65.00% | Mask: 0.870
+16:36:47 | INFO | [best] Best Test Accuracy: 65.30%
+  Saved: ./outputs/plots/fixmatch/fixmatch_analysis.png
+  Saved: ./outputs/plots/fixmatch/training_curves.png
+  Saved: ./outputs/plots/fixmatch/confusion_matrix.png
+  Saved: ./outputs/plots/fixmatch/per_class_accuracy.png
+  Saved: ./outputs/visualizations/predictions/fixmatch_confidence.png
+  Running t-SNE (this may take a moment)...
+  Saved: ./outputs/visualizations/embeddings/fixmatch_tsne.png
+              precision    recall  f1-score   support
+
+         cat       0.59      0.57      0.58      1000
+        deer       0.72      0.78      0.75      1000
+         dog       0.63      0.60      0.62      1000
+
+    accuracy                           0.65      3000
+   macro avg       0.65      0.65      0.65      3000
+weighted avg       0.65      0.65      0.65      3000
+
+
+============================================================
+Q3: GENERATING ANALYSIS PLOTS
+============================================================
+  Saved: ./outputs/plots/analysis/supervised_vs_fixmatch.png
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ALL DONE!  Results saved in outputs/
+  Supervised Best Acc   : 57.17%
+  FixMatch Default Acc  : 63.30%
+  FixMatch Best Acc     : 65.30%
+  Gain (vs supervised)  : +8.13%
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

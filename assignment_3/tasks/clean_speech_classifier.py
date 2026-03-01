@@ -3,13 +3,15 @@ import logging
 import sys
 import torch.nn as nn
 from datetime import datetime
-
+import os
 from ..src.models import NonLinearModel, ConvModel, LSTMModel
 from ..src.dataset import create_clean_dataloaders
 from ..src.clean_utils import train_model, plot_history, plot_confusion, plot_roc_auc, evaluate
 from ..src.load_data import get_train_test_files
 
 output_dir = "output/clean_exp"
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
 
 def setup_logger(log_name="training_log", log_dir = "logs"):
     logger = logging.getLogger(log_name)

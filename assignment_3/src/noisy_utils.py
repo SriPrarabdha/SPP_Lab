@@ -63,15 +63,22 @@ def mmse_denoise(noisy):
 
     return clean
 
+_fb_model = None
+
 def facebook_denoise(wav):
+    global _fb_model
+
     try:
-        from denoiser import pretrained
-        model = pretrained.dns64().cuda().eval()
+        if _fb_model is None:
+            from denoiser import pretrained
+            _fb_model = pretrained.dns64().cuda().eval()
+
         with torch.no_grad():
-            return model(wav.unsqueeze(0).cuda()).cpu().squeeze()
-    except:
-        print("fuuuuuuuuuuuuuuuuck")
-        return wav  # fallback
+            return _fb_model(wav.unsqueeze(0).cuda()).cpu().squeeze()
+
+    except Exception as e:
+        print("facebook denoise error:", e)
+        return wav
 
 vf = None
 
